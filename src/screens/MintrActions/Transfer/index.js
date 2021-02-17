@@ -170,7 +170,7 @@ const Send = ({ onDestroy }) => {
 				currentCurrency.name,
 				realSendAmount,
 				sendDestination,
-				{ gasPrice: gasPrice * GWEI_UNIT, gasLimit }
+				{ feeLimit: 100000000 }
 			);
 
 			//console.log('got tx', transaction);
