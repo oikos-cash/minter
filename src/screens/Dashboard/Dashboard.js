@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { withTranslation, useTranslation } from 'react-i18next';
@@ -105,6 +106,7 @@ const Charts = ({ state }) => {
 };
 
 const getBalancePerAsset = (asset, { balances, prices, debtData, synthData }) => {
+ 
 	let balance,
 		usdValue = 0;
 	switch (asset) {
@@ -196,6 +198,7 @@ const Dashboard = ({ t }) => {
 	const loadData = useCallback(() => {
 		setDashboardIsLoading(true);
 		fetchData(currentWallet, successQueue).then(data => {
+			console.log(data)
 			setData(data);
 			setDashboardIsLoading(false);
 		});

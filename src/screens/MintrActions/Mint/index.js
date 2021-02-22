@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Action from './Action';
@@ -58,11 +59,11 @@ const useGetGasEstimate = (mintAmount, issuableSynths) => {
 				if (mintAmount <= 0 || mintAmount > issuableSynths)
 					throw new Error('input.error.notEnoughToMint');
 				if (mintAmount === issuableSynths) {
-					gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimate.issueMaxSynths();
+					gasEstimate = 0;//await snxJSConnector.snxJS.Synthetix.contract.estimate.issueMaxSynths();
 				} else {
-					gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimate.issueSynths(
-						snxJSConnector.utils.parseEther(mintAmount.toString())
-					);
+					gasEstimate = 0 // await snxJSConnector.snxJS.Synthetix.contract.estimate.issueSynths(
+					//	snxJSConnector.utils.parseEther(mintAmount.toString())
+					//);
 				}
 				updateGasLimit(Number(gasEstimate), dispatch);
 			} catch (e) {

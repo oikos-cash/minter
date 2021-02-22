@@ -5,8 +5,8 @@ export default function EtherScanBtn({ networkName, transactionHash, children })
 	return (
 		<ButtonSecondary
 			href={`https://${
-				networkName === 'mainnet' ? '' : networkName + '.'
-			}etherscan.io/tx/${transactionHash}`}
+				networkName === 'bsc' ? '' : networkName + '.'
+			}testnet.bscscan.com/tx/${transactionHash}`}
 			as="a"
 			target="_blank"
 		>

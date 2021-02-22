@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import Action from './Action';
 import Confirmation from './Confirmation';
@@ -81,16 +82,16 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 				const amountBN = snxJSConnector.utils.parseEther(amount.toString());
 				fetchingGasLimit(dispatch);
 				if (currency.name === 'SNX') {
-					gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimate.transfer(
-						destination,
-						amountBN
-					);
+					gasEstimate = 0 //await snxJSConnector.snxJS.Synthetix.contract.estimate.transfer(
+					//	destination,
+					//	amountBN
+					//);
 				} else if (currency.name === 'ETH') {
 					if (amount === currency.balance) throw new Error('input.error.balanceTooLow');
-					gasEstimate = await snxJSConnector.provider.estimateGas({
-						value: amountBN,
-						to: destination,
-					});
+					gasEstimate =0;// await snxJSConnector.provider.estimateGas({
+					//	value: amountBN,
+					//	to: destination,
+					//});
 				} else {
 					gasEstimate = await snxJSConnector.snxJS[
 						currency.name
@@ -112,6 +113,7 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 const sendTransaction = (currency, amount, destination, settings) => {
 	if (!currency) return null;
 	if (currency === 'SNX') {
+		console.log(settings)
 		return snxJSConnector.snxJS.Synthetix.contract.transfer(destination, amount, settings);
 	} else if (currency === 'ETH') {
 		return snxJSConnector.signer.sendTransaction({

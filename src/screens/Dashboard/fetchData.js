@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { addSeconds } from 'date-fns';
 import snxJSConnector from '../../helpers/snxJSConnector';
 
@@ -12,6 +13,8 @@ const getBalances = async walletAddress => {
 			snxJSConnector.snxJS.sUSD.balanceOf(walletAddress),
 			snxJSConnector.provider.getBalance(walletAddress),
 		]);
+
+		console.log(result)
 		const [snx, susd, eth] = result.map(bigNumberFormatter);
 		return { snx, susd, eth };
 	} catch (e) {
@@ -130,31 +133,53 @@ const getEscrow = async walletAddress => {
 
 const getSynths = async walletAddress => {
 	try {
-		const [balanceResults, totalBalanceResults] = await Promise.all([
-			snxJSConnector.synthSummaryUtilContract.synthsBalances(walletAddress),
-			snxJSConnector.synthSummaryUtilContract.totalSynthsInKey(
-				walletAddress,
-				bytesFormatter('sUSD')
-			),
-		]);
+		const synths = snxJSConnector.synths.filter(({ asset }) => asset).map(({ name }) => name);
+		//.filter((synth) => {
+		//	return synth !== "sBTT" && synth !== "iBTT"
+		//});
+		//console.log({ synths });
 
-		const [synthsKeys, synthsBalances] = balanceResults;
+		const result = await Promise.all(
+			synths.map(async synth => {
+				try {
+					return await snxJSConnector.snxJS[synth].balanceOf(walletAddress);
+				} catch (err) {
+					throw new Error(`error fetching balance of ${synth}: ${err}`);
+				}
+			})
+		);
 
-		const balances = synthsKeys.map((key, i) => {
-			const synthName = parseBytes32String(key);
+		//console.log({ result });
+		const balances = await Promise.all(
+			result.map((balance, i) => {
+				return  snxJSConnector.snxJS.ExchangeRates.effectiveValue(
+						bytesFormatter(synths[i]),
+						balance,
+						bytesFormatter('sUSD')
+					);
+				
+			})
+		);
+		console.log({ balances });
+		let totalBalance = 0;
+		const formattedBalances = balances.map((balance, i) => {
+			const formattedBalance = bigNumberFormatter(balance);
+			totalBalance += formattedBalance;
 			return {
-				synth: synthName,
-				balance: bigNumberFormatter(synthsBalances[i]),
+				synth: synths[i],
+				balance: formattedBalance,
 			};
 		});
 		return {
-			balances,
-			total: bigNumberFormatter(totalBalanceResults),
+			balances: formattedBalances,
+			total: totalBalance,
 		};
 	} catch (e) {
 		console.log(e);
 	}
 };
+
+
 
 export const fetchData = async walletAddress => {
 	const [balances, prices, rewardData, debtData, escrowData, synthData] = await Promise.all([
@@ -163,15 +188,15 @@ export const fetchData = async walletAddress => {
 		getRewards(walletAddress),
 		getDebt(walletAddress),
 		getEscrow(walletAddress),
-		getSynths(walletAddress),
+		getSynths(walletAddress)
 	]).catch(e => console.log(e));
-
+	console.log(synthData)
 	return {
 		balances,
 		prices,
 		rewardData,
 		debtData,
 		escrowData,
-		synthData,
+		synthData
 	};
 };

@@ -14,6 +14,7 @@ import MobileLanding from '../MobileLanding';
 import NotificationCenter from '../../components/NotificationCenter';
 import snxJSConnector from '../../helpers/snxJSConnector';
 import { getEthereumNetwork } from '../../helpers/networkHelper';
+import { getDefaultProvider } from 'ethers';
 
 const INTERVAL_TIMER = 5 * 60 * 1000;
 
@@ -49,8 +50,10 @@ const Root = () => {
 		if (process.env.REACT_APP_CONTEXT !== 'production') return;
 		let intervalId;
 		const init = async () => {
-			const { networkId } = await getEthereumNetwork();
-			snxJSConnector.setContractSettings({ networkId });
+			//const { networkId } = await getEthereumNetwork();
+			const networkId = 97;
+			const provider = getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545');
+			snxJSConnector.setContractSettings({ networkId, provider });
 			getAppState();
 			intervalId = setInterval(() => {
 				getAppState();

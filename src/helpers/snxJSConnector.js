@@ -1,4 +1,4 @@
-import { SynthetixJs } from 'synthetix-js';
+import { SynthetixJs } from '@oikos/oikos-js-bsc';
 import { getEthereumNetwork, INFURA_JSON_RPC_URLS } from './networkHelper';
 import { ethers } from 'ethers';
 import { unipool, uniswap, curvepool, curveLPToken, synthSummary } from './contracts';
@@ -14,7 +14,7 @@ let snxJSConnector = {
 		this.provider = this.snxJS.contractSettings.provider;
 		this.utils = this.snxJS.utils;
 		this.ethersUtils = this.snxJS.ethers.utils;
-		if (this.signer) {
+		/*if (this.signer) {
 			this.uniswapContract = new ethers.Contract(uniswap.address, uniswap.abi, this.signer);
 			this.unipoolContract = new ethers.Contract(unipool.address, unipool.abi, this.signer);
 			this.curveLPTokenContract = new ethers.Contract(
@@ -28,7 +28,7 @@ let snxJSConnector = {
 			synthSummary.addresses[contractSettings.networkId],
 			synthSummary.abi,
 			this.provider
-		);
+		);*/
 	},
 };
 
@@ -165,7 +165,9 @@ export const setSigner = ({ type, networkId, derivationPath }) => {
 };
 
 export const connectToWallet = async ({ wallet, derivationPath }) => {
-	const { name, networkId } = await getEthereumNetwork();
+	//const { name, networkId } = await getEthereumNetwork();
+	const name = 'bsc';
+	const networkId = 97;
 	if (!name) {
 		return {
 			walletType: '',
