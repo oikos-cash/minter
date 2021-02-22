@@ -1,3 +1,4 @@
+/* eslint-disable */
 import throttle from 'lodash/throttle';
 export const GWEI_UNIT = 1000000000;
 
@@ -28,7 +29,7 @@ export const INFURA_JSON_RPC_URLS = {
 	42: `https://kovan.infura.io/v3/${INFURA_PROJECT_ID}`,
 };
 
-export const SUPPORTED_WALLETS = ['Metamask', 'Trezor', 'Ledger', 'Coinbase', 'WalletConnect'];
+export const SUPPORTED_WALLETS = ['Metamask'/*, 'Trezor', 'Ledger', 'Coinbase', 'WalletConnect'*/];
 
 export const hasWeb3 = () => {
 	return window.web3;

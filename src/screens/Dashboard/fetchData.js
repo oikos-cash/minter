@@ -15,8 +15,8 @@ const getBalances = async walletAddress => {
 		]);
 
 		console.log(result)
-		const [snx, susd, eth] = result.map(bigNumberFormatter);
-		return { snx, susd, eth };
+		const [oks, susd, eth] = result.map(bigNumberFormatter);
+		return { oks, susd, eth };
 	} catch (e) {
 		console.log(e);
 	}
@@ -55,11 +55,11 @@ const getSETHtoETH = async () => {
 const getPrices = async () => {
 	try {
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-			['SNX', 'sUSD', 'sETH'].map(bytesFormatter)
+			['OKS', 'sUSD', 'sETH'].map(bytesFormatter)
 		);
 		const sethToEthRateP = getSETHtoETH();
 		const [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
-		const [snx, susd, seth] = synths.map(bigNumberFormatter);
+		const [oks, susd, seth] = synths.map(bigNumberFormatter);
 
 		const susdInUsd = getSusdInUsd(
 			{
@@ -68,7 +68,8 @@ const getPrices = async () => {
 			},
 			sethToEthRate
 		);
-		return { snx, susd: susdInUsd, eth: seth };
+		console.log(`OKS price is ${oks}`)
+		return { oks, susd: susdInUsd, eth: seth };
 	} catch (e) {
 		console.log(e);
 	}

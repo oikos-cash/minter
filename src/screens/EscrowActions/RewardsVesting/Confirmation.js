@@ -29,7 +29,7 @@ const Confirmation = ({ t, onDestroy, walletType, vestAmount }) => {
 					<Details>
 						<Box>
 							<DataHeaderLarge>{t('escrow.confirmation.actionDescription')}</DataHeaderLarge>
-							<Amount>{formatCurrency(vestAmount)} SNX</Amount>
+							<Amount>{formatCurrency(vestAmount)} OKS</Amount>
 						</Box>
 					</Details>
 				</Top>

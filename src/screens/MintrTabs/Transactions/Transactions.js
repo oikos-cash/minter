@@ -101,7 +101,7 @@ const getEventInfo = data => {
 	let { label, icon } = data;
 	switch (event) {
 		case 'FeesClaimed':
-			amount = `${formatCurrency(data.snxRewards || 0)} SNX`;
+			amount = `${formatCurrency(data.snxRewards || 0)} OKS`;
 			break;
 		case 'SynthExchange':
 			const fromCurrency = data.exchangeFromCurrency.replace(/\u0000/g, '');

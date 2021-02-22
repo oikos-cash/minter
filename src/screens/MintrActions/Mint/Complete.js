@@ -15,7 +15,7 @@ const Success = ({
 	onDestroy,
 	networkName,
 	transactionHash,
-	SNXPrice,
+	OKSPrice,
 }) => {
 	return (
 		<Fragment>
@@ -37,7 +37,7 @@ const Success = ({
 							{t('mintrActions.mint.confirmation.subActionDescription')}
 						</DataHeaderLarge>
 						<Amount>
-							{issuanceRatio ? formatCurrency(mintAmount / issuanceRatio / SNXPrice) : '--'} SNX
+							{issuanceRatio ? formatCurrency(mintAmount / issuanceRatio / OKSPrice) : '--'} OKS
 						</Amount>
 					</Box>
 				</Details>

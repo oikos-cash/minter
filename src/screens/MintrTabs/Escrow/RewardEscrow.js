@@ -105,7 +105,7 @@ const VestingTable = ({ data }) => {
 			<H5>{t('escrow.staking.table.title')}</H5>
 			<TableHeader>
 				<TableHeaderMedium>{t('escrow.staking.table.date')}</TableHeaderMedium>
-				<TableHeaderMedium>SNX {t('escrow.staking.table.quantity')}</TableHeaderMedium>
+				<TableHeaderMedium>OKS {t('escrow.staking.table.quantity')}</TableHeaderMedium>
 			</TableHeader>
 			<TableWrapper>
 				<Table cellSpacing="0">
@@ -133,7 +133,7 @@ const VestingTable = ({ data }) => {
 						{t('escrow.staking.total')}
 					</DataHeaderLarge>
 					<DataMegaEscrow>
-						{data && data.total ? formatCurrency(data.total) : '--'} SNX
+						{data && data.total ? formatCurrency(data.total) : '--'} OKS
 					</DataMegaEscrow>
 				</DataBlock>
 			</RightBlock>

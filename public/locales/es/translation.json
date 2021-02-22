@@ -2,33 +2,33 @@
 	"onboarding": {
 		"slides": {
 			"welcome": {
-				"title": "¡Bienvenido a Mintr!",
-				"description": "Mintr es la dApp para los titulares de SNX. Si nunca ha usado Mintr antes, lea primero nuestra rápida introducción."
+				"title": "¡Bienvenido a Minter!",
+				"description": "Minter es la dApp para los titulares de OKS. Si nunca ha usado Minter antes, lea primero nuestra rápida introducción."
 			},
 			"whatIsSynthetix": {
-				"title": "¿Qué es Synthetix?",
-				"description": "Synthetix es un protocolo descentralizado de emisión de activos sintéticos construido sobre Ethereum. Estos activos sintéticos (Synths) se crean al invertir el Synthetix Network Token (SNX), y estos Synths pueden intercambiarse entre sí directamente con los contratos inteligentes de Synthetix en Synthetix.Exchange."
+				"title": "¿Qué es Oikos?",
+				"description": "Oikos es un protocolo descentralizado de emisión de activos sintéticos construido sobre Ethereum. Estos activos sintéticos (Synths) se crean al invertir el Oikos Network Token (OKS), y estos Synths pueden intercambiarse entre sí directamente con los contratos inteligentes de Oikos en Oikos.Exchange."
 			},
 			"whyStakeSnx": {
-				"title": "¿Por qué invertir en SNX?",
-				"description": "Los inversores de SNX reciben dos tipos de recompensas. En primer lugar, reciben las recompensas de inversión de SNX, que se crean a través de la política monetaria inflacionaria. En segundo lugar, hay recompensas del mercado de intercambio de Synth, que son generadas por las operaciones de Synth en Synthetix.Exchange."
+				"title": "¿Por qué invertir en OKS?",
+				"description": "Los inversores de OKS reciben dos tipos de recompensas. En primer lugar, reciben las recompensas de inversión de OKS, que se crean a través de la política monetaria inflacionaria. En segundo lugar, hay recompensas del mercado de intercambio de Synth, que son generadas por las operaciones de Synth en Oikos.Exchange."
 			},
 			"howStakeSnx": {
-				"title": "¿Qué deben hacer los inversores de SNX?",
-				"description": "Todos los Synths deben estar respaldados por SNX invertidos en un indice de colateralización del 750%. Los inversores de SNX necesitan administrar su propio indice para estar por encima de esta cifra, lo cual pueden hacerlo quemando Synths para aumentar su indice o acuñando Synths para reducirla. Si hacen esto, pueden recolectar recompensas semanales."
+				"title": "¿Qué deben hacer los inversores de OKS?",
+				"description": "Todos los Synths deben estar respaldados por OKS invertidos en un indice de colateralización del 750%. Los inversores de OKS necesitan administrar su propio indice para estar por encima de esta cifra, lo cual pueden hacerlo quemando Synths para aumentar su indice o acuñando Synths para reducirla. Si hacen esto, pueden recolectar recompensas semanales."
 			},
 			"risks": {
 				"title": "¿Cuáles son los riesgos?",
-				"description": "Todos los inversores de SNX crean una 'deuda' cuando invierten. Su deuda comienza como la cantidad de sUSD que acuña inicialmente, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros titulares de Synth. Cada vez que alguien posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los titulares de SNX invertidos. Un inversor debe pagar su deuda antes de poder desbloquear sus SNX invertidos."
+				"description": "Todos los inversores de OKS crean una 'deuda' cuando invierten. Su deuda comienza como la cantidad de sUSD que acuña inicialmente, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros titulares de Synth. Cada vez que alguien posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los titulares de OKS invertidos. Un inversor debe pagar su deuda antes de poder desbloquear sus OKS invertidos."
 			}
 		},
 		"walletConnection": {
-			"title": "Para comenzar, por favor conecte una billetera con sus tenencias de SNX:"
+			"title": "Para comenzar, por favor conecte una billetera con sus tenencias de OKS:"
 		},
 		"walletSelection": {
 			"success": {
 				"title": "Seleccionar billetera",
-				"subtitle": "Por favor seleccione la billetera que le gustaría usar con Mintr"
+				"subtitle": "Por favor seleccione la billetera que le gustaría usar con Minter"
 			},
 			"loading": {
 				"connectInstructions": "Siga las instrucciones en su dispositivo para desbloquear su billetera.",
@@ -36,7 +36,7 @@
 			},
 			"error": {
 				"title": "Error",
-				"subtitle": "Mintr no pudo acceder a su billetera.",
+				"subtitle": "Minter no pudo acceder a su billetera.",
 				"retry": "Reintentar"
 			}
 		}
@@ -59,7 +59,7 @@
 			"target": "Indice de colateralización objetivo"
 		},
 		"holdings": {
-			"title": "Total SNX:",
+			"title": "Total OKS:",
 			"locked": "Bloqueado",
 			"transferable": "Transferible",
 			"staking": "Invertido",
@@ -73,7 +73,7 @@
 			"balance": "Balance"
 		},
 		"buttons": {
-			"exchange": "Ir a Synthetix.Exchange",
+			"exchange": "Ir a Oikos.Exchange",
 			"synthetixDashboard": "Ver precios en el Tablero",
 			"refresh": "Actualizar"
 		}
@@ -93,15 +93,15 @@
 		"actions": {
 			"mint": {
 				"title": "Acuñar",
-				"description": "Acuñar sUSD invirtiendo SNX"
+				"description": "Acuñar sUSD invirtiendo OKS"
 			},
 			"burn": {
 				"title": "Quemar",
-				"description": "Quemar sUSD para desbloquear SNX invertidos"
+				"description": "Quemar sUSD para desbloquear OKS invertidos"
 			},
 			"claim": {
 				"title": "Reclamar",
-				"description": "Reclamar recompensas de los SNX invertidos y del mercado de intercambio de Synth"
+				"description": "Reclamar recompensas de los OKS invertidos y del mercado de intercambio de Synth"
 			},
 			"trade": {
 				"title": "Comerciar",
@@ -109,7 +109,7 @@
 			},
 			"transfer": {
 				"title": "Transferir",
-				"description": "Transferir SNX, Synths, o ETH"
+				"description": "Transferir OKS, Synths, o ETH"
 			}
 		}
 	},
@@ -117,7 +117,7 @@
 		"mint": {
 			"action": {
 				"title": "Acuñar",
-				"subtitle": "Acuñar sUSD invirtiendo sus SNX. Esto le proporciona un índice de colateralización y una deuda, lo que le permite obtener recompensas de inversión.",
+				"subtitle": "Acuñar sUSD invirtiendo sus OKS. Esto le proporciona un índice de colateralización y una deuda, lo que le permite obtener recompensas de inversión.",
 				"instruction": "Confirme o ingrese la cantidad a acuñar:",
 				"buttons": {
 					"mint": "Acuñar ahora"
@@ -134,11 +134,11 @@
 		"burn": {
 			"action": {
 				"title": "Quemar",
-				"subtitle": "Quemar sUSD para desbloquear sus SNX invertidos. Esto aumenta su índice de colateralización y reduce su deuda, lo que le permite transferir sus SNX no custodiados.",
+				"subtitle": "Quemar sUSD para desbloquear sus OKS invertidos. Esto aumenta su índice de colateralización y reduce su deuda, lo que le permite transferir sus OKS no custodiados.",
 				"instruction": "Confirme o ingrese la cantidad a quemar:",
 				"transferrable": {
-					"title": "SNX transferible siendo desbloqueado:",
-					"button": "Ver SNX transferibles"
+					"title": "OKS transferible siendo desbloqueado:",
+					"button": "Ver OKS transferibles"
 				},
 				"buttons": {
 					"burn": "Quemar ahora"
@@ -155,7 +155,7 @@
 		"claim": {
 			"action": {
 				"title": "Reclamar",
-				"subtitle": "Si ha invertido sus SNX y acuñado sUSD, Ud. es elegible para reunir dos tipos de recompensas: recompensas de inversión de SNX, y recompensas del mercado de intercambio Synth generadas en Synthetix.Exchange.",
+				"subtitle": "Si ha invertido sus OKS y acuñado sUSD, Ud. es elegible para reunir dos tipos de recompensas: recompensas de inversión de OKS, y recompensas del mercado de intercambio Synth generadas en Oikos.Exchange.",
 				"table": {
 					"title": "Periodos reclamables:",
 					"period": "Periodo",
@@ -164,7 +164,7 @@
 					"blocked": "Bloqueado"
 				},
 				"tradingRewards": "Sus recompensas disponibles del mercado de intercambio Synth:",
-				"stakingRewards": "Sus recompensas disponibles de inversión SNX:",
+				"stakingRewards": "Sus recompensas disponibles de inversión OKS:",
 				"buttons": {
 					"claim": "Reclamar ahora",
 					"history": "Historial de reclamos"
@@ -181,10 +181,10 @@
 		"trade": {
 			"action": {
 				"title": "Comerciar",
-				"subtitle": "Comerciar sus Synths por sUSD. Para el dApp completo, que le permite comerciar entre Synths, use Synthetix.Exchange.",
+				"subtitle": "Comerciar sus Synths por sUSD. Para el dApp completo, que le permite comerciar entre Synths, use Oikos.Exchange.",
 				"buttons": {
 					"trade": "Comerciar ahora",
-					"exchange": "Abrir Synthetix.Exchange"
+					"exchange": "Abrir Oikos.Exchange"
 				}
 			},
 			"confirmation": {
@@ -198,7 +198,7 @@
 		"send": {
 			"action": {
 				"title": "Transferir",
-				"subtitle": "Transferir sus ETH, SNX o Synths.",
+				"subtitle": "Transferir sus ETH, OKS o Synths.",
 				"available": "Cantidad transferible:",
 				"amountInstruction": "Ingrese la cantidad:",
 				"walletInstruction": "Ingrese la dirección de destino:",
@@ -218,7 +218,7 @@
 	"depot": {
 		"intro": {
 			"title": "Deposito:",
-			"subtitle": "Deposite sUSD en la lista para venderlo en Synthetix. Intercambie por ETH. Puede retirar sus sUSD en cualquier momento mientras espera. Nota: el depósito mínimo es de 50 sUSD."
+			"subtitle": "Deposite sUSD en la lista para venderlo en Oikos. Intercambie por ETH. Puede retirar sus sUSD en cualquier momento mientras espera. Nota: el depósito mínimo es de 50 sUSD."
 		},
 		"table": {
 			"title": "Actividad reciente:",
@@ -278,19 +278,19 @@
 			"viewRewards": "Ver recompensas en garantía"
 		},
 		"staking": {
-			"title": "Otorgar sus recompensas de SNX en garantía",
-			"subtitle": "Si usted ha invertido SNX y acuño sUSD, es elegible para recibir SNX por recompensas de inversión , las cuales puede otorgar aquí después de que ellas hayan sido custodiadas por 12 meses.",
+			"title": "Otorgar sus recompensas de OKS en garantía",
+			"subtitle": "Si usted ha invertido OKS y acuño sUSD, es elegible para recibir OKS por recompensas de inversión , las cuales puede otorgar aquí después de que ellas hayan sido custodiadas por 12 meses.",
 			"total": "Total en garantía:",
 			"table": {
-				"none": "No tiene SNX en garantía",
+				"none": "No tiene OKS en garantía",
 				"title": "Calendario de otorgamiento",
 				"date": "Fecha de otorgamiento",
 				"quantity": "Cantidad"
 			}
 		},
 		"tokenSale": {
-			"title": "Otorgar sus SNX en custodia desde la venta de tokens ",
-			"subtitle": "Si sus SNX todavía están en custodia desde la venta de tokens, puede otorgarlos aquí.",
+			"title": "Otorgar sus OKS en custodia desde la venta de tokens ",
+			"subtitle": "Si sus OKS todavía están en custodia desde la venta de tokens, puede otorgarlos aquí.",
 			"total": "Total otorgado:",
 			"table": {
 				"title": "Calendario de otorgamiento",
@@ -301,7 +301,7 @@
 				"vested": "Otorgado",
 				"date": "Fecha de otorgamiento",
 				"quantity": "Cantidad",
-				"none": "Usted no tiene SNX custodiados"
+				"none": "Usted no tiene OKS custodiados"
 			}
 		},
 		"confirmation": {
@@ -382,7 +382,7 @@
 		"fixCRatio": "Corregir su índice de colateralización",
 		"edit": "Editar",
 		"havingTrouble": "¿Teniendo problemas?",
-		"whatIsSynthetix": "¿Qué es Synthetix?",
+		"whatIsSynthetix": "¿Qué es Oikos?",
 		"previous": "Anterior",
 		"next": "Siguiente",
 		"startOver": "Comenzar de nuevo",
@@ -418,16 +418,16 @@
 		"speed": "Velocidad de transacción estimada:"
 	},
 	"maintenance": {
-		"title": "Mintr no está disponible actualmente debido a actualizaciones.",
+		"title": "Minter no está disponible actualmente debido a actualizaciones.",
 		"subtitle": "Disculpe las molestias, volverá en breve."
 	},
 	"mobileLanding": {
-		"title": "Mintr no está disponible actualmente para dispositivos móviles y tabletas.",
+		"title": "Minter no está disponible actualmente para dispositivos móviles y tabletas.",
 		"subtitle": "Esperamos tener una versión móvil disponible en los próximos meses."
 	},
 	"tooltip": {
 		"claim": "Para reclamar recompensas, debe estar dentro del 1% del índice de colateralización objetivo. Si está por debajo de esta cifra, se le bloqueará el reclamo de recompensas hasta que queme suficiente sUSD.",
-		"debtBalance": "Su deuda comienza como la cantidad de sUSD que inicialmente acuña, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros poseedores de Synth. Cada vez que alguien que posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los poseedores de los SNX invertidos. Para desbloquear todos sus SNX invertidos, primero debe pagar su deuda.",
-		"synthsBalance": "Los Synths son los activos sintéticos en el sistema Synthetix, incluidos sUSD, sBTC, iBTC y todos los demás activos disponibles en Synthetix.Exchange. Esta cifra es el valor total de todos los Synths contenidos en esta billetera. Si desea convertir algunos Synths de nuevo en sUSD, haga clic en el botón COMERCIAR."
+		"debtBalance": "Su deuda comienza como la cantidad de sUSD que inicialmente acuña, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros poseedores de Synth. Cada vez que alguien que posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los poseedores de los OKS invertidos. Para desbloquear todos sus OKS invertidos, primero debe pagar su deuda.",
+		"synthsBalance": "Los Synths son los activos sintéticos en el sistema Oikos, incluidos sUSD, sBTC, iBTC y todos los demás activos disponibles en Oikos.Exchange. Esta cifra es el valor total de todos los Synths contenidos en esta billetera. Si desea convertir algunos Synths de nuevo en sUSD, haga clic en el botón COMERCIAR."
 	}
 }

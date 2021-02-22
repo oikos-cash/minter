@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { addSeconds, differenceInSeconds } from 'date-fns';
 
@@ -17,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 
 const useGetDebtData = (walletAddress, sUSDBytes) => {
 	const [data, setData] = useState({});
-	const SNXBytes = bytesFormatter('SNX');
+	const OKSBytes = bytesFormatter('OKS');
 	useEffect(() => {
 		const getDebtData = async () => {
 			try {
@@ -25,7 +26,7 @@ const useGetDebtData = (walletAddress, sUSDBytes) => {
 					snxJSConnector.snxJS.Synthetix.debtBalanceOf(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.sUSD.balanceOf(walletAddress),
 					snxJSConnector.snxJS.SynthetixState.issuanceRatio(),
-					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(SNXBytes),
+					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(OKSBytes),
 					snxJSConnector.snxJS.RewardEscrow.totalEscrowedAccountBalance(walletAddress),
 					snxJSConnector.snxJS.SynthetixEscrow.balanceOf(walletAddress),
 					snxJSConnector.snxJS.Synthetix.collateralisationRatio(walletAddress),
@@ -35,7 +36,7 @@ const useGetDebtData = (walletAddress, sUSDBytes) => {
 					debt,
 					sUSDBalance,
 					issuanceRatio,
-					SNXPrice,
+					OKSPrice,
 					totalRewardEscrow,
 					totalTokenSaleEscrow,
 					cRatio,
@@ -56,7 +57,7 @@ const useGetDebtData = (walletAddress, sUSDBytes) => {
 					sUSDBalance,
 					maxBurnAmount,
 					maxBurnAmountBN,
-					SNXPrice,
+					OKSPrice,
 					escrowBalance: totalRewardEscrow + totalTokenSaleEscrow,
 					cRatio,
 					burnAmountToFixCRatio: Math.max(debt - issuableSynths, 0),
@@ -104,9 +105,9 @@ const useGetGasEstimate = (
 							: snxJSConnector.utils.parseEther(burnAmount.toString());
 				} else amountToBurn = 0;
 
-				gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimate.burnSynths(
-					amountToBurn
-				);
+				gasEstimate = 1200000;//await snxJSConnector.snxJS.Synthetix.contract.estimate.burnSynths(
+				//	amountToBurn
+				//);
 			} catch (e) {
 				console.log(e);
 				const errorMessage = (e && e.message) || 'input.error.gasEstimate';
@@ -143,7 +144,7 @@ const Burn = ({ onDestroy }) => {
 		maxBurnAmountBN,
 		sUSDBalance,
 		issuanceRatio,
-		SNXPrice,
+		OKSPrice,
 		escrowBalance,
 		cRatio,
 		burnAmountToFixCRatio,
@@ -260,18 +261,18 @@ const Burn = ({ onDestroy }) => {
 			const amountNB = Number(amount);
 			setBurnAmount(amount);
 			setTransferableAmount(
-				amountNB ? Math.max(amountNB / cRatio / SNXPrice - escrowBalance, 0) : 0
+				amountNB ? Math.max(amountNB / cRatio / OKSPrice - escrowBalance, 0) : 0
 			);
 		},
 		transferableAmount,
 		setTransferableAmount: amount => {
 			const amountNB = Number(amount);
-			setBurnAmount(amountNB > 0 ? (escrowBalance + amountNB) * issuanceRatio * SNXPrice : '');
+			setBurnAmount(amountNB > 0 ? (escrowBalance + amountNB) * issuanceRatio * OKSPrice : '');
 			setTransferableAmount(amount);
 		},
 		walletType,
 		networkName,
-		SNXPrice,
+		OKSPrice,
 		isFetchingGasLimit,
 		gasEstimateError,
 		burnAmountToFixCRatio,

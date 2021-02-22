@@ -12,7 +12,7 @@ export default function Logo({ className }) {
 	} = useContext(Store);
 	return (
 		<Link href="/" className={className}>
-			<LogoImg src={`/images/oikos-logo-${themeIsDark ? 'light' : 'dark'}.svg`} />
+			<LogoImg src={`/images/oikos-logo-${themeIsDark ? 'light' : 'dark'}.png`} />
 		</Link>
 	);
 }

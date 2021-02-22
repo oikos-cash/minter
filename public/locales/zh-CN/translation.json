@@ -2,33 +2,33 @@
 	"onboarding": {
 		"slides": {
 			"welcome": {
-				"title": "欢迎使用 Mintr!",
-				"description": "Mintr 是为 SNX 持有者开发的 dApp。如果您之前从未使用过 Mintr，请先阅读我们的简要介绍。"
+				"title": "欢迎使用 Minter!",
+				"description": "Minter 是为 OKS 持有者开发的 dApp。如果您之前从未使用过 Minter，请先阅读我们的简要介绍。"
 			},
 			"whatIsSynthetix": {
-				"title": "什么是 Synthetix?",
-				"description": "Synthetix 是一个建立在以太坊上的去中心化合成资产发行协议。这些合成的资产（Synths）来自于抵押 Synthetix Network Token（SNX），且可以直接用 Synthetix.Exchange 交易所上的 Synthetix 智能合约在彼此间直接交易。"
+				"title": "什么是 Oikos?",
+				"description": "Oikos 是一个建立在以太坊上的去中心化合成资产发行协议。这些合成的资产（Synths）来自于抵押 Oikos Network Token（OKS），且可以直接用 Oikos.Exchange 交易所上的 Oikos 智能合约在彼此间直接交易。"
 			},
 			"whyStakeSnx": {
-				"title": "为什么要抵押 SNX?",
-				"description": "SNX 持有人可以收到两种奖励。第一，持有人可以收到新增代币奖励，这些代币来自于通胀的货币政策。第二，Synth 的交易奖励，这些奖励来自于 Synthetix.Exchange 交易所的合成资产交易费。"
+				"title": "为什么要抵押 OKS?",
+				"description": "OKS 持有人可以收到两种奖励。第一，持有人可以收到新增代币奖励，这些代币来自于通胀的货币政策。第二，Synth 的交易奖励，这些奖励来自于 Oikos.Exchange 交易所的合成资产交易费。"
 			},
 			"howStakeSnx": {
-				"title": "SNX 持有人需要做什么？",
-				"description": "所有合成资产都由抵押的 SNX 来支撑其价值，抵押率现在为 750%。SNX 持有者需要自行管理自己的抵押率（包括销毁合成资产以增加抵押率，或铸造新的合成资产以降低抵押率），使其超过750%。做到这些，持有人即可领取每周奖励。"
+				"title": "OKS 持有人需要做什么？",
+				"description": "所有合成资产都由抵押的 OKS 来支撑其价值，抵押率现在为 750%。OKS 持有者需要自行管理自己的抵押率（包括销毁合成资产以增加抵押率，或铸造新的合成资产以降低抵押率），使其超过750%。做到这些，持有人即可领取每周奖励。"
 			},
 			"risks": {
 				"title": "有什么风险？",
-				"description": "所有 SNX 持有人在抵押时，都会产生一笔“债务”。一开始，债务是他们初始铸造的 sUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 SNX 持有人的债务。每个持有人都必须付清他们的债务，才能解锁他们抵押的 SNX。"
+				"description": "所有 OKS 持有人在抵押时，都会产生一笔“债务”。一开始，债务是他们初始铸造的 sUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 OKS 持有人的债务。每个持有人都必须付清他们的债务，才能解锁他们抵押的 OKS。"
 			}
 		},
 		"walletConnection": {
-			"title": "请连接存有 SNX 的钱包以继续："
+			"title": "请连接存有 OKS 的钱包以继续："
 		},
 		"walletSelection": {
 			"success": {
 				"title": "选择钱包",
-				"subtitle": "请选择您要连接到 Mintr 的钱包"
+				"subtitle": "请选择您要连接到 Minter 的钱包"
 			},
 			"loading": {
 				"connectInstructions": "请按照您设备上的指示解锁您的钱包。",
@@ -36,7 +36,7 @@
 			},
 			"error": {
 				"title": "错误",
-				"subtitle": "Mintr 不能访问您的钱包。",
+				"subtitle": "Minter 不能访问您的钱包。",
 				"retry": "重试"
 			}
 		}
@@ -57,7 +57,7 @@
 			"target": "抵押率目标"
 		},
 		"holdings": {
-			"title": "总 SNX:",
+			"title": "总 OKS:",
 			"locked": "已锁定",
 			"transferable": "可转账",
 			"staking": "已抵押",
@@ -71,8 +71,8 @@
 			"balance": "余额"
 		},
 		"buttons": {
-			"exchange": "前往 Synthetix.Exchange",
-			"synthetixDashboard": "查看 Synthetix Dashboard",
+			"exchange": "前往 Oikos.Exchange",
+			"synthetixDashboard": "查看 Oikos Dashboard",
 			"refresh": "刷新"
 		}
 	},
@@ -91,15 +91,15 @@
 		"actions": {
 			"mint": {
 				"title": "铸造",
-				"description": "抵押 SNX 来铸造 sUSD"
+				"description": "抵押 OKS 来铸造 sUSD"
 			},
 			"burn": {
 				"title": "销毁",
-				"description": "销毁 sUSD 来解锁抵押的 SNX"
+				"description": "销毁 sUSD 来解锁抵押的 OKS"
 			},
 			"claim": {
 				"title": "申领",
-				"description": "申领 SNX 新增代币奖励和 Synth 交易奖励"
+				"description": "申领 OKS 新增代币奖励和 Synth 交易奖励"
 			},
 			"trade": {
 				"title": "交易",
@@ -107,7 +107,7 @@
 			},
 			"transfer": {
 				"title": "转帐",
-				"description": "SNX，合成资产，或 ETH 转账"
+				"description": "OKS，合成资产，或 ETH 转账"
 			}
 		}
 	},
@@ -115,7 +115,7 @@
 		"mint": {
 			"action": {
 				"title": "铸造",
-				"subtitle": "抵押您的 SNX 来铸造 sUSD。抵押产生的抵押率和债务记录，将使您赚取奖励。",
+				"subtitle": "抵押您的 OKS 来铸造 sUSD。抵押产生的抵押率和债务记录，将使您赚取奖励。",
 				"instruction": "直接确认或手动输入您要铸造的数量：",
 				"buttons": {
 					"mint": "开始铸造"
@@ -132,11 +132,11 @@
 		"burn": {
 			"action": {
 				"title": "销毁",
-				"subtitle": "销毁 sUSD 来解锁您抵押的 SNX。这将增加您的抵押率，并减少您的债务，使您能转账未托管的 SNX。",
+				"subtitle": "销毁 sUSD 来解锁您抵押的 OKS。这将增加您的抵押率，并减少您的债务，使您能转账未托管的 OKS。",
 				"instruction": "直接确认或手动输入您要销毁的数量：",
 				"transferrable": {
-					"title": "解锁的 SNX",
-					"button": "查看可解锁的 SNX"
+					"title": "解锁的 OKS",
+					"button": "查看可解锁的 OKS"
 				},
 				"buttons": {
 					"burn": "开始销毁"
@@ -153,7 +153,7 @@
 		"claim": {
 			"action": {
 				"title": "申领",
-				"subtitle": "如果您抵押了 SNX 并铸造了 sUSD，您就有资格获得两种奖励：SNX 新增代币奖励，和 Synthetix.Exchange 产生的 Synth 交易奖励",
+				"subtitle": "如果您抵押了 OKS 并铸造了 sUSD，您就有资格获得两种奖励：OKS 新增代币奖励，和 Oikos.Exchange 产生的 Synth 交易奖励",
 				"table": {
 					"title": "申领周期：",
 					"period": "周期",
@@ -162,7 +162,7 @@
 					"blocked": "停止"
 				},
 				"tradingRewards": "您的 Synth 交易奖励：",
-				"stakingRewards": "您的 SNX 新增代币奖励：",
+				"stakingRewards": "您的 OKS 新增代币奖励：",
 				"buttons": {
 					"claim": "开始申领",
 					"history": "申领记录"
@@ -179,10 +179,10 @@
 		"trade": {
 			"action": {
 				"title": "交易",
-				"subtitle": "交易您的合成资产和 sUSD。使用 Synthetix.Exchange dApp 来交易所有 Synth 种类。",
+				"subtitle": "交易您的合成资产和 sUSD。使用 Oikos.Exchange dApp 来交易所有 Synth 种类。",
 				"buttons": {
 					"trade": "开始交易",
-					"exchange": "打开 Synthetix.Exchange"
+					"exchange": "打开 Oikos.Exchange"
 				}
 			},
 			"confirmation": {
@@ -196,7 +196,7 @@
 		"send": {
 			"action": {
 				"title": "转帐",
-				"subtitle": "转移 ETH, SNX 或 Synths。",
+				"subtitle": "转移 ETH, OKS 或 Synths。",
 				"available": "可转账数量：",
 				"amountInstruction": "输入数量：",
 				"walletInstruction": "输入收款地址：",
@@ -216,7 +216,7 @@
 	"depot": {
 		"intro": {
 			"title": "仓库：",
-			"subtitle": "Synthetix.Exchange 将会把存在这里的 sUSD 卖出换成 ETH。您可以在排队中的任何时间取出您的 sUSD。最小存款为 50 sUSD。"
+			"subtitle": "Oikos.Exchange 将会把存在这里的 sUSD 卖出换成 ETH。您可以在排队中的任何时间取出您的 sUSD。最小存款为 50 sUSD。"
 		},
 		"table": {
 			"title": "最近活动:",
@@ -276,19 +276,19 @@
 			"viewRewards": "查看奖励托管"
 		},
 		"staking": {
-			"title": "领取您在抵押中的 SNX 新增代币奖励",
-			"subtitle": "如果您抵押 SNX 并铸造了 sUSD，您就有资格领取 SNX 新增代币奖励，托管 12 个月之后，您可以在这里领取。",
+			"title": "领取您在抵押中的 OKS 新增代币奖励",
+			"subtitle": "如果您抵押 OKS 并铸造了 sUSD，您就有资格领取 OKS 新增代币奖励，托管 12 个月之后，您可以在这里领取。",
 			"total": "共计托管：",
 			"table": {
-				"none": "您没有托管的 SNX",
+				"none": "您没有托管的 OKS",
 				"title": "领取时间表",
 				"date": "领取日期",
 				"quantity": "数量"
 			}
 		},
 		"tokenSale": {
-			"title": "领取您在代币销售中托管的 SNX",
-			"subtitle": "如果您代币销售中的 SNX 仍在托管，您可以在这里领取。",
+			"title": "领取您在代币销售中托管的 OKS",
+			"subtitle": "如果您代币销售中的 OKS 仍在托管，您可以在这里领取。",
 			"total": "领取共计：",
 			"table": {
 				"title": "领取时间表",
@@ -299,7 +299,7 @@
 				"vested": "已领取",
 				"date": "领取日期",
 				"quantity": "数量",
-				"none": "您没有托管的 SNX"
+				"none": "您没有托管的 OKS"
 			}
 		},
 		"confirmation": {
@@ -380,7 +380,7 @@
 		"fixCRatio": "调整至目标抵押率",
 		"edit": "编辑",
 		"havingTrouble": "有问题？",
-		"whatIsSynthetix": "什么是 Synthetix?",
+		"whatIsSynthetix": "什么是 Oikos?",
 		"previous": "上一页",
 		"next": "下一页",
 		"startOver": "重新再来",
@@ -416,16 +416,16 @@
 		"speed": "预计转账时间："
 	},
 	"maintenance": {
-		"title": "Mintr 正在升级，现在暂停服务。",
+		"title": "Minter 正在升级，现在暂停服务。",
 		"subtitle": "抱歉给您带来不便，我们很快回来。"
 	},
 	"mobileLanding": {
-		"title": "Mintr 现在无法在手机和平板上使用。",
+		"title": "Minter 现在无法在手机和平板上使用。",
 		"subtitle": "我们期望在接下来几个月内上线一个移动版。"
 	},
 	"tooltip": {
 		"claim": "要申领奖励，您的抵押率不能低于目标抵押率超过 10%。如果您的抵押率不够，奖励领取将被关闭，直到您销毁足够的 sUSD。",
-		"debtBalance": "一开始，您的债务等于初始铸造的 sUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 SNX 持有人的债务。要解锁所有您抵押的 SNX，您需要首先还清您的债务。",
-		"synthsBalance": "Synth 是在 Synthetix 的系统中的合成资产，包括 sUSD, sBTC, iBTC, 和所有其他在 Synthetix.Exchange 的合成资产。这个数字是此钱包中所有合成资产的价值总和。如果您希望把它们换回 sUSD，请点击交易按钮。"
+		"debtBalance": "一开始，您的债务等于初始铸造的 sUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 OKS 持有人的债务。要解锁所有您抵押的 OKS，您需要首先还清您的债务。",
+		"synthsBalance": "Synth 是在 Oikos 的系统中的合成资产，包括 sUSD, sBTC, iBTC, 和所有其他在 Oikos.Exchange 的合成资产。这个数字是此钱包中所有合成资产的价值总和。如果您希望把它们换回 sUSD，请点击交易按钮。"
 	}
 }

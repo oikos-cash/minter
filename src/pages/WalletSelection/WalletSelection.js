@@ -68,7 +68,7 @@ const useGetWallets = (paginatorIndex, derivationPath) => {
 
 				const getBalanceForWallet = async wallet => {
 					return {
-						snxBalance: await snxJSConnector.snxJS.Synthetix.collateral(wallet.address),
+						oksBalance: await snxJSConnector.snxJS.Synthetix.collateral(wallet.address),
 						sUSDBalance: await snxJSConnector.snxJS.sUSD.balanceOf(wallet.address),
 						ethBalance: await snxJSConnector.provider.getBalance(wallet.address),
 					};
@@ -77,7 +77,7 @@ const useGetWallets = (paginatorIndex, derivationPath) => {
 				nextWallets.forEach((wallet, index) => {
 					getBalanceForWallet(wallet, index).then(balance => {
 						wallet.balances = {
-							snxBalance: bigNumberFormatter(balance.snxBalance),
+							oksBalance: bigNumberFormatter(balance.oksBalance),
 							sUSDBalance: bigNumberFormatter(balance.sUSDBalance),
 							ethBalance: bigNumberFormatter(balance.ethBalance),
 						};
@@ -211,7 +211,7 @@ const WalletConnection = ({ t }) => {
 									<List cellSpacing={0}>
 										<ListHead>
 											<ListHeaderRow>
-												{['Address', 'SNX', 'sUSD', 'ETH', ''].map((headerElement, i) => {
+												{['Address', 'OKS', 'sUSD', 'ETH', ''].map((headerElement, i) => {
 													return (
 														<ListHeaderCell
 															style={{ textAlign: i > 0 ? 'right' : 'left' }}
@@ -246,7 +246,7 @@ const WalletConnection = ({ t }) => {
 																<TableDataMedium>{wallet.address}</TableDataMedium>
 															</ListCell>
 															<ListCell style={{ textAlign: 'right' }}>
-																<BalanceOrSpinner value={wallet.balances.snxBalance} />
+																<BalanceOrSpinner value={wallet.balances.oksBalance} />
 															</ListCell>
 															<ListCell style={{ textAlign: 'right' }}>
 																<BalanceOrSpinner value={wallet.balances.sUSDBalance} />

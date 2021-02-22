@@ -192,7 +192,7 @@ const VestingSchedule = ({ state }) => {
 			<H5>{t('escrow.tokenSale.table.title')}</H5>
 			<TableHeader>
 				<TableHeaderMedium>{t('escrow.tokenSale.table.date')}</TableHeaderMedium>
-				<TableHeaderMedium>SNX {t('escrow.tokenSale.table.quantity')}</TableHeaderMedium>
+				<TableHeaderMedium>OKS {t('escrow.tokenSale.table.quantity')}</TableHeaderMedium>
 			</TableHeader>
 			<TableWrapper>
 				<Table cellSpacing="0">
@@ -204,7 +204,7 @@ const VestingSchedule = ({ state }) => {
 					<DataHeaderLarge style={{ textTransform: 'uppercase' }}>
 						{t('escrow.tokenSale.total')}
 					</DataHeaderLarge>
-					<DataMegaEscrow>{totalVesting ? formatCurrency(totalVesting) : '--'} SNX</DataMegaEscrow>
+					<DataMegaEscrow>{totalVesting ? formatCurrency(totalVesting) : '--'} </DataMegaEscrow>
 				</DataBlock>
 			</RightBlock>
 		</ScheduleWrapper>

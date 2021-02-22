@@ -20,9 +20,9 @@ const Action = ({
 	isFetchingGasLimit,
 	gasEstimateError,
 	issuanceRatio,
-	SNXPrice,
+	OKSPrice,
 	debtBalance,
-	snxBalance,
+	oksBalance,
 }) => {
 	return (
 		<SlidePage>
@@ -62,15 +62,15 @@ const Action = ({
 								{getStakingAmount({
 									issuanceRatio,
 									mintAmount,
-									SNXPrice,
+									OKSPrice,
 								})}
-								{' SNX'}
+								{' OKS'}
 							</Subtext>
 						</InfoCol>
 						<InfoCol>
 							<Subtext mr={'10px'}>{t('mintrActions.mint.action.estimateCRatio')}:</Subtext>
 							<Subtext>
-								{estimateCRatio({ SNXPrice, debtBalance, snxBalance, mintAmount })}%
+								{estimateCRatio({ OKSPrice, debtBalance, oksBalance, mintAmount })}%
 							</Subtext>
 						</InfoCol>
 					</InfoRow>

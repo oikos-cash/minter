@@ -32,7 +32,7 @@ const Success = ({ t, onDestroy, feesAvailable, networkName, transactionHash }) 
 							{t('mintrActions.claim.confirmation.actionDescription')}
 						</DataHeaderLarge>
 						<Amount>
-							{feesAvailable && feesAvailable[1] ? formatCurrency(feesAvailable[1]) : 0} SNX
+							{feesAvailable && feesAvailable[1] ? formatCurrency(feesAvailable[1]) : 0} OKS
 						</Amount>
 					</Box>
 				</Details>

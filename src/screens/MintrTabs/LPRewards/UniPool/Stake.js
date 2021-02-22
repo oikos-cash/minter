@@ -137,7 +137,7 @@ const Stake = ({ t, goBack }) => {
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.rewardsAvailable')}
-					body={`${balances ? formatCurrency(balances.rewards) : 0} SNX`}
+					body={`${balances ? formatCurrency(balances.rewards) : 0} OKS`}
 				/>
 			</BoxRow>
 			<ButtonBlock>
@@ -162,7 +162,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'claim',
 								label: t('lpRewards.shared.actions.claiming'),
-								amount: `${balances && formatCurrency(balances.rewards)} SNX`,
+								amount: `${balances && formatCurrency(balances.rewards)} OKS`,
 								...TRANSACTION_DETAILS['claim'],
 							})
 						}
@@ -192,7 +192,7 @@ const Stake = ({ t, goBack }) => {
 								action: 'exit',
 								label: t('lpRewards.shared.actions.exiting'),
 								amount: `${balances && formatCurrency(balances.univ1Staked)} UNI-V1 & ${balances &&
-									formatCurrency(balances.rewards)} SNX`,
+									formatCurrency(balances.rewards)} OKS`,
 								...TRANSACTION_DETAILS['exit'],
 							})
 						}

@@ -49,11 +49,12 @@ const CollRatios = ({ state }) => {
 const Charts = ({ state }) => {
 	const { t } = useTranslation();
 	const { balances, debtData, escrowData } = state;
-	const snxLocked =
-		balances.snx &&
+	 
+	const oksLocked =
+		balances.oks &&
 		debtData.currentCRatio &&
 		debtData.targetCRatio &&
-		balances.snx * Math.min(1, debtData.currentCRatio / debtData.targetCRatio);
+		balances.oks * Math.min(1, debtData.currentCRatio / debtData.targetCRatio);
 
 	const totalEscrow = escrowData.reward + escrowData.tokenSale;
 
@@ -61,7 +62,7 @@ const Charts = ({ state }) => {
 		[
 			{
 				label: t('dashboard.holdings.locked'),
-				value: balances.snx - debtData.transferable,
+				value: balances.oks - debtData.transferable,
 			},
 			{
 				label: t('dashboard.holdings.transferable'),
@@ -71,11 +72,11 @@ const Charts = ({ state }) => {
 		[
 			{
 				label: t('dashboard.holdings.staking'),
-				value: snxLocked,
+				value: oksLocked,
 			},
 			{
 				label: t('dashboard.holdings.nonStaking'),
-				value: balances.snx - snxLocked,
+				value: balances.oks - oksLocked,
 			},
 		],
 		[
@@ -85,7 +86,7 @@ const Charts = ({ state }) => {
 			},
 			{
 				label: t('dashboard.holdings.nonEscrowed'),
-				value: balances.snx - totalEscrow,
+				value: balances.oks - totalEscrow,
 			},
 		],
 	];
@@ -95,7 +96,7 @@ const Charts = ({ state }) => {
 			<BoxInner>
 				<BoxHeading>
 					<H6 style={{ textTransform: 'uppercase' }}>{t('dashboard.holdings.title')}</H6>
-					<H6>{formatCurrency(balances.snx) || 0} SNX</H6>
+					<H6>{formatCurrency(balances.oks) || 0} OKS</H6>
 				</BoxHeading>
 				{chartData.map((data, i) => {
 					return <BarChart key={i} data={data} />;
@@ -110,7 +111,7 @@ const getBalancePerAsset = (asset, { balances, prices, debtData, synthData }) =>
 	let balance,
 		usdValue = 0;
 	switch (asset) {
-		case 'SNX':
+		case 'OKS':
 		case 'sUSD':
 		case 'ETH':
 			balance = balances[asset.toLowerCase()];
@@ -140,8 +141,8 @@ const renderTooltip = (dataType, t) => {
 };
 
 const processTableData = (state, t) => {
-	return ['SNX', 'sUSD', 'ETH', 'Synths', 'Debt'].map(dataType => {
-		const iconName = ['Synths', 'Debt'].includes(dataType) ? 'snx' : dataType;
+	return ['OKS', 'sUSD', 'ETH', 'Synths', 'Debt'].map(dataType => {
+		const iconName = ['Synths', 'Debt'].includes(dataType) ? 'OKS' : dataType;
 		const assetName = ['Synths', 'Debt'].includes(dataType)
 			? t(`dashboard.table.${dataType.toLowerCase()}`)
 			: dataType;
@@ -232,7 +233,7 @@ const Dashboard = ({ t }) => {
 					</ContainerHeader>
 					<CollRatios state={{ debtData }} />
 					<PricesContainer>
-						{['SNX', 'ETH'].map(asset => {
+						{['OKS', 'ETH'].map(asset => {
 							return (
 								<Asset key={asset}>
 									<CurrencyIcon src={`/images/currencies/${asset}.svg`} />

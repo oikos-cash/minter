@@ -26,7 +26,7 @@ const useGetBalances = (walletAddress, setCurrentCurrency) => {
 				]);
 				let walletBalances = [
 					{
-						name: 'SNX',
+						name: 'OKS',
 						balance: bigNumberFormatter(transferable),
 						rawBalance: transferable,
 					},
@@ -81,7 +81,7 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 				if (!Number(amount)) throw new Error('input.error.invalidAmount');
 				const amountBN = snxJSConnector.utils.parseEther(amount.toString());
 				fetchingGasLimit(dispatch);
-				if (currency.name === 'SNX') {
+				if (currency.name === 'OKS') {
 					gasEstimate = 0 //await snxJSConnector.snxJS.Synthetix.contract.estimate.transfer(
 					//	destination,
 					//	amountBN
@@ -112,7 +112,7 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 
 const sendTransaction = (currency, amount, destination, settings) => {
 	if (!currency) return null;
-	if (currency === 'SNX') {
+	if (currency === 'OKS') {
 		console.log(settings)
 		return snxJSConnector.snxJS.Synthetix.contract.transfer(destination, amount, settings);
 	} else if (currency === 'ETH') {
@@ -151,7 +151,7 @@ const Send = ({ onDestroy }) => {
 
 	const getMaxSecsLeftInWaitingPeriod = useCallback(async () => {
 		if (!currentCurrency) return;
-		if (['ETH', 'SNX'].includes(currentCurrency.name)) return;
+		if (['ETH', 'OKS'].includes(currentCurrency.name)) return;
 		try {
 			const maxSecsLeftInWaitingPeriod = await snxJSConnector.snxJS.Exchanger.maxSecsLeftInWaitingPeriod(
 				currentWallet,

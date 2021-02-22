@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { withTranslation, useTranslation } from 'react-i18next';
@@ -17,7 +18,7 @@ const TabRow = () => {
 		},
 		dispatch,
 	} = useContext(Store);
-	return ['home', 'depot', 'transactionsHistory', 'escrow', 'lpRewards'].map(tab => {
+	return ['home', /*'depot',*/ 'transactionsHistory', 'escrow', /*'lpRewards'*/].map(tab => {
 		return (
 			<TabButton
 				key={tab}
@@ -36,14 +37,14 @@ const renderScreen = screen => {
 		case 'home':
 		default:
 			return <Home />;
-		case 'depot':
-			return <Depot />;
+		//case 'depot':
+		//	return <Depot />;
 		case 'transactionsHistory':
 			return <Transactions />;
 		case 'escrow':
 			return <Escrow />;
-		case 'lpRewards':
-			return <LPRewards />;
+		//case 'lpRewards':
+		//	return <LPRewards />;
 	}
 };
 

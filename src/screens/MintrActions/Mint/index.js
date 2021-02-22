@@ -18,7 +18,7 @@ import { GWEI_UNIT } from '../../../helpers/networkHelper';
 
 const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 	const [data, setData] = useState({});
-	const SNXBytes = bytesFormatter('SNX');
+	const OKSBytes = bytesFormatter('OKS');
 	useEffect(() => {
 		const getIssuanceData = async () => {
 			try {
@@ -26,14 +26,14 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 					snxJSConnector.snxJS.Synthetix.maxIssuableSynths(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.Synthetix.debtBalanceOf(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.SynthetixState.issuanceRatio(),
-					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(SNXBytes),
+					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(OKSBytes),
 					snxJSConnector.snxJS.Synthetix.collateral(walletAddress),
 				]);
-				const [maxIssuableSynths, debtBalance, issuanceRatio, SNXPrice, snxBalance] = results.map(
+				const [maxIssuableSynths, debtBalance, issuanceRatio, OKSprice, oksBalance] = results.map(
 					bigNumberFormatter
 				);
 				const issuableSynths = Math.max(0, maxIssuableSynths - debtBalance);
-				setData({ issuableSynths, debtBalance, issuanceRatio, SNXPrice, snxBalance });
+				setData({ issuableSynths, debtBalance, issuanceRatio, OKSprice, oksBalance });
 			} catch (e) {
 				console.log(e);
 			}
@@ -59,9 +59,9 @@ const useGetGasEstimate = (mintAmount, issuableSynths) => {
 				if (mintAmount <= 0 || mintAmount > issuableSynths)
 					throw new Error('input.error.notEnoughToMint');
 				if (mintAmount === issuableSynths) {
-					gasEstimate = 0;//await snxJSConnector.snxJS.Synthetix.contract.estimate.issueMaxSynths();
+					gasEstimate = 1500000;//await snxJSConnector.snxJS.Synthetix.contract.estimate.issueMaxSynths();
 				} else {
-					gasEstimate = 0 // await snxJSConnector.snxJS.Synthetix.contract.estimate.issueSynths(
+					gasEstimate = 900000 // await snxJSConnector.snxJS.Synthetix.contract.estimate.issueSynths(
 					//	snxJSConnector.utils.parseEther(mintAmount.toString())
 					//);
 				}
@@ -94,7 +94,7 @@ const Mint = ({ onDestroy }) => {
 	} = useContext(Store);
 
 	const sUSDBytes = bytesFormatter('sUSD');
-	const { issuableSynths, issuanceRatio, SNXPrice, debtBalance, snxBalance } = useGetIssuanceData(
+	const { issuableSynths, issuanceRatio, OKSPrice, debtBalance, oksBalance } = useGetIssuanceData(
 		currentWallet,
 		sUSDBytes
 	);
@@ -152,12 +152,12 @@ const Mint = ({ onDestroy }) => {
 		mintAmount,
 		setMintAmount,
 		issuanceRatio,
-		SNXPrice,
+		OKSPrice,
 		...transactionInfo,
 		isFetchingGasLimit,
 		gasEstimateError,
 		debtBalance,
-		snxBalance,
+		oksBalance,
 	};
 
 	return [Action, Confirmation, Complete].map((SlideContent, i) => (
