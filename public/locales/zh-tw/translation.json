@@ -107,7 +107,7 @@
 			},
 			"transfer": {
 				"title": "轉帳",
-				"description": "OKS，合成資產，或 ETH 轉帳"
+				"description": "OKS，合成資產，或 BNB 轉帳"
 			}
 		}
 	},
@@ -196,7 +196,7 @@
 		"send": {
 			"action": {
 				"title": "轉帳",
-				"subtitle": "轉移 ETH, OKS 或 Synths。",
+				"subtitle": "轉移 BNB, OKS 或 Synths。",
 				"available": "可轉帳數量：",
 				"amountInstruction": "輸入數量：",
 				"walletInstruction": "輸入收款地址：",
@@ -216,7 +216,7 @@
 	"depot": {
 		"intro": {
 			"title": "倉庫：",
-			"subtitle": "Oikos.Exchange 將會把存在這裏的 sUSD 賣出換成 ETH。您可以在排隊中的任何時間取出您的 sUSD。最小存款為 50 sUSD。"
+			"subtitle": "Oikos.Exchange 將會把存在這裏的 sUSD 賣出換成 BNB。您可以在排隊中的任何時間取出您的 sUSD。最小存款為 50 sUSD。"
 		},
 		"table": {
 			"title": "最近活動:",

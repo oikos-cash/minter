@@ -109,7 +109,7 @@
 			},
 			"transfer": {
 				"title": "Transferir",
-				"description": "Transferir OKS, Synths, o ETH"
+				"description": "Transferir OKS, Synths, o BNB"
 			}
 		}
 	},
@@ -198,7 +198,7 @@
 		"send": {
 			"action": {
 				"title": "Transferir",
-				"subtitle": "Transferir sus ETH, OKS o Synths.",
+				"subtitle": "Transferir sus BNB, OKS o Synths.",
 				"available": "Cantidad transferible:",
 				"amountInstruction": "Ingrese la cantidad:",
 				"walletInstruction": "Ingrese la dirección de destino:",
@@ -218,7 +218,7 @@
 	"depot": {
 		"intro": {
 			"title": "Deposito:",
-			"subtitle": "Deposite sUSD en la lista para venderlo en Oikos. Intercambie por ETH. Puede retirar sus sUSD en cualquier momento mientras espera. Nota: el depósito mínimo es de 50 sUSD."
+			"subtitle": "Deposite sUSD en la lista para venderlo en Oikos. Intercambie por BNB. Puede retirar sus sUSD en cualquier momento mientras espera. Nota: el depósito mínimo es de 50 sUSD."
 		},
 		"table": {
 			"title": "Actividad reciente:",

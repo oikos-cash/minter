@@ -29,11 +29,12 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(OKSBytes),
 					snxJSConnector.snxJS.Synthetix.collateral(walletAddress),
 				]);
-				const [maxIssuableSynths, debtBalance, issuanceRatio, OKSprice, oksBalance] = results.map(
+				const [maxIssuableSynths, debtBalance, issuanceRatio, OKSPrice, oksBalance] = results.map(
 					bigNumberFormatter
 				);
+
 				const issuableSynths = Math.max(0, maxIssuableSynths - debtBalance);
-				setData({ issuableSynths, debtBalance, issuanceRatio, OKSprice, oksBalance });
+				setData({ issuableSynths, debtBalance, issuanceRatio, OKSPrice, oksBalance });
 			} catch (e) {
 				console.log(e);
 			}

@@ -18,7 +18,7 @@ const Main = () => {
 			try {
 				const [networkInfo, ethPrice] = await Promise.all([
 					getNetworkInfo(),
-					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(bytesFormatter('ETH')),
+					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(bytesFormatter('BNB')),
 				]);
 				updateNetworkInfo(networkInfo, bigNumberFormatter(ethPrice), dispatch);
 			} catch (e) {

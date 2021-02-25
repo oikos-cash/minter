@@ -113,7 +113,7 @@ const getBalancePerAsset = (asset, { balances, prices, debtData, synthData }) =>
 	switch (asset) {
 		case 'OKS':
 		case 'sUSD':
-		case 'ETH':
+		case 'BNB':
 			balance = balances[asset.toLowerCase()];
 			usdValue = balances[asset.toLowerCase()] * prices[asset.toLowerCase()];
 			break;
@@ -141,7 +141,7 @@ const renderTooltip = (dataType, t) => {
 };
 
 const processTableData = (state, t) => {
-	return ['OKS', 'sUSD', 'ETH', 'Synths', 'Debt'].map(dataType => {
+	return ['OKS', 'sUSD', 'BNB', 'Synths', 'Debt'].map(dataType => {
 		const iconName = ['Synths', 'Debt'].includes(dataType) ? 'OKS' : dataType;
 		const assetName = ['Synths', 'Debt'].includes(dataType)
 			? t(`dashboard.table.${dataType.toLowerCase()}`)
@@ -233,7 +233,7 @@ const Dashboard = ({ t }) => {
 					</ContainerHeader>
 					<CollRatios state={{ debtData }} />
 					<PricesContainer>
-						{['OKS', 'ETH'].map(asset => {
+						{['OKS', 'BNB'].map(asset => {
 							return (
 								<Asset key={asset}>
 									<CurrencyIcon src={`/images/currencies/${asset}.svg`} />

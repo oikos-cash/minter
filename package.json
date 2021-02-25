@@ -30,7 +30,7 @@
 		"react-switch": "^5.0.1",
 		"styled-components": "^4.3.2",
 		"styled-system": "^5.1.0",
-		"@oikos/oikos-js-bsc": "0.1.4",
+		"@oikos/oikos-js-bsc": "0.1.9",
 		"walletlink": "^1.0.0"
 	},
 	"scripts": {

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
@@ -24,6 +26,7 @@ const Action = ({
 	debtBalance,
 	oksBalance,
 }) => {
+	 
 	return (
 		<SlidePage>
 			<Container>

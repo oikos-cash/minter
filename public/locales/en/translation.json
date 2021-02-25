@@ -112,7 +112,7 @@
 			},
 			"transfer": {
 				"title": "Transfer",
-				"description": "Transfer OKS, Synths, or ETH"
+				"description": "Transfer OKS, Synths, or BNB"
 			}
 		}
 	},
@@ -204,7 +204,7 @@
 		"send": {
 			"action": {
 				"title": "Transfer",
-				"subtitle": "Transfer your ETH, OKS or Synths.",
+				"subtitle": "Transfer your BNB, OKS or Synths.",
 				"available": "Transferable amount:",
 				"amountInstruction": "Enter amount:",
 				"walletInstruction": "Enter destination address:",
@@ -224,7 +224,7 @@
 	"depot": {
 		"intro": {
 			"title": "Depot:",
-			"subtitle": "Deposit sUSD into a queue to be sold on Oikos.Exchange for ETH. You can withdraw your sUSD at any time while waiting. Note: minimum deposit is 50 sUSD."
+			"subtitle": "Deposit sUSD into a queue to be sold on Oikos.Exchange for BNB. You can withdraw your sUSD at any time while waiting. Note: minimum deposit is 50 sUSD."
 		},
 		"table": {
 			"title": "Recent activity:",
@@ -356,9 +356,9 @@
 		}
 	},
 	"unipool": {
-		"title": "Uniswap sETH LP Token Rewards",
+		"title": "Uniswap sBNB LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Unipool contract to transfer your sETH UNI-V1 tokens for staking.",
+			"subtitle": "First approve the Unipool contract to transfer your sBNB UNI-V1 tokens for staking.",
 			"transaction": "Setting Uni-V1 LP token allowance"
 		},
 		"unlocked": {

@@ -42,8 +42,16 @@ const stringifyQuery = query => {
 	}, '?'));
 };
 
-const getApiUrl = networkName =>
-	`https://${networkName === 'mainnet' ? '' : networkName + '.'}api.synthetix.io/api/`;
+const getApiUrl = networkName => {
+	let apiUrl 
+	if (networkName === 'mainnet') {
+		apiUrl = `https:///api/`;
+	} else if (networkName === 'bsc') {
+		apiUrl = `http://185.180.223.170:9031/api/`
+	}
+	return apiUrl;
+}
+	
 
 const useGetTransactions = (walletAddress, networkName) => {
 	const [data, setData] = useState({});

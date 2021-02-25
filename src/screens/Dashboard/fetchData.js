@@ -15,8 +15,8 @@ const getBalances = async walletAddress => {
 		]);
 
 		console.log(result)
-		const [oks, susd, eth] = result.map(bigNumberFormatter);
-		return { oks, susd, eth };
+		const [oks, susd, bnb] = result.map(bigNumberFormatter);
+		return { oks, susd, bnb };
 	} catch (e) {
 		console.log(e);
 	}
@@ -27,15 +27,17 @@ const convertFromSynth = (fromSynthRate, toSynthRate) => {
 };
 
 // exported for tests
-export const getSusdInUsd = (synthRates, sethToEthRate) => {
-	const sEth = convertFromSynth(synthRates.susd, synthRates.seth);
-	const eth = sEth * sethToEthRate;
-	return eth * synthRates.seth;
+export const getSusdInUsd = (synthRates, sbnbToBnbRate) => {
+	const sBnb = convertFromSynth(synthRates.susd, synthRates.sbnb);
+	const bnb = sBnb * sbnbToBnbRate;
+	return bnb * synthRates.sbnb;
 };
+
 const getSETHtoETH = async () => {
-	const sEthAddress = snxJSConnector.snxJS.sETH.contract.address;
+	return (0.98);
+	const sBNBAddress = snxJSConnector.snxJS.sETH.contract.address;
 	const query = `query {
-		exchanges(where: {tokenAddress:"${sEthAddress}"}) {
+		exchanges(where: {tokenAddress:"${sBNBAddress}"}) {
 			price
 		}
 	}`;
@@ -55,21 +57,21 @@ const getSETHtoETH = async () => {
 const getPrices = async () => {
 	try {
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-			['OKS', 'sUSD', 'sETH'].map(bytesFormatter)
+			['OKS', 'sUSD', 'sBNB'].map(bytesFormatter)
 		);
 		const sethToEthRateP = getSETHtoETH();
 		const [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
-		const [oks, susd, seth] = synths.map(bigNumberFormatter);
+		const [oks, susd, sbnb] = synths.map(bigNumberFormatter);
 
 		const susdInUsd = getSusdInUsd(
 			{
 				susd,
-				seth,
+				sbnb,
 			},
 			sethToEthRate
 		);
-		console.log(`OKS price is ${oks}`)
-		return { oks, susd: susdInUsd, eth: seth };
+		console.log(`susdInUsd is ${susdInUsd}`)
+		return { oks, susd: susdInUsd, bnb: sbnb };
 	} catch (e) {
 		console.log(e);
 	}
