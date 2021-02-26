@@ -268,13 +268,13 @@ const Dashboard = ({ t }) => {
 						<Link href="https://bsc.oikos.exchange" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.exchange')}</ButtonTertiaryLabel>
 						</Link>
-						<Link
+						{/* <Link
 							href="https://dashboard-bsc.oikos.cash"
 							target="_blank"
 							style={{ marginLeft: '5px' }}
 						>
 							<ButtonTertiaryLabel>{t('dashboard.buttons.synthetixDashboard')}</ButtonTertiaryLabel>
-						</Link>
+						</Link>*/}
 					</Row>
 				</Container>
 			</Content>
