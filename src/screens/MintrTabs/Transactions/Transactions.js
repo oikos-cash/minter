@@ -47,7 +47,7 @@ const getApiUrl = networkName => {
 	if (networkName === 'mainnet') {
 		apiUrl = `https:///api/`;
 	} else if (networkName === 'bsc') {
-		apiUrl = `http://185.180.223.170:9031/api/`
+		apiUrl = `http://api-bsc.oikos.cash/api/`
 	}
 	return apiUrl;
 }
