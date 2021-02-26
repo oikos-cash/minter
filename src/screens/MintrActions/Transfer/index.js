@@ -67,7 +67,7 @@ const useGetBalances = (walletAddress, setCurrentCurrency) => {
 };
 
 const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
-	const { dispatch } = useContext(Store);
+	const { state, dispatch } = useContext(Store);
 	const [error, setError] = useState(null);
 	const { t } = useTranslation();
 	useEffect(() => {
@@ -82,17 +82,19 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 				const amountBN = snxJSConnector.utils.parseEther(amount.toString());
 				fetchingGasLimit(dispatch);
 				if (currency.name === 'OKS') {
-					gasEstimate = 0 //await snxJSConnector.snxJS.Synthetix.contract.estimate.transfer(
-					//	destination,
-					//	amountBN
-					//);
-				} else if (currency.name === 'ETH') {
+					await snxJSConnector.snxJS.Synthetix.contract.estimateGas.transfer(
+						destination,
+						amountBN
+					);
+				} else if (currency.name === 'BNB') {
 					if (amount === currency.balance) throw new Error('input.error.balanceTooLow');
-					gasEstimate =0;// await snxJSConnector.provider.estimateGas({
-					//	value: amountBN,
-					//	to: destination,
-					//});
+					 await snxJSConnector.provider.estimateGas({
+						value: amountBN,
+						from: state.wallet.currentWallet,
+						to: destination,
+					});
 				} else {
+					console.log(`currency name ${currency.name}`)
 					gasEstimate = await snxJSConnector.snxJS[
 						currency.name
 					].contract.estimateGas.transferAndSettle(destination, amountBN);
@@ -115,7 +117,7 @@ const sendTransaction = (currency, amount, destination, settings) => {
 	if (currency === 'OKS') {
 		console.log(settings)
 		return snxJSConnector.snxJS.Synthetix.contract.transfer(destination, amount, settings);
-	} else if (currency === 'ETH') {
+	} else if (currency === 'BNB') {
 		return snxJSConnector.signer.sendTransaction({
 			value: amount,
 			to: destination,
