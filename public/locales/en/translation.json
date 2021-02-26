@@ -7,7 +7,7 @@
 			},
 			"whatIsSynthetix": {
 				"title": "What is Oikos?",
-				"description": "Oikos is a decentralised synthetic asset issuance protocol built on Ethereum. These synthetic assets (Synths) are created by staking the Oikos Network Token (OKS), and these Synths can be exchanged for each other directly with the Oikos smart contracts on Oikos.Exchange."
+				"description": "Oikos is a decentralised synthetic asset issuance protocol built on Binance Smart Chain. These synthetic assets (Synths) are created by staking the Oikos Network Token (OKS), and these Synths can be exchanged for each other directly with the Oikos smart contracts on Oikos.Exchange."
 			},
 			"whyStakeSnx": {
 				"title": "Why stake OKS?",
@@ -401,7 +401,7 @@
 		}
 	},
 	"transactionSettings": {
-		"priceIndicator": "Ethereum network fees:",
+		"priceIndicator": "Binance Smart Chain network fees:",
 		"title": "Set gas price",
 		"placeholder": "Add gas price (GWEI)",
 		"subtitle": "Adjust the gas price (GWEI) below to set the transaction speed.",
@@ -422,7 +422,7 @@
 			"loading": "Waiting for user response..."
 		},
 		"complete": {
-			"subtitle": "Your transaction has been broadcast to the Ethereum network. You may close this window as the transaction will complete in the background."
+			"subtitle": "Your transaction has been broadcast to the Binance Smart Chain network. You may close this window as the transaction will complete in the background."
 		},
 		"error": {
 			"title": "Something went wrong...",
@@ -454,7 +454,7 @@
 			"cancel": "Cancel",
 			"back": "Go back",
 			"close": "Close",
-			"etherscan": "View on Etherscan",
+			"etherscan": "View on Bscscan",
 			"view": "View",
 			"finish": "Finish & return home",
 			"ok": "OK"
@@ -477,7 +477,7 @@
 		"noData": "No data"
 	},
 	"network": {
-		"gas": "Ethereum network fees (Gas):",
+		"gas": "Binance Smart Chain network fees (Gas):",
 		"tradingFee": "Synth exchange fee:",
 		"speed": "Estimated transaction speed:"
 	},

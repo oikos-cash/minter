@@ -1,6 +1,7 @@
 /* eslint-disable */
 import throttle from 'lodash/throttle';
 export const GWEI_UNIT = 1000000000;
+import * as data from './gas.json';
 
 export const SUPPORTED_NETWORKS = {
 	1: 'MAINNET',
@@ -37,7 +38,7 @@ export const hasWeb3 = () => {
 
 export async function getEthereumNetwork() {
 	return await new Promise(function(resolve, reject) {
-		if (!window.web3) resolve({ name: 'MAINNET', networkId: '1' });
+		if (!window.web3) resolve({ name: 'bsc', networkId: '97' });
 		window.web3.version.getNetwork((err, networkId) => {
 			if (err) {
 				reject(err);
@@ -50,8 +51,9 @@ export async function getEthereumNetwork() {
 }
 
 export const getNetworkInfo = async () => {
-	const result = await fetch('https://ethgasstation.info/json/ethgasAPI.json');
-	const networkInfo = await result.json();
+	//const result = await fetch('https://ethgasstation.info/json/ethgasAPI.json');
+	let networkInfo = data; //await result.json();
+	networkInfo = networkInfo.default;
 	return {
 		slow: {
 			gwei: networkInfo.safeLow / 10,
@@ -76,6 +78,7 @@ export const getNetworkInfo = async () => {
 
 export const getTransactionPrice = (gasPrice, gasLimit, ethPrice) => {
 	if (!gasPrice || !gasLimit) return 0;
+	console.log( `${gasPrice} * ${ethPrice} * ${gasLimit} / ${GWEI_UNIT}`)
 	return (gasPrice * ethPrice * gasLimit) / GWEI_UNIT;
 };
 

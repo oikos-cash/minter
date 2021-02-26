@@ -7,7 +7,7 @@
 			},
 			"whatIsSynthetix": {
 				"title": "¿Qué es Oikos?",
-				"description": "Oikos es un protocolo descentralizado de emisión de activos sintéticos construido sobre Ethereum. Estos activos sintéticos (Synths) se crean al invertir el Oikos Network Token (OKS), y estos Synths pueden intercambiarse entre sí directamente con los contratos inteligentes de Oikos en Oikos.Exchange."
+				"description": "Oikos es un protocolo descentralizado de emisión de activos sintéticos construido sobre Binance Smart Chain. Estos activos sintéticos (Synths) se crean al invertir el Oikos Network Token (OKS), y estos Synths pueden intercambiarse entre sí directamente con los contratos inteligentes de Oikos en Oikos.Exchange."
 			},
 			"whyStakeSnx": {
 				"title": "¿Por qué invertir en OKS?",
@@ -338,7 +338,7 @@
 		}
 	},
 	"transactionSettings": {
-		"priceIndicator": "Comisiones de la red Ethereum:",
+		"priceIndicator": "Comisiones de la red Binance Smart Chain:",
 		"title": "Configurar el precio del gas",
 		"subtitle": "Ajuste el precio del gas (GWEI) a continuación para establecer la velocidad de la transacción.",
 		"minutes": "min",
@@ -358,7 +358,7 @@
 			"loading": "Esperando respuesta del usuario..."
 		},
 		"complete": {
-			"subtitle": "Su transacción ha sido transmitida a la red Ethereum. Puede cerrar esta ventana ya que la transacción se completará en segundo plano."
+			"subtitle": "Su transacción ha sido transmitida a la red Binance Smart Chain. Puede cerrar esta ventana ya que la transacción se completará en segundo plano."
 		},
 		"error": {
 			"title": "Algo salió mal...",
@@ -390,7 +390,7 @@
 			"cancel": "Cancelar",
 			"back": "Regresar",
 			"close": "Cerrar",
-			"etherscan": "Ver en Etherscan",
+			"etherscan": "Ver en Bscscan",
 			"view": "Ver",
 			"finish": "Finalizar y volver a inicio",
 			"ok": "OK"
@@ -413,7 +413,7 @@
 		"noData": "Sin datos"
 	},
 	"network": {
-		"gas": "Comisión de la red Ethereum (Gas):",
+		"gas": "Comisión de la red Binance Smart Chain (Gas):",
 		"tradingFee": "Comisión del mercado de intercambio Synth:",
 		"speed": "Velocidad de transacción estimada:"
 	},

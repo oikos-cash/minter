@@ -14,6 +14,8 @@ export default (state, action) => {
 		case UPDATE_ETH_PRICE: {
 			const { gasPrice, gasLimit } = state.settings;
 			const ethPrice = action.payload;
+			console.log(`got gasPrice of ${gasPrice} ethPrice ${ethPrice}`);
+
 			const transactionUsdPrice = getTransactionPrice(gasPrice, gasLimit, ethPrice);
 			return {
 				...state,
@@ -81,6 +83,7 @@ export default (state, action) => {
 
 // Actions
 export const updateEthPrice = (price, dispatch) => {
+	console.log(`got ethPrice of ${price}`);
 	return dispatch({
 		type: UPDATE_ETH_PRICE,
 		payload: price,

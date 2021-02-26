@@ -71,7 +71,7 @@ const Notification = ({ transaction }) => {
 			</LeftBlock>
 			<ButtonBlock>
 				<ButtonTertiary
-					href={`https://${networkName === 'mainnet' ? '' : networkName + '.'}etherscan.io/tx/${
+					href={`https://${networkName === 'mainnet' ? '' : 'testnet' + '.'}bscscan.com/tx/${
 						transaction.hash
 					}`}
 					as="a"
