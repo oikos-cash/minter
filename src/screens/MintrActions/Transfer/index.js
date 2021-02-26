@@ -31,7 +31,7 @@ const useGetBalances = (walletAddress, setCurrentCurrency) => {
 						rawBalance: transferable,
 					},
 					{
-						name: 'ETH',
+						name: 'BNB',
 						balance: bigNumberFormatter(ethBalance),
 						rawBalance: ethBalance,
 					},

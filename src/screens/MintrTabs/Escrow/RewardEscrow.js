@@ -34,7 +34,7 @@ const useGetGasEstimateError = () => {
 			fetchingGasLimit(dispatch);
 			let gasEstimate;
 			try {
-				gasEstimate = await snxJSConnector.snxJS.RewardEscrow.contract.estimate.vest();
+				gasEstimate = await snxJSConnector.snxJS.RewardEscrow.contract.estimateGas.vest();
 			} catch (e) {
 				console.log(e);
 				const errorMessage = (e && e.message) || 'error.type.gasEstimate';

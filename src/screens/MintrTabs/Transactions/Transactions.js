@@ -213,8 +213,8 @@ const TransactionsTable = ({ data }) => {
 								<TD style={{ textAlign: 'right' }}>
 									<BorderlessButton
 										href={`https://${
-											networkName === 'mainnet' ? '' : networkName + '.'
-										}etherscan.io/tx/${dataElement.transactionHash}`}
+											networkName === 'mainnet' ? '' : 'testnet' + '.'
+										}bscscan.com/tx/${dataElement.transactionHash}`}
 										as="a"
 										target="_blank"
 									>
