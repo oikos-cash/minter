@@ -95,7 +95,7 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 				} else {
 					gasEstimate = await snxJSConnector.snxJS[
 						currency.name
-					].contract.estimate.transferAndSettle(destination, amountBN);
+					].contract.estimateGas.transferAndSettle(destination, amountBN);
 				}
 			} catch (e) {
 				console.log(e);
