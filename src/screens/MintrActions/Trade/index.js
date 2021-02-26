@@ -83,7 +83,7 @@ const useGetGasEstimate = (baseSynth, baseAmount, currentWallet, waitingPeriod) 
 					baseAmount === baseSynth.balance
 						? baseSynth.rawBalance
 						: snxJSConnector.utils.parseEther(baseAmount.toString());
-				gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimate.exchange(
+				gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimateGas.exchange(
 					bytesFormatter(baseSynth.name),
 					amountToExchange,
 					bytesFormatter('sUSD')
