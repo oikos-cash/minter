@@ -265,11 +265,11 @@ const Dashboard = ({ t }) => {
 						}}
 					/>
 					<Row margin="18px 0 0 0 ">
-						<Link href="https://synthetix.exchange" target="_blank">
+						<Link href="https://bsc.oikos.exchange" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.exchange')}</ButtonTertiaryLabel>
 						</Link>
 						<Link
-							href="https://dashboard.synthetix.io"
+							href="https://dashboard-bsc.oikos.cash"
 							target="_blank"
 							style={{ marginLeft: '5px' }}
 						>
