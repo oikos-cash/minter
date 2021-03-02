@@ -86,7 +86,7 @@ const useGetGasEstimate = () => {
 			let gasEstimate;
 			try {
 				fetchingGasLimit(dispatch);
-				gasEstimate = await snxJSConnector.snxJS.FeePool.contract.estimate.claimFees();
+				gasEstimate = await snxJSConnector.snxJS.FeePool.contract.estimateGas.claimFees();
 			} catch (e) {
 				console.log(e);
 				const errorMessage = (e && e.message) || 'Error while getting gas estimate';
