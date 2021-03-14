@@ -19,7 +19,7 @@
 			},
 			"risks": {
 				"title": "What are the risks?",
-				"description": "All OKS stakers create a ‘debt’ when they stake. Their debt begins as the amount of sUSD they initially mint, and fluctuates according to gains or losses made by other Synth holders. Any time anyone holds a Synth that appreciates in value, that gain is distributed proportionally between all the staked OKS holders’ debts. A staker must pay off their debt before they can unlock their staked OKS."
+				"description": "All OKS stakers create a ‘debt’ when they stake. Their debt begins as the amount of oUSD they initially mint, and fluctuates according to gains or losses made by other Synth holders. Any time anyone holds a Synth that appreciates in value, that gain is distributed proportionally between all the staked OKS holders’ debts. A staker must pay off their debt before they can unlock their staked OKS."
 			}
 		},
 		"walletConnection": {
@@ -96,11 +96,11 @@
 		"actions": {
 			"mint": {
 				"title": "Mint",
-				"description": "Mint sUSD by staking OKS"
+				"description": "Mint oUSD by staking OKS"
 			},
 			"burn": {
 				"title": "Burn",
-				"description": "Burn sUSD to unlock staked OKS"
+				"description": "Burn oUSD to unlock staked OKS"
 			},
 			"claim": {
 				"title": "Claim",
@@ -108,7 +108,7 @@
 			},
 			"trade": {
 				"title": "Trade",
-				"description": "Trade any Synth to sUSD"
+				"description": "Trade any Synth to oUSD"
 			},
 			"transfer": {
 				"title": "Transfer",
@@ -120,7 +120,7 @@
 		"mint": {
 			"action": {
 				"title": "Mint",
-				"subtitle": "Mint sUSD by staking your OKS. This gives you a Collateralization Ratio and a debt, allowing you to earn staking rewards.",
+				"subtitle": "Mint oUSD by staking your OKS. This gives you a Collateralization Ratio and a debt, allowing you to earn staking rewards.",
 				"instruction": "Confirm or enter amount to mint:",
 				"staking": "Staking",
 				"estimateCRatio": "Estimated C-Ratio",
@@ -139,7 +139,7 @@
 		"burn": {
 			"action": {
 				"title": "Burn",
-				"subtitle": "Burn sUSD to unlock your staked OKS. This increases your Collateralization Ratio and reduces your debt, allowing you to transfer your non-escrowed OKS.",
+				"subtitle": "Burn oUSD to unlock your staked OKS. This increases your Collateralization Ratio and reduces your debt, allowing you to transfer your non-escrowed OKS.",
 				"instruction": "Confirm or enter amount to burn:",
 				"transferrable": {
 					"title": "Transferable OKS being unlocked:",
@@ -161,7 +161,7 @@
 		"claim": {
 			"action": {
 				"title": "Claim",
-				"subtitle": "If you have staked your OKS and minted sUSD, you are eligible to collect two kinds of rewards: OKS staking rewards, and Synth exchange rewards generated on Oikos.Exchange.",
+				"subtitle": "If you have staked your OKS and minted oUSD, you are eligible to collect two kinds of rewards: OKS staking rewards, and Synth exchange rewards generated on Oikos.Exchange.",
 				"table": {
 					"title": "Claimable periods:",
 					"period": "Period",
@@ -187,7 +187,7 @@
 		"trade": {
 			"action": {
 				"title": "Trade",
-				"subtitle": "Trade your Synths for sUSD. For the full dApp, which allows you to trade between any Synths, use Oikos.Exchange.",
+				"subtitle": "Trade your Synths for oUSD. For the full dApp, which allows you to trade between any Synths, use Oikos.Exchange.",
 				"buttons": {
 					"trade": "Trade now",
 					"exchange": "Open Oikos.Exchange"
@@ -224,7 +224,7 @@
 	"depot": {
 		"intro": {
 			"title": "Depot:",
-			"subtitle": "Deposit sUSD into a queue to be sold on Oikos.Exchange for BNB. You can withdraw your sUSD at any time while waiting. Note: minimum deposit is 50 sUSD."
+			"subtitle": "Deposit oUSD into a queue to be sold on Oikos.Exchange for BNB. You can withdraw your oUSD at any time while waiting. Note: minimum deposit is 50 oUSD."
 		},
 		"table": {
 			"title": "Recent activity:",
@@ -286,7 +286,7 @@
 		},
 		"staking": {
 			"title": "Vest your OKS staking rewards in escrow",
-			"subtitle": "If you have staked your OKS and minted sUSD, you are eligible to receive OKS staking rewards, which you can vest here after they have been escrowed for 12 months.",
+			"subtitle": "If you have staked your OKS and minted oUSD, you are eligible to receive OKS staking rewards, which you can vest here after they have been escrowed for 12 months.",
 			"total": "Total escrowed:",
 			"table": {
 				"none": "You have no escrowed OKS",
@@ -366,7 +366,7 @@
 		}
 	},
 	"curvepool": {
-		"title": "iearn.finance sUSD LP Token Rewards",
+		"title": "iearn.finance oUSD LP Token Rewards",
 		"locked": {
 			"subtitle": "First approve the Curvepool contract to transfer your yCurve tokens for staking.",
 			"transaction": "Setting yCurve token allowance"
@@ -465,10 +465,10 @@
 			"placeholder": "Search for a synth..."
 		},
 		"error": {
-			"notEnoughToMint": "You cannot currently mint that much sUSD",
+			"notEnoughToMint": "You cannot currently mint that much oUSD",
 			"gasEstimate": "Error while getting gas estimate",
 			"invalidAmount": "Invalid amount",
-			"notEnoughToBurn": "You do not have that much sUSD to burn. You can find the best rate on dex.ag to buy more.",
+			"notEnoughToBurn": "You do not have that much oUSD to burn. You can find the best rate on dex.ag to buy more.",
 			"balanceTooLow": "Your balance is too low",
 			"lowerThanMinDeposit": "Amount lower than minimum deposit"
 		}
@@ -490,8 +490,8 @@
 		"subtitle": "We hope to have a mobile version available in the next few months."
 	},
 	"tooltip": {
-		"claim": "To claim rewards, you must be within 1% of the Target Collateralization Ratio. If you are below this figure, you will be blocked from claiming rewards until you burn enough sUSD.",
-		"debtBalance": "Your debt begins as the amount of sUSD you initially mint, and fluctuates according to gains or losses made by other Synth holders. Any time someone holds a Synth that appreciates in value, that gain is distributed proportionally between all the staked OKS holders’ debts. To unlock all your staked OKS, you must first pay off your debt.",
-		"synthsBalance": "Synths are the synthetic assets in the Oikos system, including sUSD, sBTC, iBTC, and all of the other assets available at Oikos.Exchange. This figure is the total value of all the Synths held in this wallet. If you wish to convert some Synths back into sUSD, click the TRADE button."
+		"claim": "To claim rewards, you must be within 1% of the Target Collateralization Ratio. If you are below this figure, you will be blocked from claiming rewards until you burn enough oUSD.",
+		"debtBalance": "Your debt begins as the amount of oUSD you initially mint, and fluctuates according to gains or losses made by other Synth holders. Any time someone holds a Synth that appreciates in value, that gain is distributed proportionally between all the staked OKS holders’ debts. To unlock all your staked OKS, you must first pay off your debt.",
+		"synthsBalance": "Synths are the synthetic assets in the Oikos system, including oUSD, oBTC, iBTC, and all of the other assets available at Oikos.Exchange. This figure is the total value of all the Synths held in this wallet. If you wish to convert some Synths back into oUSD, click the TRADE button."
 	}
 }

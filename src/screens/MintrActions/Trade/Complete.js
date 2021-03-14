@@ -38,7 +38,7 @@ const Success = ({
 						<DataHeaderLarge>
 							{t('mintrActions.trade.confirmation.subActionDescription')}
 						</DataHeaderLarge>
-						<Amount>{formatCurrency(quoteAmount ? quoteAmount : 0)} sUSD</Amount>
+						<Amount>{formatCurrency(quoteAmount ? quoteAmount : 0)} oUSD</Amount>
 					</Box>
 				</Details>
 			</Top>

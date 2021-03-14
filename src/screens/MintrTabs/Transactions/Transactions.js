@@ -105,7 +105,7 @@ const useGetTransactions = (walletAddress, networkName) => {
 
 const getEventInfo = data => {
 	const event = data.event;
-	let amount = `${formatCurrency(data.value || 0)} sUSD`;
+	let amount = `${formatCurrency(data.value || 0)} oUSD`;
 	let { label, icon } = data;
 	switch (event) {
 		case 'FeesClaimed':

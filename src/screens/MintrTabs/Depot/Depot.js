@@ -71,10 +71,10 @@ const HiddenContent = ({ data }) => {
 									</HiddenTableCellContainer>
 								</HiddenTableCell>
 								<HiddenTableCell>
-									<TableDataMedium>{formatCurrency(detail.amount)} sUSD</TableDataMedium>
+									<TableDataMedium>{formatCurrency(detail.amount)} oUSD</TableDataMedium>
 								</HiddenTableCell>
 								<HiddenTableCell>
-									<TableDataMedium>{formatCurrency(detail.rate)} sUSD / ETH</TableDataMedium>
+									<TableDataMedium>{formatCurrency(detail.rate)} oUSD / ETH</TableDataMedium>
 								</HiddenTableCell>
 								<HiddenTableCell>
 									<TableDataMedium>{format(detail.date, 'H:mm | d MMM yy')}</TableDataMedium>
@@ -141,10 +141,10 @@ const ExpandableTable = ({ data }) => {
 								<TableDataMedium>{t('depot.table.deposit')}</TableDataMedium>
 							</Cell>
 							<Cell>
-								<TableDataMedium>{formatCurrency(deposit.amount)} sUSD</TableDataMedium>
+								<TableDataMedium>{formatCurrency(deposit.amount)} oUSD</TableDataMedium>
 							</Cell>
 							<Cell>
-								<TableDataMedium>{formatCurrency(deposit.remaining)} sUSD</TableDataMedium>
+								<TableDataMedium>{formatCurrency(deposit.remaining)} oUSD</TableDataMedium>
 							</Cell>
 							<Cell>
 								<TableDataMedium>{format(deposit.date, 'H:mm | d MMM yy')}</TableDataMedium>
@@ -247,7 +247,7 @@ const useGetDepotData = walletAddress => {
 				const results = await Promise.all([
 					snxJSConnector.snxJS.Depot.totalSellableDeposits(),
 					snxJSConnector.snxJS.Depot.minimumDepositAmount(),
-					snxJSConnector.snxJS.sUSD.balanceOf(walletAddress),
+					snxJSConnector.snxJS.oUSD.balanceOf(walletAddress),
 				]);
 				const [totalSellableDeposits, minimumDepositAmount, sUSDBalance] = results.map(
 					bigNumberFormatter
@@ -306,7 +306,7 @@ const Depot = ({ t }) => {
 		<PageContainer>
 			<DepotAction action={currentScenario} {...props} />
 			<PageTitle>
-				{t('depot.intro.title')} ${formatCurrency(totalSellableDeposits)} sUSD
+				{t('depot.intro.title')} ${formatCurrency(totalSellableDeposits)} oUSD
 			</PageTitle>
 			<PLarge>{t('depot.intro.subtitle')}</PLarge>
 			<ButtonRow>
@@ -324,7 +324,7 @@ const Depot = ({ t }) => {
 											{action === 'deposit'
 												? formatCurrency(sUSDBalance)
 												: formatCurrency(amountAvailable)}{' '}
-											sUSD
+											oUSD
 										</Amount>
 									</Fragment>
 								) : null}

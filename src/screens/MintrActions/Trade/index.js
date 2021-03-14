@@ -25,7 +25,7 @@ const useGetWalletSynths = (walletAddress, setBaseSynth) => {
 
 				const synthList = snxJSConnector.synths
 					.filter(({ name, asset }) => {
-						return name !== 'sUSD' && asset;
+						return name !== 'oUSD' && asset;
 					})
 					.map(({ name }) => name);
 
@@ -83,10 +83,10 @@ const useGetGasEstimate = (baseSynth, baseAmount, currentWallet, waitingPeriod) 
 					baseAmount === baseSynth.balance
 						? baseSynth.rawBalance
 						: snxJSConnector.utils.parseEther(baseAmount.toString());
-				gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimateGas.exchange(
+				gasEstimate = await snxJSConnector.snxJS.Oikos.contract.estimateGas.exchange(
 					bytesFormatter(baseSynth.name),
 					amountToExchange,
-					bytesFormatter('sUSD')
+					bytesFormatter('oUSD')
 				);
 			} catch (e) {
 				console.log(e);
@@ -145,10 +145,10 @@ const Trade = ({ onDestroy }) => {
 					? baseSynth.rawBalance
 					: snxJSConnector.utils.parseEther(baseAmount.toString());
 			handleNext(1);
-			const transaction = await snxJSConnector.snxJS.Synthetix.exchange(
+			const transaction = await snxJSConnector.snxJS.Oikos.exchange(
 				bytesFormatter(baseSynth.name),
 				amountToExchange,
-				bytesFormatter('sUSD'),
+				bytesFormatter('oUSD'),
 				{
 					gasPrice: gasPrice * GWEI_UNIT,
 					gasLimit,
@@ -162,7 +162,7 @@ const Trade = ({ onDestroy }) => {
 						status: 'pending',
 						info: `Exchanging ${formatCurrency(baseAmount, 3)} ${
 							baseSynth.name
-						} to ${formatCurrency(quoteAmount, 3)} sUSD`,
+						} to ${formatCurrency(quoteAmount, 3)} oUSD`,
 						hasNotification: true,
 					},
 					dispatch

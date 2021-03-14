@@ -1,14 +1,14 @@
-import { SynthetixJs } from '@oikos/oikos-js-bsc';
+import { OikosJs } from '@oikos/oikos-js-bsc';
 import { getEthereumNetwork, INFURA_JSON_RPC_URLS } from './networkHelper';
 import { ethers } from 'ethers';
 import { unipool, uniswap, curvepool, curveLPToken, synthSummary } from './contracts';
 
 let snxJSConnector = {
 	initialized: false,
-	signers: SynthetixJs.signers,
+	signers: OikosJs.signers,
 	setContractSettings: function(contractSettings) {
 		this.initialized = true;
-		this.snxJS = new SynthetixJs(contractSettings);
+		this.snxJS = new OikosJs(contractSettings);
 		this.synths = this.snxJS.contractSettings.synths;
 		this.signer = this.snxJS.contractSettings.signer;
 		this.provider = this.snxJS.contractSettings.provider;

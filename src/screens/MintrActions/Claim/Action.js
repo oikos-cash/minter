@@ -34,7 +34,7 @@ const Periods = ({ state = {} }) => {
 						<THead>
 							<TR>
 								<TH padding={'10px'}>
-									<TableHeaderMedium>sUSD</TableHeaderMedium>
+									<TableHeaderMedium>oUSD</TableHeaderMedium>
 								</TH>
 								<TH padding={'10px'}>
 									<TableHeaderMedium>OKS</TableHeaderMedium>

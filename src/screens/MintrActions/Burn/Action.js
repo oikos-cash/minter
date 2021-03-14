@@ -37,7 +37,7 @@ const Action = ({
 					</ButtonPrimary>
 					<Subtext style={{ position: 'absolute', fontSize: '12px' }}>
 						There is a waiting period after minting before you can burn. Please wait{' '}
-						{secondsToTime(issuanceDelay)} before attempting to burn sUSD.
+						{secondsToTime(issuanceDelay)} before attempting to burn oUSD.
 					</Subtext>
 				</RetryButtonWrapper>
 			);
@@ -49,7 +49,7 @@ const Action = ({
 					</ButtonPrimary>
 					<Subtext style={{ position: 'absolute', fontSize: '12px' }}>
 						There is a waiting period after completing a trade. Please wait{' '}
-						{secondsToTime(waitingPeriod)} before attempting to burn sUSD.
+						{secondsToTime(waitingPeriod)} before attempting to burn oUSD.
 					</Subtext>
 				</RetryButtonWrapper>
 			);
@@ -104,7 +104,7 @@ const Action = ({
 							<Subtext>${formatCurrency(burnAmountToFixCRatio)}</Subtext>
 						</SubtextRow>
 						<Input
-							singleSynth={'sUSD'}
+							singleSynth={'oUSD'}
 							onChange={e => setBurnAmount(e.target.value)}
 							value={burnAmount}
 							placeholder="0.00"

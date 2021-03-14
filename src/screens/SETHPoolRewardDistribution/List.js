@@ -102,7 +102,7 @@ const List = ({ setPage, openDetails }) => {
 			) : (
 				<PageContainer>
 					<PageTitle fontSize={32} marginBottom={0} marginTop={20}>
-						sETH Pool Reward Distribution
+						oETH Pool Reward Distribution
 					</PageTitle>
 					<SubtitleContainer></SubtitleContainer>
 					<Button onClick={() => setPage('create')} disabled={!isOwner}>

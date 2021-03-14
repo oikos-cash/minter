@@ -112,7 +112,7 @@ const getBalancePerAsset = (asset, { balances, prices, debtData, synthData }) =>
 		usdValue = 0;
 	switch (asset) {
 		case 'OKS':
-		case 'sUSD':
+		case 'oUSD':
 		case 'BNB':
 			balance = balances[asset.toLowerCase()];
 			usdValue = balances[asset.toLowerCase()] * prices[asset.toLowerCase()];
@@ -141,7 +141,7 @@ const renderTooltip = (dataType, t) => {
 };
 
 const processTableData = (state, t) => {
-	return ['OKS', 'sUSD', 'BNB', 'Synths', 'Debt'].map(dataType => {
+	return ['OKS', 'oUSD', 'BNB', 'Synths', 'Debt'].map(dataType => {
 		const iconName = ['Synths', 'Debt'].includes(dataType) ? 'OKS' : dataType;
 		const assetName = ['Synths', 'Debt'].includes(dataType)
 			? t(`dashboard.table.${dataType.toLowerCase()}`)

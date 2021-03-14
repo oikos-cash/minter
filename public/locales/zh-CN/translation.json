@@ -19,7 +19,7 @@
 			},
 			"risks": {
 				"title": "有什么风险？",
-				"description": "所有 OKS 持有人在抵押时，都会产生一笔“债务”。一开始，债务是他们初始铸造的 sUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 OKS 持有人的债务。每个持有人都必须付清他们的债务，才能解锁他们抵押的 OKS。"
+				"description": "所有 OKS 持有人在抵押时，都会产生一笔“债务”。一开始，债务是他们初始铸造的 oUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 OKS 持有人的债务。每个持有人都必须付清他们的债务，才能解锁他们抵押的 OKS。"
 			}
 		},
 		"walletConnection": {
@@ -91,11 +91,11 @@
 		"actions": {
 			"mint": {
 				"title": "铸造",
-				"description": "抵押 OKS 来铸造 sUSD"
+				"description": "抵押 OKS 来铸造 oUSD"
 			},
 			"burn": {
 				"title": "销毁",
-				"description": "销毁 sUSD 来解锁抵押的 OKS"
+				"description": "销毁 oUSD 来解锁抵押的 OKS"
 			},
 			"claim": {
 				"title": "申领",
@@ -103,7 +103,7 @@
 			},
 			"trade": {
 				"title": "交易",
-				"description": "交易合成资产与 sUSD"
+				"description": "交易合成资产与 oUSD"
 			},
 			"transfer": {
 				"title": "转帐",
@@ -115,7 +115,7 @@
 		"mint": {
 			"action": {
 				"title": "铸造",
-				"subtitle": "抵押您的 OKS 来铸造 sUSD。抵押产生的抵押率和债务记录，将使您赚取奖励。",
+				"subtitle": "抵押您的 OKS 来铸造 oUSD。抵押产生的抵押率和债务记录，将使您赚取奖励。",
 				"instruction": "直接确认或手动输入您要铸造的数量：",
 				"buttons": {
 					"mint": "开始铸造"
@@ -132,7 +132,7 @@
 		"burn": {
 			"action": {
 				"title": "销毁",
-				"subtitle": "销毁 sUSD 来解锁您抵押的 OKS。这将增加您的抵押率，并减少您的债务，使您能转账未托管的 OKS。",
+				"subtitle": "销毁 oUSD 来解锁您抵押的 OKS。这将增加您的抵押率，并减少您的债务，使您能转账未托管的 OKS。",
 				"instruction": "直接确认或手动输入您要销毁的数量：",
 				"transferrable": {
 					"title": "解锁的 OKS",
@@ -153,7 +153,7 @@
 		"claim": {
 			"action": {
 				"title": "申领",
-				"subtitle": "如果您抵押了 OKS 并铸造了 sUSD，您就有资格获得两种奖励：OKS 新增代币奖励，和 Oikos.Exchange 产生的 Synth 交易奖励",
+				"subtitle": "如果您抵押了 OKS 并铸造了 oUSD，您就有资格获得两种奖励：OKS 新增代币奖励，和 Oikos.Exchange 产生的 Synth 交易奖励",
 				"table": {
 					"title": "申领周期：",
 					"period": "周期",
@@ -179,7 +179,7 @@
 		"trade": {
 			"action": {
 				"title": "交易",
-				"subtitle": "交易您的合成资产和 sUSD。使用 Oikos.Exchange dApp 来交易所有 Synth 种类。",
+				"subtitle": "交易您的合成资产和 oUSD。使用 Oikos.Exchange dApp 来交易所有 Synth 种类。",
 				"buttons": {
 					"trade": "开始交易",
 					"exchange": "打开 Oikos.Exchange"
@@ -216,7 +216,7 @@
 	"depot": {
 		"intro": {
 			"title": "仓库：",
-			"subtitle": "Oikos.Exchange 将会把存在这里的 sUSD 卖出换成 BNB。您可以在排队中的任何时间取出您的 sUSD。最小存款为 50 sUSD。"
+			"subtitle": "Oikos.Exchange 将会把存在这里的 oUSD 卖出换成 BNB。您可以在排队中的任何时间取出您的 oUSD。最小存款为 50 oUSD。"
 		},
 		"table": {
 			"title": "最近活动:",
@@ -277,7 +277,7 @@
 		},
 		"staking": {
 			"title": "领取您在抵押中的 OKS 新增代币奖励",
-			"subtitle": "如果您抵押 OKS 并铸造了 sUSD，您就有资格领取 OKS 新增代币奖励，托管 12 个月之后，您可以在这里领取。",
+			"subtitle": "如果您抵押 OKS 并铸造了 oUSD，您就有资格领取 OKS 新增代币奖励，托管 12 个月之后，您可以在这里领取。",
 			"total": "共计托管：",
 			"table": {
 				"none": "您没有托管的 OKS",
@@ -399,10 +399,10 @@
 			"placeholder": "查找一个 Synth..."
 		},
 		"error": {
-			"notEnoughToMint": "您现在无法铸造那么多 sUSD",
+			"notEnoughToMint": "您现在无法铸造那么多 oUSD",
 			"gasEstimate": "预估 gas 失败",
 			"invalidAmount": "无效的数量",
-			"notEnoughToBurn": "您没有足够的 sUSD 来销毁。您可以在 dex.ag 上找到最优汇率以购买更多 sUSD。",
+			"notEnoughToBurn": "您没有足够的 oUSD 来销毁。您可以在 dex.ag 上找到最优汇率以购买更多 oUSD。",
 			"balanceTooLow": "您的余额太低",
 			"lowerThanMinDeposit": "数量低于最低存款额"
 		}
@@ -424,8 +424,8 @@
 		"subtitle": "我们期望在接下来几个月内上线一个移动版。"
 	},
 	"tooltip": {
-		"claim": "要申领奖励，您的抵押率不能低于目标抵押率超过 10%。如果您的抵押率不够，奖励领取将被关闭，直到您销毁足够的 sUSD。",
-		"debtBalance": "一开始，您的债务等于初始铸造的 sUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 OKS 持有人的债务。要解锁所有您抵押的 OKS，您需要首先还清您的债务。",
-		"synthsBalance": "Synth 是在 Oikos 的系统中的合成资产，包括 sUSD, sBTC, iBTC, 和所有其他在 Oikos.Exchange 的合成资产。这个数字是此钱包中所有合成资产的价值总和。如果您希望把它们换回 sUSD，请点击交易按钮。"
+		"claim": "要申领奖励，您的抵押率不能低于目标抵押率超过 10%。如果您的抵押率不够，奖励领取将被关闭，直到您销毁足够的 oUSD。",
+		"debtBalance": "一开始，您的债务等于初始铸造的 oUSD 数量，接下来，债务将随着其他合成资产持有人的收益和损失而波动。当有人持有的合成资产增值时，那部分收益将按比例来自于所有 OKS 持有人的债务。要解锁所有您抵押的 OKS，您需要首先还清您的债务。",
+		"synthsBalance": "Synth 是在 Oikos 的系统中的合成资产，包括 oUSD, oBTC, iBTC, 和所有其他在 Oikos.Exchange 的合成资产。这个数字是此钱包中所有合成资产的价值总和。如果您希望把它们换回 oUSD，请点击交易按钮。"
 	}
 }

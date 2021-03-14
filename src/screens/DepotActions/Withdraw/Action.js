@@ -30,7 +30,7 @@ const Action = ({
 						<ActionImage src="/images/actions/withdraw.svg" />
 						<H1>{t('depot.withdraw.action.title')}</H1>
 						<PLarge>{t('depot.withdraw.action.subtitle')}</PLarge>
-						<Amount>{formatCurrency(amountAvailable)}sUSD</Amount>
+						<Amount>{formatCurrency(amountAvailable)}oUSD</Amount>
 					</Intro>
 					<ErrorMessage message={gasEstimateError} />
 				</Top>

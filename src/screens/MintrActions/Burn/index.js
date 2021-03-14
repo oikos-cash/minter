@@ -23,14 +23,14 @@ const useGetDebtData = (walletAddress, sUSDBytes) => {
 		const getDebtData = async () => {
 			try {
 				const results = await Promise.all([
-					snxJSConnector.snxJS.Synthetix.debtBalanceOf(walletAddress, sUSDBytes),
-					snxJSConnector.snxJS.sUSD.balanceOf(walletAddress),
-					snxJSConnector.snxJS.SynthetixState.issuanceRatio(),
+					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
+					snxJSConnector.snxJS.oUSD.balanceOf(walletAddress),
+					snxJSConnector.snxJS.OikosState.issuanceRatio(),
 					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(OKSBytes),
 					snxJSConnector.snxJS.RewardEscrow.totalEscrowedAccountBalance(walletAddress),
-					snxJSConnector.snxJS.SynthetixEscrow.balanceOf(walletAddress),
-					snxJSConnector.snxJS.Synthetix.collateralisationRatio(walletAddress),
-					snxJSConnector.snxJS.Synthetix.maxIssuableSynths(walletAddress),
+					snxJSConnector.snxJS.OikosEscrow.balanceOf(walletAddress),
+					snxJSConnector.snxJS.Oikos.collateralisationRatio(walletAddress),
+					snxJSConnector.snxJS.Oikos.maxIssuableSynths(walletAddress),
 				]);
 				const [
 					debt,
@@ -91,7 +91,7 @@ const useGetGasEstimate = (
 			let gasEstimate;
 			try {
 				if (!parseFloat(burnAmount)) throw new Error('input.error.invalidAmount');
-				if (waitingPeriod) throw new Error('Waiting period for sUSD is still ongoing');
+				if (waitingPeriod) throw new Error('Waiting period for oUSD is still ongoing');
 				if (issuanceDelay) throw new Error('Waiting period to burn is still ongoing');
 				if (burnAmount > sUSDBalance || maxBurnAmount === 0)
 					throw new Error('input.error.notEnoughToBurn');
@@ -105,7 +105,7 @@ const useGetGasEstimate = (
 							: snxJSConnector.utils.parseEther(burnAmount.toString());
 				} else amountToBurn = 0;
 
-				gasEstimate = 1200000;//await snxJSConnector.snxJS.Synthetix.contract.estimate.burnSynths(
+				gasEstimate = 1200000;//await snxJSConnector.snxJS.Oikos.contract.estimate.burnSynths(
 				//	amountToBurn
 				//);
 			} catch (e) {
@@ -138,7 +138,7 @@ const Burn = ({ onDestroy }) => {
 		dispatch,
 	} = useContext(Store);
 
-	const sUSDBytes = bytesFormatter('sUSD');
+	const sUSDBytes = bytesFormatter('oUSD');
 	const {
 		maxBurnAmount,
 		maxBurnAmountBN,
@@ -157,7 +157,7 @@ const Burn = ({ onDestroy }) => {
 		try {
 			const maxSecsLeftInWaitingPeriod = await Exchanger.maxSecsLeftInWaitingPeriod(
 				currentWallet,
-				bytesFormatter('sUSD')
+				bytesFormatter('oUSD')
 			);
 			setWaitingPeriod(Number(maxSecsLeftInWaitingPeriod));
 		} catch (e) {
@@ -206,11 +206,11 @@ const Burn = ({ onDestroy }) => {
 	);
 	const onBurn = async () => {
 		const {
-			snxJS: { Synthetix, Issuer },
+			snxJS: { Oikos, Issuer },
 		} = snxJSConnector;
 		try {
-			if (await Synthetix.isWaitingPeriod(bytesFormatter('sUSD')))
-				throw new Error('Waiting period for sUSD is still ongoing');
+			if (await Oikos.isWaitingPeriod(bytesFormatter('oUSD')))
+				throw new Error('Waiting period for oUSD is still ongoing');
 
 			if (!(await Issuer.canBurnSynths(currentWallet)))
 				throw new Error('Waiting period to burn is still ongoing');
@@ -220,7 +220,7 @@ const Burn = ({ onDestroy }) => {
 				burnAmount === maxBurnAmount
 					? maxBurnAmountBN
 					: snxJSConnector.utils.parseEther(burnAmount.toString());
-			const transaction = await snxJSConnector.snxJS.Synthetix.burnSynths(amountToBurn, {
+			const transaction = await snxJSConnector.snxJS.Oikos.burnSynths(amountToBurn, {
 				gasPrice: gasPrice * GWEI_UNIT,
 				gasLimit,
 			});
@@ -230,7 +230,7 @@ const Burn = ({ onDestroy }) => {
 					{
 						hash: transaction.hash,
 						status: 'pending',
-						info: `Burning ${formatCurrency(burnAmount)} sUSD`,
+						info: `Burning ${formatCurrency(burnAmount)} oUSD`,
 						hasNotification: true,
 					},
 					dispatch

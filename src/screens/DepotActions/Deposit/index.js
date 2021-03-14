@@ -65,9 +65,9 @@ const Deposit = ({ onDestroy, sUSDBalance, minimumDepositAmount }) => {
 
 	const fetchAllowance = useCallback(async () => {
 		try {
-			const sUSD = snxJSConnector.snxJS.sUSD;
+			const oUSD = snxJSConnector.snxJS.oUSD;
 			const Depot = snxJSConnector.snxJS.Depot;
-			const allowance = await sUSD.allowance(currentWallet, Depot.contract.address);
+			const allowance = await oUSD.allowance(currentWallet, Depot.contract.address);
 			setAllowance(bigNumberFormatter(allowance));
 		} catch (e) {
 			console.log(e);
@@ -80,9 +80,9 @@ const Deposit = ({ onDestroy, sUSDBalance, minimumDepositAmount }) => {
 
 	useEffect(() => {
 		if (!currentWallet) return;
-		const sUSD = snxJSConnector.snxJS.sUSD;
+		const oUSD = snxJSConnector.snxJS.oUSD;
 		const depotAddress = snxJSConnector.snxJS.Depot.contract.address;
-		sUSD.contract.on('Approval', (owner, spender) => {
+		oUSD.contract.on('Approval', (owner, spender) => {
 			if (owner === currentWallet && spender === depotAddress) {
 				fetchAllowance();
 			}
@@ -107,7 +107,7 @@ const Deposit = ({ onDestroy, sUSDBalance, minimumDepositAmount }) => {
 					{
 						hash: transaction.hash,
 						status: 'pending',
-						info: `Depositing ${formatCurrency(depositAmount, 2)} sUSD`,
+						info: `Depositing ${formatCurrency(depositAmount, 2)} oUSD`,
 						hasNotification: true,
 					},
 					dispatch
@@ -126,7 +126,7 @@ const Deposit = ({ onDestroy, sUSDBalance, minimumDepositAmount }) => {
 	const onUnlock = async () => {
 		const { parseEther } = snxJSConnector.utils;
 		const depotAddress = snxJSConnector.snxJS.Depot.contract.address;
-		const sUSDContract = snxJSConnector.snxJS.sUSD;
+		const sUSDContract = snxJSConnector.snxJS.oUSD;
 		try {
 			const gasEstimate = await sUSDContract.contract.estimate.approve(
 				depotAddress,

@@ -64,7 +64,7 @@ const Withdraw = ({ onDestroy, amountAvailable }) => {
 					{
 						hash: transaction.hash,
 						status: 'pending',
-						info: `Withdrawing ${formatCurrency(amountAvailable)} sUSD`,
+						info: `Withdrawing ${formatCurrency(amountAvailable)} oUSD`,
 						hasNotification: true,
 					},
 					dispatch

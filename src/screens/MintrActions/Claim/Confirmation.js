@@ -33,7 +33,7 @@ const Confirmation = ({ t, goBack, walletType, feesAvailable }) => {
 								{t('mintrActions.claim.confirmation.actionDescription')}
 							</DataHeaderLarge>
 							<Amount>
-								{feesAvailable && feesAvailable[0] ? formatCurrency(feesAvailable[0]) : 0} sUSD
+								{feesAvailable && feesAvailable[0] ? formatCurrency(feesAvailable[0]) : 0} oUSD
 							</Amount>
 						</Box>
 						<Box>

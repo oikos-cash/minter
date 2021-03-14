@@ -21,7 +21,7 @@ const useGetBalances = (walletAddress, setCurrentCurrency) => {
 		const getBalances = async () => {
 			try {
 				const [transferable, ethBalance] = await Promise.all([
-					snxJSConnector.snxJS.Synthetix.transferableSynthetix(walletAddress),
+					snxJSConnector.snxJS.Oikos.transferableOikos(walletAddress),
 					snxJSConnector.provider.getBalance(walletAddress),
 				]);
 				let walletBalances = [
@@ -82,7 +82,7 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 				const amountBN = snxJSConnector.utils.parseEther(amount.toString());
 				fetchingGasLimit(dispatch);
 				if (currency.name === 'OKS') {
-					gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimateGas.transfer(
+					gasEstimate = await snxJSConnector.snxJS.Oikos.contract.estimateGas.transfer(
 						destination,
 						amountBN
 					);
@@ -117,7 +117,7 @@ const sendTransaction = (currency, amount, destination, settings) => {
 	if (!currency) return null;
 	if (currency === 'OKS') {
 		console.log(settings)
-		return snxJSConnector.snxJS.Synthetix.contract.transfer(destination, amount, settings);
+		return snxJSConnector.snxJS.Oikos.contract.transfer(destination, amount, settings);
 	} else if (currency === 'BNB') {
 		return snxJSConnector.signer.sendTransaction({
 			value: amount,

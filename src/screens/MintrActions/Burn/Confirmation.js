@@ -31,7 +31,7 @@ const Confirmation = ({ t, goBack, walletType, burnAmount, transferableAmount })
 							<DataHeaderLarge>
 								{t('mintrActions.burn.confirmation.actionDescription')}
 							</DataHeaderLarge>
-							<Amount>{formatCurrency(burnAmount)} sUSD</Amount>
+							<Amount>{formatCurrency(burnAmount)} oUSD</Amount>
 						</Box>
 						<Box>
 							<DataHeaderLarge>

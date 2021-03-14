@@ -20,7 +20,7 @@ const Success = ({ t, amountAvailable, onDestroy, networkName, transactionHash }
 				<Details>
 					<Box>
 						<DataHeaderLarge>{t('depot.withdraw.actionDescription')}</DataHeaderLarge>
-						<Amount>{formatCurrency(amountAvailable)} sUSD</Amount>
+						<Amount>{formatCurrency(amountAvailable)} oUSD</Amount>
 					</Box>
 				</Details>
 			</Top>

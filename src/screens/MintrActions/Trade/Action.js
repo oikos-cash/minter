@@ -67,7 +67,7 @@ const Action = ({
 							<PLarge>↓</PLarge>
 							<Input
 								isDisabled={!synthBalances}
-								singleSynth={'sUSD'}
+								singleSynth={'oUSD'}
 								placeholder="0.00"
 								value={quoteAmount}
 								onChange={e => onQuoteAmountChange(e.target.value)}
@@ -76,7 +76,7 @@ const Action = ({
 					</Top>
 					<Bottom>
 						<Subtext>{t('network.tradingFee')} 0.3%</Subtext>
-						{/* <Subtext>RATE: 1.00 sUSD = 0.00004 sBTC </Subtext> */}
+						{/* <Subtext>RATE: 1.00 oUSD = 0.00004 sBTC </Subtext> */}
 						<TransactionPriceIndicator margin="8px 0" />
 						{waitingPeriod ? (
 							<RetryButtonWrapper>

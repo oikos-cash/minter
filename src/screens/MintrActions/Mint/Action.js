@@ -44,7 +44,7 @@ const Action = ({
 					<Form>
 						<PLarge>{t('mintrActions.mint.action.instruction')}</PLarge>
 						<Input
-							singleSynth={'sUSD'}
+							singleSynth={'oUSD'}
 							onChange={e => setMintAmount(e.target.value)}
 							value={mintAmount}
 							placeholder="0.00"

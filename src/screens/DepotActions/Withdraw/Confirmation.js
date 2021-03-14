@@ -29,7 +29,7 @@ const Confirmation = ({ t, goBack, walletType, amountAvailable }) => {
 					<Details>
 						<Box>
 							<DataHeaderLarge>{t('depot.withdraw.actionDescription')}</DataHeaderLarge>
-							<Amount>{formatCurrency(amountAvailable)} sUSD</Amount>
+							<Amount>{formatCurrency(amountAvailable)} oUSD</Amount>
 						</Box>
 					</Details>
 				</Top>

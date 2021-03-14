@@ -28,7 +28,7 @@ const TokenSaleVesting = ({ onDestroy, vestAmount }) => {
 		const vest = async () => {
 			if (!hasLoaded) return;
 			try {
-				const transaction = await snxJSConnector.snxJS.SynthetixEscrow.vest({
+				const transaction = await snxJSConnector.snxJS.OikosEscrow.vest({
 					gasPrice: gasPrice * GWEI_UNIT,
 					gasLimit,
 				});

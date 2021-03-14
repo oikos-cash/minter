@@ -29,7 +29,7 @@ const Confirmation = ({ t, goBack, walletType, depositAmount }) => {
 					<Details>
 						<Box>
 							<DataHeaderLarge>{t('depot.deposit.actionDescription')}</DataHeaderLarge>
-							<Amount>{formatCurrency(depositAmount)} sUSD</Amount>
+							<Amount>{formatCurrency(depositAmount)} oUSD</Amount>
 						</Box>
 					</Details>
 				</Top>

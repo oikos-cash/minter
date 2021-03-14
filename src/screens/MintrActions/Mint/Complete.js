@@ -30,7 +30,7 @@ const Success = ({
 						<DataHeaderLarge>
 							{t('mintrActions.mint.confirmation.actionDescription')}
 						</DataHeaderLarge>
-						<Amount>{formatCurrency(mintAmount)} sUSD</Amount>
+						<Amount>{formatCurrency(mintAmount)} oUSD</Amount>
 					</Box>
 					<Box>
 						<DataHeaderLarge>

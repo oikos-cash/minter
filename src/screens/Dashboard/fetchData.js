@@ -9,8 +9,8 @@ const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(valu
 const getBalances = async walletAddress => {
 	try {
 		const result = await Promise.all([
-			snxJSConnector.snxJS.Synthetix.collateral(walletAddress),
-			snxJSConnector.snxJS.sUSD.balanceOf(walletAddress),
+			snxJSConnector.snxJS.Oikos.collateral(walletAddress),
+			snxJSConnector.snxJS.oUSD.balanceOf(walletAddress),
 			snxJSConnector.provider.getBalance(walletAddress),
 		]);
 
@@ -35,7 +35,7 @@ export const getSusdInUsd = (synthRates, sbnbToBnbRate) => {
 
 const getSETHtoETH = async () => {
 	return (0.98);
-	const sBNBAddress = snxJSConnector.snxJS.sETH.contract.address;
+	const sBNBAddress = snxJSConnector.snxJS.oBNB.contract.address;
 	const query = `query {
 		exchanges(where: {tokenAddress:"${sBNBAddress}"}) {
 			price
@@ -57,7 +57,7 @@ const getSETHtoETH = async () => {
 const getPrices = async () => {
 	try {
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-			['OKS', 'sUSD', 'sBNB'].map(bytesFormatter)
+			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
 		);
 		const sethToEthRateP = getSETHtoETH();
 		const [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
@@ -101,10 +101,10 @@ const getRewards = async walletAddress => {
 const getDebt = async walletAddress => {
 	try {
 		const result = await Promise.all([
-			snxJSConnector.snxJS.SynthetixState.issuanceRatio(),
-			snxJSConnector.snxJS.Synthetix.collateralisationRatio(walletAddress),
-			snxJSConnector.snxJS.Synthetix.transferableSynthetix(walletAddress),
-			snxJSConnector.snxJS.Synthetix.debtBalanceOf(walletAddress, bytesFormatter('sUSD')),
+			snxJSConnector.snxJS.OikosState.issuanceRatio(),
+			snxJSConnector.snxJS.Oikos.collateralisationRatio(walletAddress),
+			snxJSConnector.snxJS.Oikos.transferableOikos(walletAddress),
+			snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, bytesFormatter('oUSD')),
 		]);
 		const [targetCRatio, currentCRatio, transferable, debtBalance] = result.map(bigNumberFormatter);
 		return {
@@ -122,7 +122,7 @@ const getEscrow = async walletAddress => {
 	try {
 		const results = await Promise.all([
 			snxJSConnector.snxJS.RewardEscrow.totalEscrowedAccountBalance(walletAddress),
-			snxJSConnector.snxJS.SynthetixEscrow.balanceOf(walletAddress),
+			snxJSConnector.snxJS.OikosEscrow.balanceOf(walletAddress),
 		]);
 		const [reward, tokenSale] = results.map(bigNumberFormatter);
 		return {
@@ -158,7 +158,7 @@ const getSynths = async walletAddress => {
 				return  snxJSConnector.snxJS.ExchangeRates.effectiveValue(
 						bytesFormatter(synths[i]),
 						balance,
-						bytesFormatter('sUSD')
+						bytesFormatter('oUSD')
 					);
 				
 			})

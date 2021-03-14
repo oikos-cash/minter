@@ -23,11 +23,11 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 		const getIssuanceData = async () => {
 			try {
 				const results = await Promise.all([
-					snxJSConnector.snxJS.Synthetix.maxIssuableSynths(walletAddress, sUSDBytes),
-					snxJSConnector.snxJS.Synthetix.debtBalanceOf(walletAddress, sUSDBytes),
-					snxJSConnector.snxJS.SynthetixState.issuanceRatio(),
+					snxJSConnector.snxJS.Oikos.maxIssuableSynths(walletAddress, sUSDBytes),
+					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
+					snxJSConnector.snxJS.OikosState.issuanceRatio(),
 					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(OKSBytes),
-					snxJSConnector.snxJS.Synthetix.collateral(walletAddress),
+					snxJSConnector.snxJS.Oikos.collateral(walletAddress),
 				]);
 				const [maxIssuableSynths, debtBalance, issuanceRatio, OKSPrice, oksBalance] = results.map(
 					bigNumberFormatter
@@ -60,9 +60,9 @@ const useGetGasEstimate = (mintAmount, issuableSynths) => {
 				if (mintAmount <= 0 || mintAmount > issuableSynths)
 					throw new Error('input.error.notEnoughToMint');
 				if (mintAmount === issuableSynths) {
-					gasEstimate = await snxJSConnector.snxJS.Synthetix.contract.estimateGas.issueMaxSynths();
+					gasEstimate = await snxJSConnector.snxJS.Oikos.contract.estimateGas.issueMaxSynths();
 				} else {
-					gasEstimate =  await snxJSConnector.snxJS.Synthetix.contract.estimateGas.issueSynths(
+					gasEstimate =  await snxJSConnector.snxJS.Oikos.contract.estimateGas.issueSynths(
 						snxJSConnector.utils.parseEther(mintAmount.toString())
 					);
 				}
@@ -95,7 +95,7 @@ const Mint = ({ onDestroy }) => {
 		dispatch,
 	} = useContext(Store);
 
-	const sUSDBytes = bytesFormatter('sUSD');
+	const sUSDBytes = bytesFormatter('oUSD');
 	const { issuableSynths, issuanceRatio, OKSPrice, debtBalance, oksBalance } = useGetIssuanceData(
 		currentWallet,
 		sUSDBytes
@@ -112,9 +112,9 @@ const Mint = ({ onDestroy }) => {
 			handleNext(1);
 			let transaction;
 			if (mintAmount === issuableSynths) {
-				transaction = await snxJSConnector.snxJS.Synthetix.issueMaxSynths(transactionSettings);
+				transaction = await snxJSConnector.snxJS.Oikos.issueMaxSynths(transactionSettings);
 			} else {
-				transaction = await snxJSConnector.snxJS.Synthetix.issueSynths(
+				transaction = await snxJSConnector.snxJS.Oikos.issueSynths(
 					snxJSConnector.utils.parseEther(mintAmount.toString()),
 					transactionSettings
 				);
@@ -125,7 +125,7 @@ const Mint = ({ onDestroy }) => {
 					{
 						hash: transaction.hash,
 						status: 'pending',
-						info: `Minting ${formatCurrency(mintAmount)} sUSD`,
+						info: `Minting ${formatCurrency(mintAmount)} oUSD`,
 						hasNotification: true,
 					},
 					dispatch

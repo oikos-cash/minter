@@ -80,7 +80,7 @@ const Input = ({
 };
 
 const Dropdown = ({ onClick, synth, singleSynth }) => {
-	const synthName = singleSynth || synth || 'sUSD';
+	const synthName = singleSynth || synth || 'oUSD';
 	return (
 		<Button disabled={singleSynth} onClick={onClick}>
 			<CurrencyIcon src={`/images/currencies/${synthName}.svg`} />

@@ -68,8 +68,8 @@ const useGetWallets = (paginatorIndex, derivationPath) => {
 
 				const getBalanceForWallet = async wallet => {
 					return {
-						oksBalance: await snxJSConnector.snxJS.Synthetix.collateral(wallet.address),
-						sUSDBalance: await snxJSConnector.snxJS.sUSD.balanceOf(wallet.address),
+						oksBalance: await snxJSConnector.snxJS.Oikos.collateral(wallet.address),
+						sUSDBalance: await snxJSConnector.snxJS.oUSD.balanceOf(wallet.address),
 						ethBalance: await snxJSConnector.provider.getBalance(wallet.address),
 					};
 				};
@@ -211,7 +211,7 @@ const WalletConnection = ({ t }) => {
 									<List cellSpacing={0}>
 										<ListHead>
 											<ListHeaderRow>
-												{['Address', 'OKS', 'sUSD', 'BNB', ''].map((headerElement, i) => {
+												{['Address', 'OKS', 'oUSD', 'BNB', ''].map((headerElement, i) => {
 													return (
 														<ListHeaderCell
 															style={{ textAlign: i > 0 ? 'right' : 'left' }}

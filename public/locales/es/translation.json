@@ -19,7 +19,7 @@
 			},
 			"risks": {
 				"title": "¿Cuáles son los riesgos?",
-				"description": "Todos los inversores de OKS crean una 'deuda' cuando invierten. Su deuda comienza como la cantidad de sUSD que acuña inicialmente, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros titulares de Synth. Cada vez que alguien posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los titulares de OKS invertidos. Un inversor debe pagar su deuda antes de poder desbloquear sus OKS invertidos."
+				"description": "Todos los inversores de OKS crean una 'deuda' cuando invierten. Su deuda comienza como la cantidad de oUSD que acuña inicialmente, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros titulares de Synth. Cada vez que alguien posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los titulares de OKS invertidos. Un inversor debe pagar su deuda antes de poder desbloquear sus OKS invertidos."
 			}
 		},
 		"walletConnection": {
@@ -93,11 +93,11 @@
 		"actions": {
 			"mint": {
 				"title": "Acuñar",
-				"description": "Acuñar sUSD invirtiendo OKS"
+				"description": "Acuñar oUSD invirtiendo OKS"
 			},
 			"burn": {
 				"title": "Quemar",
-				"description": "Quemar sUSD para desbloquear OKS invertidos"
+				"description": "Quemar oUSD para desbloquear OKS invertidos"
 			},
 			"claim": {
 				"title": "Reclamar",
@@ -105,7 +105,7 @@
 			},
 			"trade": {
 				"title": "Comerciar",
-				"description": "Comerciar cualquier Synth a sUSD"
+				"description": "Comerciar cualquier Synth a oUSD"
 			},
 			"transfer": {
 				"title": "Transferir",
@@ -117,7 +117,7 @@
 		"mint": {
 			"action": {
 				"title": "Acuñar",
-				"subtitle": "Acuñar sUSD invirtiendo sus OKS. Esto le proporciona un índice de colateralización y una deuda, lo que le permite obtener recompensas de inversión.",
+				"subtitle": "Acuñar oUSD invirtiendo sus OKS. Esto le proporciona un índice de colateralización y una deuda, lo que le permite obtener recompensas de inversión.",
 				"instruction": "Confirme o ingrese la cantidad a acuñar:",
 				"buttons": {
 					"mint": "Acuñar ahora"
@@ -134,7 +134,7 @@
 		"burn": {
 			"action": {
 				"title": "Quemar",
-				"subtitle": "Quemar sUSD para desbloquear sus OKS invertidos. Esto aumenta su índice de colateralización y reduce su deuda, lo que le permite transferir sus OKS no custodiados.",
+				"subtitle": "Quemar oUSD para desbloquear sus OKS invertidos. Esto aumenta su índice de colateralización y reduce su deuda, lo que le permite transferir sus OKS no custodiados.",
 				"instruction": "Confirme o ingrese la cantidad a quemar:",
 				"transferrable": {
 					"title": "OKS transferible siendo desbloqueado:",
@@ -155,7 +155,7 @@
 		"claim": {
 			"action": {
 				"title": "Reclamar",
-				"subtitle": "Si ha invertido sus OKS y acuñado sUSD, Ud. es elegible para reunir dos tipos de recompensas: recompensas de inversión de OKS, y recompensas del mercado de intercambio Synth generadas en Oikos.Exchange.",
+				"subtitle": "Si ha invertido sus OKS y acuñado oUSD, Ud. es elegible para reunir dos tipos de recompensas: recompensas de inversión de OKS, y recompensas del mercado de intercambio Synth generadas en Oikos.Exchange.",
 				"table": {
 					"title": "Periodos reclamables:",
 					"period": "Periodo",
@@ -181,7 +181,7 @@
 		"trade": {
 			"action": {
 				"title": "Comerciar",
-				"subtitle": "Comerciar sus Synths por sUSD. Para el dApp completo, que le permite comerciar entre Synths, use Oikos.Exchange.",
+				"subtitle": "Comerciar sus Synths por oUSD. Para el dApp completo, que le permite comerciar entre Synths, use Oikos.Exchange.",
 				"buttons": {
 					"trade": "Comerciar ahora",
 					"exchange": "Abrir Oikos.Exchange"
@@ -218,7 +218,7 @@
 	"depot": {
 		"intro": {
 			"title": "Deposito:",
-			"subtitle": "Deposite sUSD en la lista para venderlo en Oikos. Intercambie por BNB. Puede retirar sus sUSD en cualquier momento mientras espera. Nota: el depósito mínimo es de 50 sUSD."
+			"subtitle": "Deposite oUSD en la lista para venderlo en Oikos. Intercambie por BNB. Puede retirar sus oUSD en cualquier momento mientras espera. Nota: el depósito mínimo es de 50 oUSD."
 		},
 		"table": {
 			"title": "Actividad reciente:",
@@ -279,7 +279,7 @@
 		},
 		"staking": {
 			"title": "Otorgar sus recompensas de OKS en garantía",
-			"subtitle": "Si usted ha invertido OKS y acuño sUSD, es elegible para recibir OKS por recompensas de inversión , las cuales puede otorgar aquí después de que ellas hayan sido custodiadas por 12 meses.",
+			"subtitle": "Si usted ha invertido OKS y acuño oUSD, es elegible para recibir OKS por recompensas de inversión , las cuales puede otorgar aquí después de que ellas hayan sido custodiadas por 12 meses.",
 			"total": "Total en garantía:",
 			"table": {
 				"none": "No tiene OKS en garantía",
@@ -401,10 +401,10 @@
 			"placeholder": "Buscar un synth..."
 		},
 		"error": {
-			"notEnoughToMint": "Actualmente no puede acuñar esa cantidad de sUSD",
+			"notEnoughToMint": "Actualmente no puede acuñar esa cantidad de oUSD",
 			"gasEstimate": "Error al obtener la estimación de gas",
 			"invalidAmount": "Monto invalido",
-			"notEnoughToBurn": "No tiene mucho sUSD para quemar. Puede encontrar el mejor precio en dex.ag para comprar más.",
+			"notEnoughToBurn": "No tiene mucho oUSD para quemar. Puede encontrar el mejor precio en dex.ag para comprar más.",
 			"balanceTooLow": "Su saldo es demasiado bajo",
 			"lowerThanMinDeposit": "Cantidad inferior al depósito mínimo"
 		}
@@ -426,8 +426,8 @@
 		"subtitle": "Esperamos tener una versión móvil disponible en los próximos meses."
 	},
 	"tooltip": {
-		"claim": "Para reclamar recompensas, debe estar dentro del 1% del índice de colateralización objetivo. Si está por debajo de esta cifra, se le bloqueará el reclamo de recompensas hasta que queme suficiente sUSD.",
-		"debtBalance": "Su deuda comienza como la cantidad de sUSD que inicialmente acuña, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros poseedores de Synth. Cada vez que alguien que posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los poseedores de los OKS invertidos. Para desbloquear todos sus OKS invertidos, primero debe pagar su deuda.",
-		"synthsBalance": "Los Synths son los activos sintéticos en el sistema Oikos, incluidos sUSD, sBTC, iBTC y todos los demás activos disponibles en Oikos.Exchange. Esta cifra es el valor total de todos los Synths contenidos en esta billetera. Si desea convertir algunos Synths de nuevo en sUSD, haga clic en el botón COMERCIAR."
+		"claim": "Para reclamar recompensas, debe estar dentro del 1% del índice de colateralización objetivo. Si está por debajo de esta cifra, se le bloqueará el reclamo de recompensas hasta que queme suficiente oUSD.",
+		"debtBalance": "Su deuda comienza como la cantidad de oUSD que inicialmente acuña, y fluctúa de acuerdo con las ganancias o pérdidas realizadas por otros poseedores de Synth. Cada vez que alguien que posee un Synth que aprecia su valor, esa ganancia se distribuye proporcionalmente entre todas las deudas de los poseedores de los OKS invertidos. Para desbloquear todos sus OKS invertidos, primero debe pagar su deuda.",
+		"synthsBalance": "Los Synths son los activos sintéticos en el sistema Oikos, incluidos oUSD, oBTC, iBTC y todos los demás activos disponibles en Oikos.Exchange. Esta cifra es el valor total de todos los Synths contenidos en esta billetera. Si desea convertir algunos Synths de nuevo en oUSD, haga clic en el botón COMERCIAR."
 	}
 }
