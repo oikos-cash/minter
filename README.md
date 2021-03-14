@@ -1,5 +1,5 @@
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/oikos_io.svg?label=oikos_io&style=social)](https://twitter.com/oikos_io)
+[![Twitter Follow](https://img.shields.io/twitter/follow/oikos_io.svg?label=oikos_io&style=social)](https://twitter.com/oikos_cash)
 
 # Minter
 
@@ -9,11 +9,11 @@ For translator instructions, [go here](#translator-instructions).
 
 The dApp communicates with the [Oikos contracts](https://docs.oikos.cash/addresses), allowing users to perform the following actions:
 
-- Mint (aka Issue) `sUSD` by locking `OKS`
-- Claim rewards of both `OKS` (inflation) and `sUSD` (exchange fees) every week
-- Burn `sUSD` to unlock `OKS`
+- Mint (aka Issue) `oUSD` by locking `OKS`
+- Claim rewards of both `OKS` (inflation) and `oUSD` (exchange fees) every week
+- Burn `oUSD` to unlock `OKS`
 - Transfer `OKS` to other accounts
-- Deposit (or withdrawl) `sUSD` into the `Depot` contract, to go in the queue for exchanging with `ETH` at current market price
+- Deposit (or withdrawl) `oUSD` into the `Depot` contract, to go in the queue for exchanging with `BNB` at current market price
 
 Mintr v2 supports the following wallet providers:
 
