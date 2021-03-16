@@ -167,7 +167,7 @@ export const setSigner = ({ type, networkId, derivationPath }) => {
 export const connectToWallet = async ({ wallet, derivationPath }) => {
 	//const { name, networkId } = await getEthereumNetwork();
 	const name = 'bsc';
-	const networkId = 97;
+	const networkId = 56;
 	if (!name) {
 		return {
 			walletType: '',

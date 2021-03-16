@@ -51,7 +51,7 @@ const Root = () => {
 		let intervalId;
 		const init = async () => {
 			//const { networkId } = await getEthereumNetwork();
-			const networkId = 97;
+			const networkId = 56;
 			const provider = getDefaultProvider('https://data-seed-prebsc-2-s3.binance.org:8545');
 			snxJSConnector.setContractSettings({ networkId, provider });
 			getAppState();

@@ -8,7 +8,7 @@ export const SUPPORTED_NETWORKS = {
 	3: 'ROPSTEN',
 	4: 'RINKEBY',
 	42: 'KOVAN',
-	97: 'bsc',
+	56: 'bsc',
 };
 
 export const DEFAULT_GAS_LIMIT = {
@@ -38,7 +38,7 @@ export const hasWeb3 = () => {
 
 export async function getEthereumNetwork() {
 	return await new Promise(function(resolve, reject) {
-		if (!window.web3) resolve({ name: 'bsc', networkId: '97' });
+		if (!window.web3) resolve({ name: 'bsc', networkId: '56' });
 		window.web3.version.getNetwork((err, networkId) => {
 			if (err) {
 				reject(err);
