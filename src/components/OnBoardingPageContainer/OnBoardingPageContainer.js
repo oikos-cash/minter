@@ -13,14 +13,10 @@ const OnBoardingPageContainer = ({ t, children }) => {
 					{/* <Network>{networkName}</Network> */}
 				</HeaderBlock>
 				<HeaderBlock>
-					<ButtonTertiary as="a" href="https://help.synthetix.io/hc/en-us" target="_blank">
+					<ButtonTertiary as="a" href="https://t.me/oikoscash" target="_blank">
 						{t('button.havingTrouble')}
 					</ButtonTertiary>
-					<ButtonTertiary
-						as="a"
-						href="https://www.synthetix.io/uploads/synthetix_litepaper.pdf"
-						target="_blank"
-					>
+					<ButtonTertiary as="a" href="https://docs.oikos.cash/litepaper/" target="_blank">
 						{t('button.whatIsSynthetix')}
 					</ButtonTertiary>
 				</HeaderBlock>

@@ -122,7 +122,7 @@ const Stake = ({ t, goBack }) => {
 			<PageTitle>{t('unipool.title')}</PageTitle>
 			<PLarge>{t('unipool.unlocked.subtitle')}</PLarge>
 			<PLarge>
-				<Link href="https://blog.synthetix.io/new-uniswap-seth-lp-reward-system/" target="_blank">
+				<Link href="#todo" target="_blank">
 					<ButtonTertiaryLabel>{t('lpRewards.shared.unlocked.link')}</ButtonTertiaryLabel>
 				</Link>
 			</PLarge>
