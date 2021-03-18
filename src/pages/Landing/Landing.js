@@ -140,6 +140,10 @@ const Landing = ({ t }) => {
 	const [pageIndex, setPageIndex] = useState(0);
 	const [flagDropdownIsVisible, setFlagVisibility] = useState(false);
 
+	const whitepaperUrl =
+		i18n.language === 'zh-CN'
+			? 'https://docs.oikos.cash/litepaper-zh.pdf'
+			: 'https://docs.oikos.cash/litepaper/';
 	return (
 		<LandingPageContainer>
 			<OnboardingContainer>
@@ -177,15 +181,10 @@ const Landing = ({ t }) => {
 			<WalletConnectContainer>
 				<WalletButtons />
 				<BottomLinks>
-					<Link href="https://help.synthetix.io/hc/en-us" target="_blank">
+					<Link href="https://t.me/oikoscash" target="_blank">
 						<ButtonTertiaryLabel>{t('button.havingTrouble')}</ButtonTertiaryLabel>
 					</Link>
-					<Link
-						href={`https://www.synthetix.io/uploads/synthetix_litepaper${
-							i18n.language === 'zh-CN' ? '_mandarin' : ''
-						}.pdf`}
-						target="_blank"
-					>
+					<Link href={whitepaperUrl} target="_blank">
 						<ButtonTertiaryLabel>{t('button.whatIsSynthetix')}</ButtonTertiaryLabel>
 					</Link>
 				</BottomLinks>
