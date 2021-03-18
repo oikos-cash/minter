@@ -43,15 +43,14 @@ const stringifyQuery = query => {
 };
 
 const getApiUrl = networkName => {
-	let apiUrl 
+	let apiUrl;
 	if (networkName === 'mainnet') {
 		apiUrl = `https:///api/`;
 	} else if (networkName === 'bsc') {
-		apiUrl = `https://api-bsc.oikos.cash/api/`
+		apiUrl = `https://api-bsc.oikos.cash/api/`;
 	}
 	return apiUrl;
-}
-	
+};
 
 const useGetTransactions = (walletAddress, networkName) => {
 	const [data, setData] = useState({});
@@ -212,9 +211,9 @@ const TransactionsTable = ({ data }) => {
 								</TD>
 								<TD style={{ textAlign: 'right' }}>
 									<BorderlessButton
-										href={`https://${
-											networkName === 'mainnet' ? '' : 'testnet' + '.'
-										}bscscan.com/tx/${dataElement.transactionHash}`}
+										href={`https://${networkName === 'bsc' ? '' : 'testnet' + '.'}bscscan.com/tx/${
+											dataElement.transactionHash
+										}`}
 										as="a"
 										target="_blank"
 									>
