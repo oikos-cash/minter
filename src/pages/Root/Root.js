@@ -39,12 +39,12 @@ const Root = () => {
 		},
 	} = useContext(Store);
 	const getAppState = useCallback(async () => {
-		try {
+		/*try {
 			setIsOnMaintenance(await snxJSConnector.snxJS.DappMaintenance.isPausedMintr());
 		} catch (err) {
 			console.log('Could not get DappMaintenance contract data', err);
 			setIsOnMaintenance(false);
-		}
+		}*/
 	}, []);
 	useEffect(() => {
 		if (process.env.REACT_APP_CONTEXT !== 'production') return;
