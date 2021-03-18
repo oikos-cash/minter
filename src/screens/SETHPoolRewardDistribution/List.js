@@ -70,7 +70,7 @@ const CompletedList = ({ transactions, networkName }) => (
 				completed: format(item.date, 'd-M-yy | HH:mm'),
 				view: (
 					<Link
-						href={`https://${networkName === 'mainnet' ? '' : networkName + '.'}etherscan.io/tx/${
+						href={`https://${networkName === 'bsc' ? '' : networkName + '.'}bscscan.com/tx/${
 							item.transactionHash
 						}`}
 						as="a"

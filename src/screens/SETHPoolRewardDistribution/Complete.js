@@ -32,7 +32,7 @@ const Success = ({ goHome, transaction }) => {
 					<ButtonSecondary
 						href={
 							transaction &&
-							`https://${networkName === 'mainnet' ? '' : networkName + '.'}etherscan.io/tx/${
+							`https://${networkName === 'bsc' ? '' : networkName + '.'}bscscan.com/tx/${
 								transaction.hash
 							}`
 						}

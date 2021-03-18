@@ -42,15 +42,7 @@ const stringifyQuery = query => {
 	}, '?'));
 };
 
-const getApiUrl = networkName => {
-	let apiUrl;
-	if (networkName === 'mainnet') {
-		apiUrl = `https:///api/`;
-	} else if (networkName === 'bsc') {
-		apiUrl = `https://api-bsc.oikos.cash/api/`;
-	}
-	return apiUrl;
-};
+const getApiUrl = networkName => `https://api-${networkName}.oikos.cash/api/`;
 
 const useGetTransactions = (walletAddress, networkName) => {
 	const [data, setData] = useState({});

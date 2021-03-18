@@ -82,8 +82,8 @@ const HiddenContent = ({ data }) => {
 								<HiddenTableCell>
 									<BorderlessButton
 										href={`https://${
-											networkName === 'mainnet' ? '' : networkName + '.'
-										}etherscan.io/tx/${detail.transactionHash}`}
+											networkName === 'bsc' ? '' : networkName + '.'
+										}bscscan.com/tx/${detail.transactionHash}`}
 										as="a"
 										target="_blank"
 									>
@@ -161,8 +161,7 @@ const ExpandableTable = ({ data }) => {
 	);
 };
 
-const getApiUrl = networkName =>
-	`https://${networkName === 'mainnet' ? '' : networkName + '.'}api.synthetix.io/api`;
+const getApiUrl = networkName => `https://api-${networkName}.oikos.cash/api`;
 
 const useGetDepotEvents = (walletAddress, networkName) => {
 	const [data, setData] = useState({});
@@ -347,9 +346,9 @@ const Depot = ({ t }) => {
 							{t('depot.buttons.more')}
 						</ButtonTertiary>
 						<ButtonTertiary
-							href={`https://${
-								networkName === 'mainnet' ? '' : networkName + '.'
-							}etherscan.io/address/${snxJSConnector.snxJS.Depot.contract.address}`}
+							href={`https://${networkName === 'bsc' ? '' : networkName + '.'}bscscan.com/address/${
+								snxJSConnector.snxJS.Depot.contract.address
+							}`}
 							as="a"
 							target="_blank"
 						>

@@ -262,8 +262,8 @@ const WalletConnection = ({ t }) => {
 															>
 																<Link
 																	href={`https://${
-																		networkName === 'mainnet' ? '' : networkName + '.'
-																	}etherscan.io/address/${wallet.address}`}
+																		networkName === 'bsc' ? '' : networkName + '.'
+																	}bscscan.com/address/${wallet.address}`}
 																	target="_blank"
 																>
 																	<LinkImg width="20" src="/images/etherscan-logo.png" />
