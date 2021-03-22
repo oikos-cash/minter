@@ -49,7 +49,7 @@ const CollRatios = ({ state }) => {
 const Charts = ({ state }) => {
 	const { t } = useTranslation();
 	const { balances, debtData, escrowData } = state;
-	 
+
 	const oksLocked =
 		balances.oks &&
 		debtData.currentCRatio &&
@@ -107,7 +107,6 @@ const Charts = ({ state }) => {
 };
 
 const getBalancePerAsset = (asset, { balances, prices, debtData, synthData }) => {
- 
 	let balance,
 		usdValue = 0;
 	switch (asset) {
@@ -119,11 +118,11 @@ const getBalancePerAsset = (asset, { balances, prices, debtData, synthData }) =>
 			break;
 		case 'Synths':
 			balance = synthData.total;
-			usdValue = synthData.total * prices.susd;
+			usdValue = synthData.total * prices.ousd;
 			break;
 		case 'Debt':
 			balance = debtData.debtBalance;
-			usdValue = debtData.debtBalance * prices.susd;
+			usdValue = debtData.debtBalance * prices.ousd;
 			break;
 		default:
 			break;
@@ -199,7 +198,7 @@ const Dashboard = ({ t }) => {
 	const loadData = useCallback(() => {
 		setDashboardIsLoading(true);
 		fetchData(currentWallet, successQueue).then(data => {
-			console.log(data)
+			console.log(data);
 			setData(data);
 			setDashboardIsLoading(false);
 		});
