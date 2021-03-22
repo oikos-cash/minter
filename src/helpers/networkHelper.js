@@ -4,10 +4,6 @@ export const GWEI_UNIT = 1000000000;
 import * as data from './gas.json';
 
 export const SUPPORTED_NETWORKS = {
-	1: 'MAINNET',
-	3: 'ROPSTEN',
-	4: 'RINKEBY',
-	42: 'KOVAN',
 	56: 'bsc',
 };
 
