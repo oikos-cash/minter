@@ -34,7 +34,7 @@ export const getOusdInUsd = (synthRates, sbnbToBnbRate) => {
 };
 
 const getSETHtoETH = async () => {
-	return 0.98;
+	return 1;
 	const sBNBAddress = snxJSConnector.snxJS.oBNB.contract.address;
 	const query = `query {
 		exchanges(where: {tokenAddress:"${sBNBAddress}"}) {
