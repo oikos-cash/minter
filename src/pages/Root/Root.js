@@ -1,3 +1,4 @@
+/* prettier-ignore */
 import { hot } from 'react-hot-loader/root';
 import React, { Suspense, useEffect, useContext, useCallback, useState } from 'react';
 import styled from 'styled-components';

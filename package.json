@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"author": "Synthetix",
 	"dependencies": {
-		"@oikos/oikos-js-bsc": "^0.2.11",
+		"@oikos/oikos-js-bsc": "^0.2.14",
 		"@rehooks/component-size": "^1.0.3",
 		"browserslist": "^4.8.2",
 		"date-fns": "^2.0.1",

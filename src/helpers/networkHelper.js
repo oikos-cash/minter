@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import throttle from 'lodash/throttle';
 export const GWEI_UNIT = 1000000000;
 import * as data from './gas.json';
@@ -26,7 +27,7 @@ export const INFURA_JSON_RPC_URLS = {
 	42: `https://kovan.infura.io/v3/${INFURA_PROJECT_ID}`,
 };
 
-export const SUPPORTED_WALLETS = ['Metamask'/*, 'Trezor', 'Ledger', 'Coinbase', 'WalletConnect'*/];
+export const SUPPORTED_WALLETS = ['Metamask', 'BSCWallet'/*, 'Trezor', 'Ledger', 'Coinbase', 'WalletConnect'*/];
 
 export const hasWeb3 = () => {
 	return window.web3;
@@ -84,8 +85,8 @@ export function onMetamaskAccountChange(cb) {
 	window.ethereum.on('accountsChanged', listener);
 }
 
-export function onMetamaskNetworkChange(cb) {
-	if (!window.ethereum) return;
+export function onBSCWalletNetworkChange(cb) {
+	if (!window.BinanceChain) return;
 	const listener = throttle(cb, 1000);
-	window.ethereum.on('networkChanged', listener);
+	window.BinanceChain.on('networkChanged', listener);
 }

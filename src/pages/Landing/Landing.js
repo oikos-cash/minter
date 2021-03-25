@@ -9,8 +9,8 @@ import snxJSConnector, { connectToWallet } from '../../helpers/snxJSConnector';
 import { Store } from '../../store';
 import { updateCurrentPage } from '../../ducks/ui';
 import { updateWalletStatus } from '../../ducks/wallet';
-
-import { hasWeb3, SUPPORTED_WALLETS, onMetamaskAccountChange } from '../../helpers/networkHelper';
+// prettier-ignore
+import { hasWeb3, SUPPORTED_WALLETS, onMetamaskAccountChange, onBSCWalletNetworkChange } from '../../helpers/networkHelper';
 import { ButtonPrimary, ButtonSecondary } from '../../components/Button';
 import { H1, H2, PMega, ButtonTertiaryLabel } from '../../components/Typography';
 import Logo from '../../components/Logo';
@@ -33,6 +33,18 @@ const onWalletClick = ({ wallet, derivationPath }, dispatch) => {
 				onMetamaskAccountChange(async () => {
 					const address = await snxJSConnector.signer.getNextAddresses();
 					const signer = new snxJSConnector.signers['Metamask']({});
+					snxJSConnector.setContractSettings({
+						networkId: walletStatus.networkId,
+						signer,
+					});
+					if (address && address[0]) {
+						updateWalletStatus({ currentWallet: address[0] }, dispatch);
+					}
+				});
+			} else if (walletStatus.walletType === 'BSCWallet') {
+				onBSCWalletNetworkChange(async () => {
+					const address = await snxJSConnector.signer.getNextAddresses();
+					const signer = new snxJSConnector.signers['BSCWallet']({});
 					snxJSConnector.setContractSettings({
 						networkId: walletStatus.networkId,
 						signer,

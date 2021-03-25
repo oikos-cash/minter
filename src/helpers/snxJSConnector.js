@@ -67,6 +67,41 @@ const connectToMetamask = async (networkId, networkName) => {
 	}
 };
 
+const connectToBSCWallet = async (networkId, networkName) => {
+	try {
+		// Otherwise we enable ethereum if needed (modern browsers)
+		if (window.BinanceChain) {
+			window.BinanceChain.autoRefreshOnNetworkChange = true;
+			await window.BinanceChain.enable();
+		}
+		const accounts = await snxJSConnector.signer.getNextAddresses();
+		if (accounts && accounts.length > 0) {
+			return {
+				currentWallet: accounts[0],
+				walletType: 'BSCWallet',
+				unlocked: true,
+				networkId,
+				networkName: networkName.toLowerCase(),
+			};
+		} else {
+			return {
+				walletType: 'BSCWallet',
+				unlocked: false,
+				unlockReason: 'BSCWalletNoAccounts',
+			};
+		}
+		// We updateWalletStatus with all the infos
+	} catch (e) {
+		console.log(e);
+		return {
+			walletType: 'BSCWallet',
+			unlocked: false,
+			unlockReason: 'ErrorWhileConnectingToBSCWallet',
+			unlockMessage: e,
+		};
+	}
+};
+
 const connectToCoinbase = async (networkId, networkName) => {
 	try {
 		const accounts = await snxJSConnector.signer.getNextAddresses();
@@ -154,10 +189,13 @@ const getSignerConfig = ({ type, networkId, derivationPath }) => {
 };
 
 export const setSigner = ({ type, networkId, derivationPath }) => {
+	console.log(snxJSConnector.signers);
+	console.log(getSignerConfig({ type, networkId, derivationPath }));
+
 	const signer = new snxJSConnector.signers[type](
 		getSignerConfig({ type, networkId, derivationPath })
 	);
-
+	console.log(signer);
 	snxJSConnector.setContractSettings({
 		networkId,
 		signer,
@@ -175,11 +213,15 @@ export const connectToWallet = async ({ wallet, derivationPath }) => {
 			unlockReason: 'NetworkNotSupported',
 		};
 	}
+	console.log(wallet);
+
 	setSigner({ type: wallet, networkId, derivationPath });
 
 	switch (wallet) {
 		case 'Metamask':
 			return connectToMetamask(networkId, name);
+		case 'BSCWallet':
+			return connectToBSCWallet(networkId, name);
 		case 'Coinbase':
 			return connectToCoinbase(networkId, name);
 		case 'Trezor':
