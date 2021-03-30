@@ -166,9 +166,9 @@ const RewardEscrow = ({ t, onPageChange }) => {
 			{!hasNoVestingSchedule ? <TransactionPriceIndicator /> : null}
 			<ErrorMessage message={t(gasEstimateError)} />
 			<ButtonRow>
-				<ButtonSecondary width="48%" onClick={() => onPageChange('tokenSaleVesting')}>
+				{/*<ButtonSecondary width="48%" onClick={() => onPageChange('tokenSaleVesting')}>
 					{t('escrow.buttons.viewTokenSale')}
-				</ButtonSecondary>
+				</ButtonSecondary>*/}
 				<ButtonPrimary
 					disabled={hasNoVestingSchedule || gasEstimateError || !vestingData.canVest}
 					onClick={() => setCurrentScenario('rewardsVesting')}
