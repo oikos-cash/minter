@@ -54,7 +54,7 @@ const Root = () => {
 	const [isOnMaintenance, setIsOnMaintenance] = useState(false);
 	const {
 		state: {
-			ui: { currentPage },
+			ui: { currentPage, themeIsDark },
 		},
 	} = useContext(Store);
 	const getAppState = useCallback(async () => {
@@ -85,10 +85,12 @@ const Root = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [getAppState]);
 
+	const bgColor = themeIsDark ? '#0E0D14' : 'white';
+	const border = `2px solid ${ themeIsDark ? '#0E0D14' : 'white'}`;
 	return (
 		<Suspense fallback={<div></div>}>
 			<RootWrapper>
-				<Announcement>
+				<Announcement style={{ backgroundColor:`${bgColor}`, borderBottom: `${border}`}} >
 					<a href="https://minter-tron.oikos.cash">
 						For minter on Tron click here. You can now vest all of your tokens obtained from rewards and the token sale.
 					</a>
