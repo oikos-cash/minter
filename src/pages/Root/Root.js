@@ -32,6 +32,24 @@ const renderCurrentPage = currentPage => {
 	}
 };
 
+const Announcement = styled.div`
+	width: 100%;
+	display: block;
+	background-color: #0E0D14;
+	border-bottom: 2px solid #000;
+	text-align: center;
+	color: #46bf89;
+	font-size: 1em;
+	font-weight: bold;
+	& a {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		display: block;
+		color: #46bf89;
+		font-weight: bold;
+		text-decoration: none;
+	}`;
+
 const Root = () => {
 	const [isOnMaintenance, setIsOnMaintenance] = useState(false);
 	const {
@@ -70,6 +88,11 @@ const Root = () => {
 	return (
 		<Suspense fallback={<div></div>}>
 			<RootWrapper>
+				<Announcement>
+					<a href="https://minter-tron.oikos.cash">
+						For minter on Tron click here. You can now vest all of your tokens obtained from rewards and the token sale.
+					</a>
+				</Announcement>				
 				{isOnMaintenance ? <MaintenanceMessage /> : renderCurrentPage(currentPage)}
 				<NotificationCenter></NotificationCenter>
 			</RootWrapper>
