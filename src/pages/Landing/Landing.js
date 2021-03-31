@@ -89,7 +89,7 @@ const OnBoardingCarousel = ({ pageIndex, setPageIndex }) => {
 					<OnboardingH1>{t('onboarding.slides.whatIsSynthetix.title')}</OnboardingH1>
 					<OnboardingPMega>{t('onboarding.slides.whatIsSynthetix.description')}</OnboardingPMega>
 					<OnboardingIllustration
-						src={`/images/onboarding/what-is-synthetix-${themeIsDark ? 'dark' : 'light'}.png`}
+						src={`/images/onboarding/what-is-oikos.png`}
 					/>
 				</CarouselSlide>
 
