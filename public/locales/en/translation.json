@@ -468,7 +468,7 @@
 			"notEnoughToMint": "You cannot currently mint that much oUSD",
 			"gasEstimate": "Error while getting gas estimate",
 			"invalidAmount": "Invalid amount",
-			"notEnoughToBurn": "You do not have that much oUSD to burn. You can find the best rate on dex.ag to buy more.",
+			"notEnoughToBurn": "You do not have that much oUSD to burn. You can find the best rate on pancakeswap.finance to buy more.",
 			"balanceTooLow": "Your balance is too low",
 			"lowerThanMinDeposit": "Amount lower than minimum deposit"
 		}

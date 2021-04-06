@@ -404,7 +404,7 @@
 			"notEnoughToMint": "Actualmente no puede acuñar esa cantidad de oUSD",
 			"gasEstimate": "Error al obtener la estimación de gas",
 			"invalidAmount": "Monto invalido",
-			"notEnoughToBurn": "No tiene mucho oUSD para quemar. Puede encontrar el mejor precio en dex.ag para comprar más.",
+			"notEnoughToBurn": "No tiene mucho oUSD para quemar. Puede encontrar el mejor precio en pancakeswap.finance para comprar más.",
 			"balanceTooLow": "Su saldo es demasiado bajo",
 			"lowerThanMinDeposit": "Cantidad inferior al depósito mínimo"
 		}

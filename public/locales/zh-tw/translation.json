@@ -402,7 +402,7 @@
 			"notEnoughToMint": "您現在無法鑄造那麽多 oUSD",
 			"gasEstimate": "預估 gas 失敗",
 			"invalidAmount": "無效的數量",
-			"notEnoughToBurn": "您沒有足夠的 oUSD 來銷毀。您可以在 dex.ag 上找到最優匯率以購買更多 oUSD。",
+			"notEnoughToBurn": "您沒有足夠的 oUSD 來銷毀。您可以在 pancakeswap.finance 上找到最優匯率以購買更多 oUSD。",
 			"balanceTooLow": "您的餘額太低",
 			"lowerThanMinDeposit": "數量低於最低存款額"
 		}
