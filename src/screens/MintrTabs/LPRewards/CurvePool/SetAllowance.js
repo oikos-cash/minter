@@ -29,7 +29,7 @@ const SetAllowance = ({ t, goBack }) => {
 		try {
 			setError(null);
 
-			const gasEstimate = await curveLPTokenContract.estimate.approve(
+			const gasEstimate = await curveLPTokenContract.estimateGas.approve(
 				curvepoolContract.address,
 				parseEther(ALLOWANCE_LIMIT.toString())
 			);
@@ -63,7 +63,7 @@ const SetAllowance = ({ t, goBack }) => {
 				<ButtonTertiary onClick={goBack}>{t('button.navigation.back')}</ButtonTertiary>
 			</Navigation>
 			<TitleContainer>
-				<Logo src="/images/iearn.svg" />
+				<Logo src="/images/derive.svg" />
 				<PageTitle>{t('curvepool.title')}</PageTitle>
 				<PLarge>{t('curvepool.locked.subtitle')}</PLarge>
 			</TitleContainer>
