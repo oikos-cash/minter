@@ -29,7 +29,7 @@ const SetAllowance = ({ t, goBack }) => {
 		try {
 			setError(null);
 
-			const gasEstimate = await uniswapContract.estimate.approve(
+			const gasEstimate = await uniswapContract.estimateGas.approve(
 				unipoolContract.address,
 				parseEther(ALLOWANCE_LIMIT.toString())
 			);
@@ -63,7 +63,7 @@ const SetAllowance = ({ t, goBack }) => {
 				<ButtonTertiary onClick={goBack}>{t('button.navigation.back')}</ButtonTertiary>
 			</Navigation>
 			<TitleContainer>
-				<Logo src="/images/uniswap.svg" />
+				<Logo src="/images/pancake.png" />
 				<PageTitle>{t('unipool.title')}</PageTitle>
 				<PLarge>{t('unipool.locked.subtitle')}</PLarge>
 			</TitleContainer>
