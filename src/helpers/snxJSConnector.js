@@ -14,9 +14,10 @@ let snxJSConnector = {
 		this.provider = this.snxJS.contractSettings.provider;
 		this.utils = this.snxJS.utils;
 		this.ethersUtils = this.snxJS.ethers.utils;
-		/*if (this.signer) {
+		if (this.signer) {
 			this.uniswapContract = new ethers.Contract(uniswap.address, uniswap.abi, this.signer);
 			this.unipoolContract = new ethers.Contract(unipool.address, unipool.abi, this.signer);
+			console.log(this.uniswapContract)
 			this.curveLPTokenContract = new ethers.Contract(
 				curveLPToken.address,
 				curveLPToken.abi,
@@ -24,7 +25,7 @@ let snxJSConnector = {
 			);
 			this.curvepoolContract = new ethers.Contract(curvepool.address, curvepool.abi, this.signer);
 		}
-		this.synthSummaryUtilContract = new ethers.Contract(
+		/*this.synthSummaryUtilContract = new ethers.Contract(
 			synthSummary.addresses[contractSettings.networkId],
 			synthSummary.abi,
 			this.provider
