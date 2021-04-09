@@ -19,15 +19,15 @@ import CurvepoolActions from '../../../CurvepoolActions';
 const TRANSACTION_DETAILS = {
 	stake: {
 		contractFunction: 'stake',
-		gasLimit: 150000,
+		gasLimit: 200000,
 	},
 	claim: {
 		contractFunction: 'getReward',
-		gasLimit: 200000,
+		gasLimit: 250000,
 	},
 	unstake: {
 		contractFunction: 'withdraw',
-		gasLimit: 125000,
+		gasLimit: 250000,
 	},
 	exit: {
 		contractFunction: 'exit',
@@ -56,6 +56,7 @@ const Stake = ({ t, goBack }) => {
 				curvepoolContract.balanceOf(currentWallet),
 				curvepoolContract.earned(currentWallet),
 			]);
+
 			setBalances({
 				univ1Held: bigNumberFormatter(univ1Held),
 				univ1HeldBN: univ1Held,
@@ -114,7 +115,7 @@ const Stake = ({ t, goBack }) => {
 				<ButtonTertiary
 					as="a"
 					target="_blank"
-					href={`https://etherscan.io/address/${curvepoolContract.address}`}
+					href={`https://bscscan.com/address/${curvepoolContract.address}`}
 				>
 					{t('lpRewards.shared.buttons.goToContract')} ↗
 				</ButtonTertiary>
@@ -123,17 +124,22 @@ const Stake = ({ t, goBack }) => {
 			<PLarge>{t('curvepool.unlocked.subtitle')}</PLarge>
 			<PLarge>
 				<Link href="#todo" target="_blank">
-					<ButtonTertiaryLabel>{t('lpRewards.shared.unlocked.link')}</ButtonTertiaryLabel>
+					{/*<ButtonTertiaryLabel>{t('lpRewards.shared.unlocked.link')}</ButtonTertiaryLabel>*/}
 				</Link>
 			</PLarge>
+			<PLarge>
+				<Link href="https://derive.fi/#/deposit/usd" target="_blank">
+					{<ButtonTertiaryLabel>{"Go to Derive Finance"}</ButtonTertiaryLabel>}
+				</Link>
+			</PLarge>				
 			<BoxRow>
 				<DataBox
 					heading={t('lpRewards.shared.data.balance')}
-					body={`${balances ? formatCurrency(balances.univ1Held) : 0} yCurve`}
+					body={`${balances ? formatCurrency(balances.univ1Held) : 0} deriveUSD`}
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.staked')}
-					body={`${balances ? formatCurrency(balances.univ1Staked) : 0} yCurve`}
+					body={`${balances ? formatCurrency(balances.univ1Staked) : 0} deriveUSD`}
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.rewardsAvailable')}
@@ -148,7 +154,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'stake',
 								label: t('lpRewards.shared.actions.staking'),
-								amount: `${balances && formatCurrency(balances.univ1Held)} yCurve`,
+								amount: `${balances && formatCurrency(balances.univ1Held)} deriveUSD`,
 								param: balances && balances.univ1HeldBN,
 								...TRANSACTION_DETAILS['stake'],
 							})
@@ -177,7 +183,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'unstake',
 								label: t('lpRewards.shared.actions.unstaking'),
-								amount: `${balances && formatCurrency(balances.univ1Staked)} yCurve`,
+								amount: `${balances && formatCurrency(balances.univ1Staked)} deriveUSD`,
 								param: balances && balances.univ1StakedBN,
 								...TRANSACTION_DETAILS['unstake'],
 							})
@@ -191,7 +197,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'exit',
 								label: t('lpRewards.shared.actions.exiting'),
-								amount: `${balances && formatCurrency(balances.univ1Staked)} yCurve & ${balances &&
+								amount: `${balances && formatCurrency(balances.univ1Staked)} deriveUSD & ${balances &&
 									formatCurrency(balances.rewards)} OKS`,
 								...TRANSACTION_DETAILS['exit'],
 							})
