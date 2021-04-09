@@ -19,7 +19,7 @@ import UnipoolActions from '../../../UnipoolActions';
 const TRANSACTION_DETAILS = {
 	stake: {
 		contractFunction: 'stake',
-		gasLimit: 120000,
+		gasLimit: 220000,
 	},
 	claim: {
 		contractFunction: 'getReward',
@@ -56,6 +56,7 @@ const Stake = ({ t, goBack }) => {
 				unipoolContract.balanceOf(currentWallet),
 				unipoolContract.earned(currentWallet),
 			]);
+
 			setBalances({
 				univ1Held: bigNumberFormatter(univ1Held),
 				univ1HeldBN: univ1Held,
@@ -114,7 +115,7 @@ const Stake = ({ t, goBack }) => {
 				<ButtonTertiary
 					as="a"
 					target="_blank"
-					href={`https://etherscan.io/address/${unipoolContract.address}`}
+					href={`https://bscscan.com/address/${unipoolContract.address}`}
 				>
 					{t('lpRewards.shared.buttons.goToContract')} ↗
 				</ButtonTertiary>
@@ -122,18 +123,19 @@ const Stake = ({ t, goBack }) => {
 			<PageTitle>{t('unipool.title')}</PageTitle>
 			<PLarge>{t('unipool.unlocked.subtitle')}</PLarge>
 			<PLarge>
-				<Link href="#todo" target="_blank">
-					<ButtonTertiaryLabel>{t('lpRewards.shared.unlocked.link')}</ButtonTertiaryLabel>
+				<Link href="https://exchange.pancakeswap.finance/#/add/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325" target="_blank">
+					{<ButtonTertiaryLabel>{"Go to Pancake Swap"}</ButtonTertiaryLabel>}
 				</Link>
-			</PLarge>
+			</PLarge>	
+		
 			<BoxRow>
 				<DataBox
 					heading={t('lpRewards.shared.data.balance')}
-					body={`${balances ? formatCurrency(balances.univ1Held) : 0} UNI-V1`}
+					body={`${balances ? formatCurrency(balances.univ1Held) : 0} CAKE`}
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.staked')}
-					body={`${balances ? formatCurrency(balances.univ1Staked) : 0} UNI-V1`}
+					body={`${balances ? formatCurrency(balances.univ1Staked) : 0} CAKE`}
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.rewardsAvailable')}
@@ -148,7 +150,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'stake',
 								label: t('lpRewards.shared.actions.staking'),
-								amount: `${balances && formatCurrency(balances.univ1Held)} UNI-V1`,
+								amount: `${balances && formatCurrency(balances.univ1Held)} CAKE`,
 								param: balances && balances.univ1HeldBN,
 								...TRANSACTION_DETAILS['stake'],
 							})
@@ -177,7 +179,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'unstake',
 								label: t('lpRewards.shared.actions.unstaking'),
-								amount: `${balances && formatCurrency(balances.univ1Staked)} UNI-V1`,
+								amount: `${balances && formatCurrency(balances.univ1Staked)} CAKE`,
 								param: balances && balances.univ1StakedBN,
 								...TRANSACTION_DETAILS['unstake'],
 							})
@@ -191,7 +193,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'exit',
 								label: t('lpRewards.shared.actions.exiting'),
-								amount: `${balances && formatCurrency(balances.univ1Staked)} UNI-V1 & ${balances &&
+								amount: `${balances && formatCurrency(balances.univ1Staked)} CAKE & ${balances &&
 									formatCurrency(balances.rewards)} OKS`,
 								...TRANSACTION_DETAILS['exit'],
 							})
