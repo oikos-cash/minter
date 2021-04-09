@@ -11,9 +11,9 @@ import PageContainer from '../../../components/PageContainer';
 const POOLS = [
 	{
 		title: 'lpRewards.actions.unipool.title',
-		name: 'uniswap',
+		name: 'pancake',
 	},
-	{ title: 'lpRewards.actions.curvepool.title', name: 'iearn' },
+	{ title: 'lpRewards.actions.curvepool.title', name: 'derive' },
 ];
 
 const LPRewards = () => {
@@ -23,9 +23,9 @@ const LPRewards = () => {
 
 	const getPoolComponent = poolName => {
 		switch (poolName) {
-			case 'uniswap':
+			case 'pancake':
 				return <UniPool goBack={goBack} />;
-			case 'iearn':
+			case 'derive':
 				return <CurvePool goBack={goBack} />;
 		}
 	};
@@ -42,7 +42,7 @@ const LPRewards = () => {
 							return (
 								<Button onClick={() => setCurrentPool(name)}>
 									<ButtonContainer>
-										<ActionImage src={`/images/${name}.svg`} big />
+										<ActionImage src={`/images/${name}.png`} big />
 										<H1>{t(title)}</H1>
 									</ButtonContainer>
 								</Button>
