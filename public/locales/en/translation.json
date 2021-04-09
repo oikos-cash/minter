@@ -325,9 +325,9 @@
 		},
 		"actions": {
 			"unipool": {
-				"title": "Unipool"
+				"title": "Pancake Pool"
 			},
-			"curvepool": { "title": "Curvepool" }
+			"curvepool": { "title": "Derive Pool" }
 		},
 		"shared": {
 			"unlocked": {
@@ -356,23 +356,23 @@
 		}
 	},
 	"unipool": {
-		"title": "Uniswap sBNB LP Token Rewards",
+		"title": "PancakeSwap (oUSD/BNB) LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Unipool contract to transfer your sBNB UNI-V1 tokens for staking.",
-			"transaction": "Setting Uni-V1 LP token allowance"
+			"subtitle": "First approve the Unipool contract to transfer your sBNB CAKE tokens for staking.",
+			"transaction": "Setting CAKE LP token allowance"
 		},
 		"unlocked": {
-			"subtitle": "Here you can stake your UNI-V1 Liquidity Provider (LP) tokens, claim OKS rewards, or exit completely."
+			"subtitle": "Here you can stake your CAKE Liquidity Provider (LP) tokens, claim OKS rewards, or exit completely."
 		}
 	},
 	"curvepool": {
-		"title": "iearn.finance oUSD LP Token Rewards",
+		"title": "Derive Finance oUSD LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Curvepool contract to transfer your yCurve tokens for staking.",
-			"transaction": "Setting yCurve token allowance"
+			"subtitle": "First approve the Derive rewards contract to transfer your deriveUSD tokens for staking.",
+			"transaction": "Setting deriveUSD token allowance"
 		},
 		"unlocked": {
-			"subtitle": "Here you can stake your yCurve tokens, claim OKS rewards, or exit completely."
+			"subtitle": "Here you can stake your deriveUSD tokens, claim OKS rewards, or exit completely."
 		}
 	},
 	"transactions": {
