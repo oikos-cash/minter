@@ -105,9 +105,9 @@ const useGetGasEstimate = (
 							: snxJSConnector.utils.parseEther(burnAmount.toString());
 				} else amountToBurn = 0;
 
-				gasEstimate = 1200000;//await snxJSConnector.snxJS.Oikos.contract.estimate.burnSynths(
-				//	amountToBurn
-				//);
+				gasEstimate = await snxJSConnector.snxJS.Oikos.contract.estimateGas.burnSynths(
+					amountToBurn
+				);
 			} catch (e) {
 				console.log(e);
 				const errorMessage = (e && e.message) || 'input.error.gasEstimate';
