@@ -358,7 +358,7 @@
 	"unipool": {
 		"title": "PancakeSwap (oUSD/BNB) LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Unipool contract to transfer your sBNB CAKE tokens for staking.",
+			"subtitle": "First approve the Unipool contract to transfer your oBNB CAKE tokens for staking.",
 			"transaction": "Setting CAKE LP token allowance"
 		},
 		"unlocked": {
