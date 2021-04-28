@@ -27,7 +27,7 @@ const TRANSACTION_DETAILS = {
 	},
 	unstake: {
 		contractFunction: 'withdraw',
-		gasLimit: 125000,
+		gasLimit: 300000,
 	},
 	exit: {
 		contractFunction: 'exit',
