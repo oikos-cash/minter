@@ -331,7 +331,7 @@
 				"title": "BNB/oUSD Pancake V2"
 			},			
 			"curvepool": { "title": "Stablecoin (oUSD) Derive" },
-			"derivepool": { "title": "BNB/DRV Pancake V2" }			
+			"derivepool": { "title": "DRV/OKS Pancake V2" }			
 		},
 		"shared": {
 			"unlocked": {
@@ -360,9 +360,9 @@
 		}
 	},
 	"unipool": {
-		"title": "PancakeSwap V1 (oUSD/BNB) LP Token Rewards",
+		"title": "PancakeSwap V1 (BNB/OUSD) LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Unipool contract to transfer your oBNB CAKE tokens for staking.",
+			"subtitle": "First approve the CakePool contract to transfer your CAKE-LP tokens for staking.",
 			"transaction": "Setting CAKE-LP token allowance"
 		},
 		"unlocked": {
@@ -370,9 +370,9 @@
 		}
 	},
 	"unipoolV2": {
-		"title": "PancakeSwap V2 (oUSD/BNB) LP Token Rewards",
+		"title": "PancakeSwap V2 (BNB/OUSD) LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Unipool contract to transfer your oBNB CAKE tokens for staking.",
+			"subtitle": "First approve the CakePool contract to transfer your CAKE-LP tokens for staking.",
 			"transaction": "Setting CAKE-LP token allowance"
 		},
 		"unlocked": {
@@ -390,10 +390,10 @@
 		}
 	},
 	"derivepool": {
-		"title": "PancakeSwap V2 (BNB/OUSD) LP Token Rewards",
+		"title": "PancakeSwap V2 (DRV/OKS) LP Token Rewards",
 		"locked": {
-			"subtitle": "First approve the Derive rewards contract to transfer your deriveUSD tokens for staking.",
-			"transaction": "Setting deriveUSD token allowance"
+			"subtitle": "First approve the CakePool rewards contract to transfer your CAKE-LP tokens for staking.",
+			"transaction": "Setting CAKE-LP token allowance"
 		},
 		"unlocked": {
 			"subtitle": "Here you can stake your CAKE-LP tokens, claim OKS rewards, or exit completely."
