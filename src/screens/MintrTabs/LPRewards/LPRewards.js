@@ -6,7 +6,7 @@ import UniPool from './UniPool';
 import CurvePool from './CurvePool';
 
 import UniPoolV2 from './UniPoolV2';
-import CurvePoolDRV from './CurvePoolDRV';
+import UniPoolDRV from './UniPoolDRV';
 
 import { H1, PageTitle } from '../../../components/Typography';
 import PageContainer from '../../../components/PageContainer';
@@ -24,7 +24,7 @@ const POOLS2 = [
 		title: 'lpRewards.actions.unipoolV2.title',
 		name: 'pancakeV2',
 	},
-	{ title: 'lpRewards.actions.derivepool.title', name: 'deriveDRV' },	
+	{ title: 'lpRewards.actions.derivepool.title', name: 'pancakeDRV' },	
 ];
 
 const LPRewards = () => {
@@ -40,8 +40,8 @@ const LPRewards = () => {
 				return <CurvePool goBack={goBack} />;
 			case 'pancakeV2':
 				return <UniPoolV2 goBack={goBack} />;
-			case 'deriveDRV':
-				return <CurvePoolDRV goBack={goBack} />;				
+			case 'pancakeDRV':
+				return <UniPoolDRV goBack={goBack} />;				
 		}
 	};
 
