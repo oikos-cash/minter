@@ -325,9 +325,13 @@
 		},
 		"actions": {
 			"unipool": {
-				"title": "Pancake Pool"
+				"title": "BNB/oUSD Pancake V1 (Discountinued)"
 			},
-			"curvepool": { "title": "Derive Pool" }
+			"unipoolV2": {
+				"title": "BNB/oUSD Pancake V2"
+			},			
+			"curvepool": { "title": "Stablecoin (oUSD) Derive" },
+			"derivepool": { "title": "BNB/DRV Pancake V2" }			
 		},
 		"shared": {
 			"unlocked": {
@@ -356,15 +360,25 @@
 		}
 	},
 	"unipool": {
-		"title": "PancakeSwap (oUSD/BNB) LP Token Rewards",
+		"title": "PancakeSwap V1 (oUSD/BNB) LP Token Rewards",
 		"locked": {
 			"subtitle": "First approve the Unipool contract to transfer your oBNB CAKE tokens for staking.",
-			"transaction": "Setting CAKE LP token allowance"
+			"transaction": "Setting CAKE-LP token allowance"
 		},
 		"unlocked": {
-			"subtitle": "Here you can stake your CAKE Liquidity Provider (LP) tokens, claim OKS rewards, or exit completely."
+			"subtitle": "This pool has been discountinued. Please withdraw all your staked LP tokens and rewards."
 		}
 	},
+	"unipoolV2": {
+		"title": "PancakeSwap V2 (oUSD/BNB) LP Token Rewards",
+		"locked": {
+			"subtitle": "First approve the Unipool contract to transfer your oBNB CAKE tokens for staking.",
+			"transaction": "Setting CAKE-LP token allowance"
+		},
+		"unlocked": {
+			"subtitle": "Here you can stake your CAKE-LP tokens, claim OKS rewards, or exit completely."
+		}
+	},	
 	"curvepool": {
 		"title": "Derive Finance oUSD LP Token Rewards",
 		"locked": {
@@ -375,6 +389,16 @@
 			"subtitle": "Here you can stake your deriveUSD tokens, claim OKS rewards, or exit completely."
 		}
 	},
+	"derivepool": {
+		"title": "PancakeSwap V2 (BNB/OUSD) LP Token Rewards",
+		"locked": {
+			"subtitle": "First approve the Derive rewards contract to transfer your deriveUSD tokens for staking.",
+			"transaction": "Setting deriveUSD token allowance"
+		},
+		"unlocked": {
+			"subtitle": "Here you can stake your CAKE-LP tokens, claim OKS rewards, or exit completely."
+		}
+	},	
 	"transactions": {
 		"filters": {
 			"type": "Type",
