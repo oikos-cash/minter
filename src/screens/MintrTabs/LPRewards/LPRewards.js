@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import UniPool from './UniPool';
 import CurvePool from './CurvePool';
 
+import UniPoolV2 from './UniPoolV2';
+import CurvePoolDRV from './CurvePoolDRV';
+
 import { H1, PageTitle } from '../../../components/Typography';
 import PageContainer from '../../../components/PageContainer';
 
@@ -14,6 +17,14 @@ const POOLS = [
 		name: 'pancake',
 	},
 	{ title: 'lpRewards.actions.curvepool.title', name: 'derive' },
+];
+
+const POOLS2 = [
+	{
+		title: 'lpRewards.actions.unipoolV2.title',
+		name: 'pancakeV2',
+	},
+	{ title: 'lpRewards.actions.derivepool.title', name: 'deriveDRV' },	
 ];
 
 const LPRewards = () => {
@@ -27,6 +38,10 @@ const LPRewards = () => {
 				return <UniPool goBack={goBack} />;
 			case 'derive':
 				return <CurvePool goBack={goBack} />;
+			case 'pancakeV2':
+				return <UniPoolV2 goBack={goBack} />;
+			case 'deriveDRV':
+				return <CurvePoolDRV goBack={goBack} />;				
 		}
 	};
 
@@ -49,6 +64,19 @@ const LPRewards = () => {
 							);
 						})}
 					</ButtonRow>
+					<br />
+					<ButtonRow>
+						{POOLS2.map(({ title, name }) => {
+							return (
+								<Button onClick={() => setCurrentPool(name)}>
+									<ButtonContainer>
+										<ActionImage src={`/images/${name}.png`} big />
+										<H1>{t(title)}</H1>
+									</ButtonContainer>
+								</Button>
+							);
+						})}
+					</ButtonRow>					
 				</>
 			)}
 		</PageContainer>
