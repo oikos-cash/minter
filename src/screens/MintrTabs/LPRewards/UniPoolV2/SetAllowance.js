@@ -64,8 +64,8 @@ const SetAllowance = ({ t, goBack }) => {
 			</Navigation>
 			<TitleContainer>
 				<Logo src="/images/pancake.png" />
-				<PageTitle>{t('unipool.title')}</PageTitle>
-				<PLarge>{t('unipool.locked.subtitle')}</PLarge>
+				<PageTitle>{t('unipoolV2.title')}</PageTitle>
+				<PLarge>{t('unipoolV2.locked.subtitle')}</PLarge>
 			</TitleContainer>
 			<ButtonRow>
 				<ButtonPrimary onClick={onUnlock}>{t('lpRewards.shared.buttons.unlock')}</ButtonPrimary>

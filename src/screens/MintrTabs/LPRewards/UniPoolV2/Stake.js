@@ -131,11 +131,11 @@ const Stake = ({ t, goBack }) => {
 			<BoxRow>
 				<DataBox
 					heading={t('lpRewards.shared.data.balance')}
-					body={`${balances ? formatCurrency(balances.univ1Held) : 0} CAKE`}
+					body={`${balances ? formatCurrency(balances.univ1Held) : 0} CAKE-LP`}
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.staked')}
-					body={`${balances ? formatCurrency(balances.univ1Staked) : 0} CAKE`}
+					body={`${balances ? formatCurrency(balances.univ1Staked) : 0} CAKE-LP`}
 				/>
 				<DataBox
 					heading={t('lpRewards.shared.data.rewardsAvailable')}
@@ -150,7 +150,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'stake',
 								label: t('lpRewards.shared.actions.staking'),
-								amount: `${balances && formatCurrency(balances.univ1Held)} CAKE`,
+								amount: `${balances && formatCurrency(balances.univ1Held)} CAKE-LP`,
 								param: balances && balances.univ1HeldBN,
 								...TRANSACTION_DETAILS['stake'],
 							})
@@ -179,7 +179,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'unstake',
 								label: t('lpRewards.shared.actions.unstaking'),
-								amount: `${balances && formatCurrency(balances.univ1Staked)} CAKE`,
+								amount: `${balances && formatCurrency(balances.univ1Staked)} CAKE-LP`,
 								param: balances && balances.univ1StakedBN,
 								...TRANSACTION_DETAILS['unstake'],
 							})
@@ -193,7 +193,7 @@ const Stake = ({ t, goBack }) => {
 							setCurrentScenario({
 								action: 'exit',
 								label: t('lpRewards.shared.actions.exiting'),
-								amount: `${balances && formatCurrency(balances.univ1Staked)} CAKE & ${balances &&
+								amount: `${balances && formatCurrency(balances.univ1Staked)} CAKE-LP & ${balances &&
 									formatCurrency(balances.rewards)} OKS`,
 								...TRANSACTION_DETAILS['exit'],
 							})
