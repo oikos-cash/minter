@@ -246,6 +246,8 @@ const Button = styled.button`
 	&:first-child {
 		margin-right: 20px;
 	}
+	a:visited { color: #9492C4 !important; }
+
 `;
 
 const ButtonContainer = styled.div`
