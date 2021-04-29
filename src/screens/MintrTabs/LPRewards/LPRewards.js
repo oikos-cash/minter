@@ -66,7 +66,7 @@ const LPRewards = () => {
 		}
 	};
 
-	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract } = snxJSConnector;
+	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract, uniswapDRVContract } = snxJSConnector;
 	const {
 		state: {
 			wallet: { currentWallet },
@@ -78,13 +78,17 @@ const LPRewards = () => {
 	//const [totalLpTokenBalance, setTotalLpTokenBalance] = useState(0)
 	const [oikosAPR, setOikosAPR] = useState(0)
 	const [oikosAPRV2, setOikosAPRV2] = useState(0)
+	const [oikosAPRDRV, setOikosAPRVDRV] = useState(0)
 
 	useEffect(() => {
 		async function getData() {
-			const [userLpTokenBalance, totalLpTokenBalance, totalV2LpTokenBalance] = await Promise.all([
+			const [userLpTokenBalance, totalLpTokenBalance, totalV2LpTokenBalance, reserves, totalDRVLpTokenBalance] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet || "0x0"),
 				curveLPTokenContract.totalSupply(),
-				uniswapV2Contract.totalSupply()
+				uniswapV2Contract.totalSupply(),
+				uniswapDRVContract.getReserves(),
+				uniswapDRVContract.totalSupply(),
+
 		])
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
 			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
@@ -92,12 +96,14 @@ const LPRewards = () => {
 		const [synths] = await Promise.all([synthsP]);
 		const [oks, ousd, sbnb] = synths.map(bigNumberFormatter);
 
-	     // (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
-		 const oikosAPRNumerator = BigNumber.from((13 * 240000) + 5000000)
+		const drvPriceUsd = (reserves[0] / reserves[1]) * oks;
+ 
+		// (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
+		const oikosAPRNumerator = BigNumber.from((13 * 240000) + 5000000)
 		 .mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
-		 const oikosAPRDenominator = totalLpTokenBalance
+		const oikosAPRDenominator = totalLpTokenBalance
 		 .mul(
 		   parseUnits(
 			 String(1 || 0),
@@ -106,12 +112,12 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
   
-		 const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000))
+		const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000))
 		 .mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
 
-		 const oikosAPRDenominatorV2 = totalV2LpTokenBalance
+		const oikosAPRDenominatorV2 = totalV2LpTokenBalance
 		 .mul(
 		   parseUnits(
 			 String(1 || 0),
@@ -120,6 +126,21 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
  
+  
+		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) + 3000000)
+		 .mul(BigNumber.from(10).pow(18))
+		 .mul(parseUnits(String(oks || 0), 18))
+
+
+		const oikosAPRDenominatorDRV = totalDRVLpTokenBalance
+		 .mul(
+		   parseUnits(
+			 String(1 || 0),
+			 6,
+		   ),
+		 )
+		 .div(1e6)
+
 	   	const _oikosApr = totalLpTokenBalance.isZero()
 		 ? oikosAPRNumerator
 		 : oikosAPRNumerator.div(oikosAPRDenominator)
@@ -127,9 +148,14 @@ const LPRewards = () => {
 		const _oikosAprV2 = totalV2LpTokenBalance.isZero()
 		 ? oikosAPRNumeratorV2
 		 : oikosAPRNumeratorV2.div(oikosAPRDenominatorV2)
- 
+
+		const _oikosAprDRV = totalDRVLpTokenBalance.isZero()
+		 ? oikosAPRNumeratorDRV
+		 : oikosAPRNumeratorDRV.div(oikosAPRDenominatorDRV)
+
 		setOikosAPR((Number(formatBNToString(_oikosApr)) * 100).toFixed(2))
 		setOikosAPRV2((Number(formatBNToString(_oikosAprV2)) * 100).toFixed(2))
+		setOikosAPRVDRV((Number(formatBNToString(_oikosAprDRV)) * 100).toFixed(2))
 
 		//setLPTokenBalance(userLpTokenBalance)
 		//setTotalLpTokenBalance(totalLpTokenBalance)
@@ -180,7 +206,7 @@ const LPRewards = () => {
 								subtitle = ""
 								link = subtitle 
 							} else if (name == "pancakeDRV") {
-								apr = "n/a"
+								apr = oikosAPRDRV
 								subtitle = ""
 								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
 							} 							
