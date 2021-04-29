@@ -75,7 +75,7 @@ export const getNetworkInfo = async () => {
 
 export const getTransactionPrice = (gasPrice, gasLimit, ethPrice) => {
 	if (!gasPrice || !gasLimit) return 0;
-	console.log( `${gasPrice} * ${ethPrice} * ${gasLimit} / ${GWEI_UNIT}`)
+	//console.log( `${gasPrice} * ${ethPrice} * ${gasLimit} / ${GWEI_UNIT}`)
 	return (gasPrice * ethPrice * gasLimit) / GWEI_UNIT;
 };
 
