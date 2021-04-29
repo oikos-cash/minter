@@ -1,7 +1,7 @@
 import { OikosJs } from '@oikos/oikos-js-bsc';
 import { getEthereumNetwork, INFURA_JSON_RPC_URLS } from './networkHelper';
 import { ethers } from 'ethers';
-import { unipool, uniswap, curvepool, curveLPToken, synthSummary, uniswapV2, unipoolV2, unipoolDRV, uniswapDRV } from './contracts';
+import { unipool, uniswap, curvepool, curveLPToken, synthSummary, uniswapV2, unipoolV2, unipoolDRV, uniswapDRV, swapFlashLoan} from './contracts';
 
 let snxJSConnector = {
 	initialized: false,
@@ -17,7 +17,7 @@ let snxJSConnector = {
 		if (this.signer) {
 			this.uniswapContract = new ethers.Contract(uniswap.address, uniswap.abi, this.signer);
 			this.unipoolContract = new ethers.Contract(unipool.address, unipool.abi, this.signer);
-			console.log(this.uniswapContract)
+			
 			this.curveLPTokenContract = new ethers.Contract(
 				curveLPToken.address,
 				curveLPToken.abi,
@@ -30,6 +30,7 @@ let snxJSConnector = {
 			this.unipoolV2Contract = new ethers.Contract(unipoolV2.address, unipoolV2.abi, this.signer);									
 			this.uniswapDRVContract = new ethers.Contract(uniswapDRV.address, uniswapDRV.abi, this.signer);
 			this.unipoolDRVContract = new ethers.Contract(unipoolDRV.address, unipoolDRV.abi, this.signer);	
+			this.deriveOUSDContract = new ethers.Contract(swapFlashLoan.address, swapFlashLoan.abi, this.signer);	
 		}
 		/*this.synthSummaryUtilContract = new ethers.Contract(
 			synthSummary.addresses[contractSettings.networkId],
@@ -196,13 +197,13 @@ const getSignerConfig = ({ type, networkId, derivationPath }) => {
 };
 
 export const setSigner = ({ type, networkId, derivationPath }) => {
-	console.log(snxJSConnector.signers);
-	console.log(getSignerConfig({ type, networkId, derivationPath }));
+	//.log(snxJSConnector.signers);
+	//console.log(getSignerConfig({ type, networkId, derivationPath }));
 
 	const signer = new snxJSConnector.signers[type](
 		getSignerConfig({ type, networkId, derivationPath })
 	);
-	console.log(signer);
+	 
 	snxJSConnector.setContractSettings({
 		networkId,
 		signer,
@@ -220,7 +221,7 @@ export const connectToWallet = async ({ wallet, derivationPath }) => {
 			unlockReason: 'NetworkNotSupported',
 		};
 	}
-	console.log(wallet);
+	 
 
 	setSigner({ type: wallet, networkId, derivationPath });
 
