@@ -66,7 +66,7 @@ const LPRewards = () => {
 		}
 	};
 
-	const { curveLPTokenContract, deriveOUSDContract } = snxJSConnector;
+	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract } = snxJSConnector;
 	const {
 		state: {
 			wallet: { currentWallet },
@@ -77,12 +77,14 @@ const LPRewards = () => {
 	//const [lpTokenBalance, setLPTokenBalance] = useState(0)
 	//const [totalLpTokenBalance, setTotalLpTokenBalance] = useState(0)
 	const [oikosAPR, setOikosAPR] = useState(0)
+	const [oikosAPRV2, setOikosAPRV2] = useState(0)
 
 	useEffect(() => {
 		async function getData() {
-			const [userLpTokenBalance, totalLpTokenBalance] = await Promise.all([
+			const [userLpTokenBalance, totalLpTokenBalance, totalV2LpTokenBalance] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet || "0x0"),
 				curveLPTokenContract.totalSupply(),
+				uniswapV2Contract.totalSupply()
 		])
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
 			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
@@ -104,13 +106,31 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
   
+		 const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000))
+		 .mul(BigNumber.from(10).pow(18))
+		 .mul(parseUnits(String(oks || 0), 18))
+
+
+		 const oikosAPRDenominatorV2 = totalV2LpTokenBalance
+		 .mul(
+		   parseUnits(
+			 String(1 || 0),
+			 6,
+		   ),
+		 )
+		 .div(1e6)
  
-	   const _oikosApr = totalLpTokenBalance.isZero()
+	   	const _oikosApr = totalLpTokenBalance.isZero()
 		 ? oikosAPRNumerator
 		 : oikosAPRNumerator.div(oikosAPRDenominator)
-		 
+	
+		const _oikosAprV2 = totalV2LpTokenBalance.isZero()
+		 ? oikosAPRNumeratorV2
+		 : oikosAPRNumeratorV2.div(oikosAPRDenominatorV2)
  
 		setOikosAPR((Number(formatBNToString(_oikosApr)) * 100).toFixed(2))
+		setOikosAPRV2((Number(formatBNToString(_oikosAprV2)) * 100).toFixed(2))
+
 		//setLPTokenBalance(userLpTokenBalance)
 		//setTotalLpTokenBalance(totalLpTokenBalance)
 		}
@@ -137,7 +157,7 @@ const LPRewards = () => {
 								apr = 0
 								subtitle = "(Discountinued)"
 								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
-							}
+							} 
 							
 							return (
 								<Button key={idx} onClick={() => setCurrentPool(name)}>
@@ -145,7 +165,7 @@ const LPRewards = () => {
 										<ActionImage src={`/images/${name}.png`} big />
 										<H1>{t(title)}</H1>
 										<H2><a href={`https://${link}`} target="_blank" rel="noreferrer">{subtitle}</a></H2>
-										<H2>APR: {apr} %</H2>
+										<H2>APR: <label style={{color:"green"}}> {apr} </label> %</H2>
 									</ButtonContainer>
 								</Button>
 							);
@@ -154,11 +174,23 @@ const LPRewards = () => {
 					<br />
 					<ButtonRow>
 						{POOLS2.map(({ title, name }, idx) => {
+							let apr, subtitle, link
+							if (name == "pancakeV2") {
+								apr = oikosAPRV2
+								subtitle = ""
+								link = subtitle 
+							} else if (name == "pancakeDRV") {
+								apr = "n/a"
+								subtitle = ""
+								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
+							} 							
 							return (
 								<Button key={idx} onClick={() => setCurrentPool(name)}>
 									<ButtonContainer>
 										<ActionImage src={`/images/${name}.png`} big />
 										<H1>{t(title)}</H1>
+										<H2><a href={`https://${link}`} target="_blank" rel="noreferrer">{subtitle}</a></H2>
+										<H2>APR: <label style={{color:"green"}}> {apr} </label> %</H2>
 									</ButtonContainer>
 								</Button>
 							);
