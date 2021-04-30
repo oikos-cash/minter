@@ -17,6 +17,9 @@ import { Store } from '../../../store';
 import { bytesFormatter, parseBytes32String } from '../../../helpers/formatters';
 import { parseUnits, formatUnits } from "@ethersproject/units"
 import { BigNumber } from "@ethersproject/bignumber"
+import { getFixedT } from 'i18next';
+import { ethers } from "ethers";
+import { unipool, uniswap, curvepool, curveLPToken, synthSummary, uniswapV2, unipoolV2, unipoolDRV, uniswapDRV, swapFlashLoan} from '../../../helpers/contracts';
 
 const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(value));
 
@@ -48,6 +51,8 @@ const formatBNToString= (bn, nativePrecison, decimalPlaces) => {
 		)
   }
 
+
+
 const LPRewards = () => {
 	const { t } = useTranslation();
 	const [currentPool, setCurrentPool] = useState(null);
@@ -66,7 +71,7 @@ const LPRewards = () => {
 		}
 	};
 
-	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract, uniswapDRVContract, unipoolV2Contract } = snxJSConnector;
+	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract, uniswapDRVContract, unipoolV2Contract, signer } = snxJSConnector;
 	const {
 		state: {
 			wallet: { currentWallet },
@@ -80,17 +85,60 @@ const LPRewards = () => {
 	const [oikosAPRV2, setOikosAPRV2] = useState(0)
 	const [oikosAPRDRV, setOikosAPRVDRV] = useState(0)
 
+
+
 	useEffect(() => {
+
+		async function fairTokenPricing (contract) {
+			 
+			const sqrt = (x) => {
+				const ONE = BigNumber.from(1);
+				const TWO = BigNumber.from(2);
+	
+				let z = x.add(ONE).div(TWO);
+				let y = x;
+				while (z.sub(y).isNegative()) {
+					y = z;
+					z = x.div(z).add(z).div(TWO);
+				}
+				return y;
+			}
+	
+			const [token0, token1, totalSupply, reserves ] = await Promise.all([
+				contract.token0,
+				contract.token1,
+				contract.totalSupply(),
+				contract.getReserves(),
+			])
+	
+			let r0 = reserves[0]
+			let r1 = reserves[1]
+	
+			let sqrtK = sqrt(r0.mul(r1)).div(totalSupply)
+	
+			console.log(new ethers.Contract(token0, curveLPToken.abi, signer))
+
+			let px0 = await fairTokenPricing(new ethers.Contract(token0, curveLPToken.abi, signer))
+			
+			let px1 = await fairTokenPricing(new ethers.Contract(token1, curveLPToken.abi, signer))
+
+			console.log(px0)
+
+			let divisorBN = (2**56)
+			return sqrtK.mul(2).mul(sqrt(px0)).div(divisorBN).mul(sqrt(px1)).div(divisorBN)
+		}
+
+
 		async function getData() {
 			const [userLpTokenBalance, totalLpTokenBalance, totalV2LpTokenBalance, reserves, totalDRVLpTokenBalance] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet || "0x0"),
 				curveLPTokenContract.totalSupply(),
-				//uniswapV2Contract.totalSupply(),
 				unipoolV2Contract.totalSupply(),
 				uniswapDRVContract.getReserves(),
 				uniswapDRVContract.totalSupply(),
 
 		])
+		
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
 			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
 		);
@@ -101,7 +149,7 @@ const LPRewards = () => {
  
 		// (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
 		const oikosAPRNumerator = BigNumber.from((13 * 240000) + 5000000)
-		 .mul(BigNumber.from(10).pow(18))
+		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
 		const oikosAPRDenominator = totalLpTokenBalance
@@ -114,7 +162,7 @@ const LPRewards = () => {
 		 .div(1e6)
   
 		const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000) + 3000000)
-		 .mul(BigNumber.from(10).pow(18))
+		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
 
@@ -126,17 +174,18 @@ const LPRewards = () => {
 		   ),
 		 )
 		 .div(1e6)
- 
+		 
+		 console.log( `${oikosAPRNumeratorV2} / ${oikosAPRDenominatorV2}`)
   
 		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) + 3000000)
-		 .mul(BigNumber.from(10).pow(18))
+		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
 
 		const oikosAPRDenominatorDRV = totalDRVLpTokenBalance
 		 .mul(
 		   parseUnits(
-			 String(1 || 0),
+			 String(drvPriceUsd.toFixed(4) || 0),
 			 6,
 		   ),
 		 )
@@ -144,25 +193,30 @@ const LPRewards = () => {
 
 	   	const _oikosApr = totalLpTokenBalance.isZero()
 		 ? oikosAPRNumerator
-		 : oikosAPRNumerator.div(oikosAPRDenominator)
+		 : oikosAPRNumerator / oikosAPRDenominator
+
+		 
 	
 		const _oikosAprV2 = totalV2LpTokenBalance.isZero()
 		 ? oikosAPRNumeratorV2
-		 : oikosAPRNumeratorV2.div(oikosAPRDenominatorV2)
+		 : oikosAPRNumeratorV2 /oikosAPRDenominatorV2
 
 		const _oikosAprDRV = totalDRVLpTokenBalance.isZero()
 		 ? oikosAPRNumeratorDRV
-		 : oikosAPRNumeratorDRV.div(oikosAPRDenominatorDRV)
+		 : oikosAPRNumeratorDRV / oikosAPRDenominatorDRV
 
-		setOikosAPR((Number(formatBNToString(_oikosApr)) * 100).toFixed(2))
-		setOikosAPRV2((Number(formatBNToString(_oikosAprV2)) * 100).toFixed(2))
-		setOikosAPRVDRV((Number(formatBNToString(_oikosAprDRV)) * 100).toFixed(2))
+		setOikosAPR((Number(_oikosApr) * 100).toFixed(2))
+		setOikosAPRV2((Number(_oikosAprV2) * 100).toFixed(2))
+		setOikosAPRVDRV((Number(_oikosAprDRV) * 100).toFixed(2))
+		
+
 
 		//setLPTokenBalance(userLpTokenBalance)
 		//setTotalLpTokenBalance(totalLpTokenBalance)
 		}
 	
 		getData()
+		//fairTokenPricing(uniswapV2Contract)
 	  }, [])
 
 
