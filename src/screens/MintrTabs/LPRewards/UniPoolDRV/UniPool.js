@@ -23,12 +23,13 @@ const UniPoolV2 = ({ goBack }) => {
 
 	const fetchAllowance = useCallback(async () => {
 		if (!snxJSConnector.initialized) return;
-		const { uniswapDRVContract, unipoolDRVContract } = snxJSConnector;
+		const { uniswapDRVContract, unipoolDRVContract, deriveOUSDContract } = snxJSConnector;
 		try {
 			setIsLoading(true);
 			const allowance = await uniswapDRVContract.allowance(currentWallet, unipoolDRVContract.address);
 			setAllowance(!!bigNumberFormatter(allowance));
 			setIsLoading(false);
+			console.log(unipoolDRVContract)
 		} catch (e) {
 			console.log(e);
 			setIsLoading(false);

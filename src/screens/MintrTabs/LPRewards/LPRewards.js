@@ -248,7 +248,8 @@ const Button = styled.button`
 		margin-right: 20px;
 	}
 	a:visited { color: #9492C4 !important; }
-
+	a:link { color: #9492C4 !important; }
+	a:hover { color: #9492C4 !important; }
 `;
 
 const ButtonContainer = styled.div`
