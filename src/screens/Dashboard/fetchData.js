@@ -4,6 +4,7 @@ import snxJSConnector from '../../helpers/snxJSConnector';
 
 import { bytesFormatter, parseBytes32String } from '../../helpers/formatters';
 
+
 const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(value));
 
 const getBalances = async walletAddress => {
@@ -27,10 +28,26 @@ const convertFromSynth = (fromSynthRate, toSynthRate) => {
 };
 
 // exported for tests
-export const getOusdInUsd = (synthRates, sbnbToBnbRate) => {
-	const sBnb = convertFromSynth(synthRates.ousd, synthRates.sbnb);
-	const bnb = sBnb * sbnbToBnbRate;
-	return bnb * synthRates.sbnb;
+export const getOusdInUsd = async (synthRates, obnbToBnbRate) => {
+	//	const oBnb = convertFromSynth(synthRates.ousd, synthRates.obnb);
+	//	const bnb = oBnb * obnbToBnbRate;
+	//	return bnb * synthRates.obnb;
+	const { uniswapV2Contract } = snxJSConnector;
+
+	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
+		['oBNB'].map(bytesFormatter)
+	);
+	oBNBPrice = oBNBPrice / 1e18
+
+	const [ reserves ] = await Promise.all([
+		uniswapV2Contract.getReserves(),
+	]) 
+
+	let bnb = reserves[1] / 1e18
+	let bnbReserveUSDValue = bnb * oBNBPrice
+	const price = bnbReserveUSDValue / (reserves[0] / 1e18)
+	
+	return price
 };
 
 const getSETHtoETH = async () => {
@@ -61,17 +78,17 @@ const getPrices = async () => {
 		);
 		const sethToEthRateP = getSETHtoETH();
 		const [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
-		const [oks, ousd, sbnb] = synths.map(bigNumberFormatter);
+		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
-		const ousdInUsd = getOusdInUsd(
+		const ousdInUsd = await getOusdInUsd(
 			{
 				ousd,
-				sbnb,
+				obnb,
 			},
 			sethToEthRate
 		);
 		console.log(`ousdInUsd is ${ousdInUsd}`);
-		return { oks, ousd: ousdInUsd, bnb: sbnb };
+		return { oks, ousd: ousdInUsd, bnb: obnb };
 	} catch (e) {
 		console.log(e);
 	}
