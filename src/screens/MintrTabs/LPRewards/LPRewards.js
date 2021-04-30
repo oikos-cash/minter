@@ -95,7 +95,7 @@ const LPRewards = () => {
 			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
 		);
 		const [synths] = await Promise.all([synthsP]);
-		const [oks, ousd, sbnb] = synths.map(bigNumberFormatter);
+		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
 		const drvPriceUsd = (reserves[0] / reserves[1]) * oks;
  
@@ -107,7 +107,7 @@ const LPRewards = () => {
 		const oikosAPRDenominator = totalLpTokenBalance
 		 .mul(
 		   parseUnits(
-			 String(1 || 0),
+			 String(ousd || 0),
 			 6,
 		   ),
 		 )
@@ -121,7 +121,7 @@ const LPRewards = () => {
 		const oikosAPRDenominatorV2 = totalV2LpTokenBalance
 		 .mul(
 		   parseUnits(
-			 String(1 || 0),
+			 String(obnb || 0),
 			 6,
 		   ),
 		 )
