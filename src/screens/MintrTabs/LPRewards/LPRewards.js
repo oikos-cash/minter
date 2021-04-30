@@ -66,7 +66,7 @@ const LPRewards = () => {
 		}
 	};
 
-	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract, uniswapDRVContract } = snxJSConnector;
+	const { curveLPTokenContract, deriveOUSDContract, uniswapV2Contract, uniswapDRVContract, unipoolV2Contract } = snxJSConnector;
 	const {
 		state: {
 			wallet: { currentWallet },
@@ -85,7 +85,8 @@ const LPRewards = () => {
 			const [userLpTokenBalance, totalLpTokenBalance, totalV2LpTokenBalance, reserves, totalDRVLpTokenBalance] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet || "0x0"),
 				curveLPTokenContract.totalSupply(),
-				uniswapV2Contract.totalSupply(),
+				//uniswapV2Contract.totalSupply(),
+				unipoolV2Contract.totalSupply(),
 				uniswapDRVContract.getReserves(),
 				uniswapDRVContract.totalSupply(),
 
