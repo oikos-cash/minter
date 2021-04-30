@@ -112,7 +112,7 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
   
-		const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000))
+		const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000) + 3000000)
 		 .mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
