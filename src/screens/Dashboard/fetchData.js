@@ -42,11 +42,11 @@ export const getOusdInUsd = async (synthRates, obnbToBnbRate) => {
 	const [ reserves ] = await Promise.all([
 		uniswapV2Contract.getReserves(),
 	]) 
-
 	let bnb = reserves[1] / 1e18
 	let bnbReserveUSDValue = bnb * oBNBPrice
-	const price = bnbReserveUSDValue / (reserves[0] / 1e18)
-	
+	let price = bnbReserveUSDValue / (reserves[0] / 1e18)
+	console.log(`x is ${bnbReserveUSDValue} y ${reserves[0] / 1e18}`)
+
 	return price
 };
 
