@@ -355,7 +355,8 @@
 				"stake": "Stake tokens",
 				"claim": "Claim rewards",
 				"unstake": "Unstake tokens",
-				"exit": "exit: claim & unstake"
+				"exit": "exit: claim & unstake",
+				"migrate": "migrate to new rewards contract your balance of"
 			}
 		}
 	},
