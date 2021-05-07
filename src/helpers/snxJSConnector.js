@@ -23,6 +23,7 @@ let snxJSConnector = {
 				curveLPToken.abi,
 				this.signer
 			);
+			this.oldCurvepoolContract = new ethers.Contract(curvepool.oldAddress, curvepool.abi, this.signer);
 			this.curvepoolContract = new ethers.Contract(curvepool.address, curvepool.abi, this.signer);
 			this.uniswapV2Contract = new ethers.Contract(uniswapV2.address, uniswapV2.abi, this.signer);
 			this.unipoolV2Contract = new ethers.Contract(unipoolV2.address, unipoolV2.abi, this.signer);
@@ -31,6 +32,7 @@ let snxJSConnector = {
 			this.uniswapDRVContract = new ethers.Contract(uniswapDRV.address, uniswapDRV.abi, this.signer);
 			this.unipoolDRVContract = new ethers.Contract(unipoolDRV.address, unipoolDRV.abi, this.signer);	
 			this.deriveOUSDContract = new ethers.Contract(swapFlashLoan.address, swapFlashLoan.abi, this.signer);	
+
 		}
 		/*this.synthSummaryUtilContract = new ethers.Contract(
 			synthSummary.addresses[contractSettings.networkId],
