@@ -59,7 +59,7 @@ export default withTranslation()(({ t }) => {
 	const migrate = async () => {
 		try {
 			console.log({ oldBalance })
-			await oldCurvepoolContract.withdraw(oldBalance);
+			await oldCurvepoolContract.exit(oldBalance);
 			await curvepoolContract.stake(oldBalance);
 			setIsMigrationPending(true)
 		} catch (err) {
