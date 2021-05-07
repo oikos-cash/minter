@@ -83,7 +83,7 @@ const Stake = ({ t, goBack }) => {
 				rewards: bigNumberFormatter(rewards),
 			});
 			updateGasLimit(TRANSACTION_DETAILS.stake.gasLimit, dispatch);
-			console.log(bigNumberFormatter(drvPoolLp))
+			//console.log(bigNumberFormatter(drvPoolLp))
 		
 		} catch (e) {
 			console.log(e);
