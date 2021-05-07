@@ -214,7 +214,7 @@ const LPRewards = () => {
 		 ? oikosAPRNumeratorDRV
 		 : oikosAPRNumeratorDRV / oikosAPRDenominatorDRV
 
-		setOikosAPR((Number(_oikosApr) * 100).toFixed(3))
+		setOikosAPR((Number(_oikosApr) * 100).toFixed(2))
 		setOikosAPRV2((Number(_oikosAprV2) * 100).toFixed(2))
 		setOikosAPRVDRV((Number(_oikosAprDRV) * 100).toFixed(2))
 		
