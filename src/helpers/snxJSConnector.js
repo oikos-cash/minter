@@ -1,7 +1,7 @@
 import { OikosJs } from '@oikos/oikos-js-bsc';
 import { getEthereumNetwork, INFURA_JSON_RPC_URLS } from './networkHelper';
 import { ethers } from 'ethers';
-import { unipool, uniswap, curvepool, curveLPToken, synthSummary, uniswapV2, unipoolV2, unipoolDRV, uniswapDRV, swapFlashLoan} from './contracts';
+import { unipool, uniswap, curvepool, curveLPToken, synthSummary, uniswapV2, unipoolV2, unipoolDRV, uniswapDRV, swapFlashLoan, drvPool} from './contracts';
 
 let snxJSConnector = {
 	initialized: false,
@@ -32,7 +32,7 @@ let snxJSConnector = {
 			this.uniswapDRVContract = new ethers.Contract(uniswapDRV.address, uniswapDRV.abi, this.signer);
 			this.unipoolDRVContract = new ethers.Contract(unipoolDRV.address, unipoolDRV.abi, this.signer);	
 			this.deriveOUSDContract = new ethers.Contract(swapFlashLoan.address, swapFlashLoan.abi, this.signer);	
-
+			this.drvPoolContract = new ethers.Contract(drvPool.address, drvPool.abi, this.signer);	
 		}
 		/*this.synthSummaryUtilContract = new ethers.Contract(
 			synthSummary.addresses[contractSettings.networkId],

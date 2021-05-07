@@ -6,6 +6,7 @@ import unipoolDRV from './unipoolDRV';
 import uniswapDRV from './uniswapDRV';
 import swapFlashLoan from './swapFlashLoan';
 import deriveLPToken from './deriveLPToken';
+import drvPool from './drvpool';
 
 import curvepool from './curvepool';
 import curveLPToken from './curveLPToken';
@@ -22,5 +23,6 @@ export {
          curveLPToken,  //oUSD Derive
          swapFlashLoan, //Derive Stablecoin pool
          deriveLPToken, //Derive Stablecoin pool LP token
-         synthSummary 
+         synthSummary,
+         drvPool
 };

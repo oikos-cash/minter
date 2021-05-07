@@ -148,9 +148,16 @@ const LPRewards = () => {
 		const drvPriceUsd = (reserves[0] / reserves[1]) * oks;
  
 		// (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
-		const oikosAPRNumerator = BigNumber.from((13 * 240000) + 5000000)
-		 //.mul(BigNumber.from(10).pow(18))
-		 .mul(parseUnits(String(oks || 0), 18))
+		let oikosAPRNumerator = BigNumber.from((52 * 240000))//.mul(BigNumber.from(10).pow(18)) 
+		.mul(parseUnits(String(oks || 0), 18))
+		
+		const drvRewards = BigNumber.from((52 * 340000))//.mul(BigNumber.from(10).pow(18))
+		.mul(parseUnits(String(drvPriceUsd || 0), 18))
+
+		
+		console.log(`Summing ${oikosAPRNumerator} + ${drvRewards} factors ${oks} ${drvPriceUsd}`)
+		oikosAPRNumerator = oikosAPRNumerator.add(drvRewards) 
+		 
 
 		const oikosAPRDenominator = totalLpTokenBalance
 		 .mul(
@@ -161,6 +168,7 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
   
+
 		const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000) + 3000000)
 		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
@@ -175,7 +183,7 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
 		 
-		 console.log( `${oikosAPRNumeratorV2} / ${oikosAPRDenominatorV2}`)
+		// console.log( `${oikosAPRNumeratorV2} / ${oikosAPRDenominatorV2}`)
   
 		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) + 3000000)
 		 //.mul(BigNumber.from(10).pow(18))
@@ -191,11 +199,12 @@ const LPRewards = () => {
 		 )
 		 .div(1e6)
 
-	   	const _oikosApr = totalLpTokenBalance.isZero()
+		 const _oikosApr = totalLpTokenBalance.isZero()
 		 ? oikosAPRNumerator
-		 : oikosAPRNumerator / oikosAPRDenominator
-
-		 
+		 : oikosAPRNumerator/ oikosAPRDenominator
+ 
+	    //console.log(`Oikos APR is ${_oikosApr.toString()} oikosAPRNumerator ${oikosAPRNumerator} oikosAPRdenominator ${oikosAPRDenominator}` )
+ 
 	
 		const _oikosAprV2 = totalV2LpTokenBalance.isZero()
 		 ? oikosAPRNumeratorV2
@@ -205,7 +214,7 @@ const LPRewards = () => {
 		 ? oikosAPRNumeratorDRV
 		 : oikosAPRNumeratorDRV / oikosAPRDenominatorDRV
 
-		setOikosAPR((Number(_oikosApr) * 100).toFixed(2))
+		setOikosAPR((Number(_oikosApr) * 100).toFixed(3))
 		setOikosAPRV2((Number(_oikosAprV2) * 100).toFixed(2))
 		setOikosAPRVDRV((Number(_oikosAprDRV) * 100).toFixed(2))
 		

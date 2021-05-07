@@ -127,7 +127,7 @@ const Stake = ({ t, goBack }) => {
 					{<ButtonTertiaryLabel>{"Go to Pancake Swap"}</ButtonTertiaryLabel>}
 				</Link>
 			</PLarge>	
-		
+
 			<BoxRow>
 				<DataBox
 					heading={t('lpRewards.shared.data.balance')}
@@ -203,6 +203,7 @@ const Stake = ({ t, goBack }) => {
 					</ButtonAction>
 				</ButtonRow>
 			</ButtonBlock>
+
 			<TransactionPriceIndicator canEdit={true} />
 		</Container>
 	);

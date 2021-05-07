@@ -57,15 +57,25 @@ const Stake = ({ t, goBack }) => {
 	const fetchData = useCallback(async () => {
 		if (!snxJSConnector.initialized) return;
 		try {
-			const { curveLPTokenContract, curvepoolContract, oldCurvepoolContract } = snxJSConnector;
-			const [univ1Held, univ1Staked, rewards] = await Promise.all([
+			const { curveLPTokenContract, curvepoolContract, oldCurvepoolContract, drvPoolContract } = snxJSConnector;
+			const [univ1Held, univ1Staked, drvPoolLp, rewards] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet),
 				curvepoolContract.balanceOf(currentWallet),
+				drvPoolContract.balanceOf(currentWallet),
 				curvepoolContract.earned(currentWallet),
 			]);
 
+			/*let actualLP 
+			if (drvPoolLp.eq(0) && univ1Staked.gt(0)) {
+				actualLP = univ1Staked
+			} else if (drvPoolLp.gt(0) && univ1Staked.eq(0)) {
+				actualLP = drvPoolLp
+			} else if (drvPoolLp.eq(0) && univ1Staked.eq(0)) {
+				actualLP = 0
+			} */
 
 			setBalances({
+				drvPoolLp: bigNumberFormatter(drvPoolLp),
 				univ1Held: bigNumberFormatter(univ1Held),
 				univ1HeldBN: univ1Held,
 				univ1Staked: bigNumberFormatter(univ1Staked),
@@ -73,9 +83,13 @@ const Stake = ({ t, goBack }) => {
 				rewards: bigNumberFormatter(rewards),
 			});
 			updateGasLimit(TRANSACTION_DETAILS.stake.gasLimit, dispatch);
+			console.log(bigNumberFormatter(drvPoolLp))
+		
 		} catch (e) {
 			console.log(e);
 		}
+
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentWallet, snxJSConnector.initialized]);
 
