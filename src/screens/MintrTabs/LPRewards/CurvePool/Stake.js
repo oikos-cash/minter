@@ -15,6 +15,7 @@ import DataBox from '../../../../components/DataBox';
 import { ButtonTertiary, ButtonPrimary } from '../../../../components/Button';
 
 import CurvepoolActions from '../../../CurvepoolActions';
+import UnstakeOldContract from './oldContract';
 
 const TRANSACTION_DETAILS = {
 	stake: {
@@ -33,6 +34,10 @@ const TRANSACTION_DETAILS = {
 		contractFunction: 'exit',
 		gasLimit: 250000,
 	},
+	migrate: {
+		contractFunction: 'exit',
+		gasLimit:250000,
+	}	
 };
 
 const Stake = ({ t, goBack }) => {
@@ -40,6 +45,8 @@ const Stake = ({ t, goBack }) => {
 	const [balances, setBalances] = useState(null);
 	const [currentScenario, setCurrentScenario] = useState({});
 	const [withdrawAmount, setWithdrawAmount] = useState('');
+	const [oldBalance, setOldBalance] = useState(0)
+
 	const {
 		state: {
 			wallet: { currentWallet },
@@ -50,12 +57,13 @@ const Stake = ({ t, goBack }) => {
 	const fetchData = useCallback(async () => {
 		if (!snxJSConnector.initialized) return;
 		try {
-			const { curveLPTokenContract, curvepoolContract } = snxJSConnector;
+			const { curveLPTokenContract, curvepoolContract, oldCurvepoolContract } = snxJSConnector;
 			const [univ1Held, univ1Staked, rewards] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet),
 				curvepoolContract.balanceOf(currentWallet),
 				curvepoolContract.earned(currentWallet),
 			]);
+
 
 			setBalances({
 				univ1Held: bigNumberFormatter(univ1Held),
@@ -77,7 +85,15 @@ const Stake = ({ t, goBack }) => {
 
 	useEffect(() => {
 		if (!currentWallet) return;
-		const { curveLPTokenContract, curvepoolContract } = snxJSConnector;
+		const { curveLPTokenContract, curvepoolContract, oldCurvepoolContract } = snxJSConnector;
+
+		(async () => {
+			const res = await oldCurvepoolContract.balanceOf(currentWallet)
+			if ( res) {
+				//console.error("has balance in old contract")
+				setOldBalance(res)
+			}
+		})()
 
 		curvepoolContract.on('Staked', user => {
 			if (user === currentWallet) {
@@ -109,6 +125,8 @@ const Stake = ({ t, goBack }) => {
 
 	return (
 		<Container>
+			<UnstakeOldContract />
+
 			<CurvepoolActions {...currentScenario} onDestroy={() => setCurrentScenario({})} />
 			<Navigation>
 				<ButtonTertiary onClick={goBack}>{t('button.navigation.back')}</ButtonTertiary>
