@@ -145,7 +145,7 @@ const LPRewards = () => {
 		const [synths] = await Promise.all([synthsP]);
 		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
-		const drvPriceUsd = (reserves[0] / reserves[1]) * oks;
+		const drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
  
 		// (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
 		let oikosAPRNumerator = BigNumber.from((52 * 240000))//.mul(BigNumber.from(10).pow(18)) 
@@ -193,7 +193,7 @@ const LPRewards = () => {
 		const oikosAPRDenominatorDRV = totalDRVLpTokenBalance
 		 .mul(
 		   parseUnits(
-			 String(drvPriceUsd.toFixed(4) || 0),
+			 String(drvPriceUsd || 0),
 			 6,
 		   ),
 		 )
