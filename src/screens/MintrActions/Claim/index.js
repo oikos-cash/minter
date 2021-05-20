@@ -26,7 +26,7 @@ const getFeePeriodCountdown = (periodIndex, recentFeePeriods, feePeriodDuration)
 			: null;
 	const currentPeriodEnd =
 		currentPeriodStart && feePeriodDuration
-			? addSeconds(currentPeriodStart, feePeriodDuration)
+			? addSeconds(currentPeriodStart, feePeriodDuration  * 2 - periodIndex)
 			: null;
 	return `${formatDistanceToNow(currentPeriodEnd)} left`;
 };
