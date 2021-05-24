@@ -173,7 +173,7 @@ const useGetDepotEvents = (walletAddress, networkName) => {
 					fetch(
 						`${getApiUrl(
 							networkName
-						)}/blockchainEventsFiltered?fromAddress=${walletAddress}&eventName=SynthDeposit`
+						)}/blockchainEventsFiltered?toAddress=${walletAddress}&eventName=SynthDeposit`
 					),
 					fetch(
 						`${getApiUrl(
@@ -183,7 +183,7 @@ const useGetDepotEvents = (walletAddress, networkName) => {
 					fetch(
 						`${getApiUrl(
 							networkName
-						)}/blockchainEventsFiltered?fromAddress=${walletAddress}&eventName=SynthDepositRemoved`
+						)}/blockchainEventsFiltered?toAddress=${walletAddress}&eventName=SynthDepositRemoved`
 					),
 				]);
 
@@ -194,6 +194,8 @@ const useGetDepotEvents = (walletAddress, networkName) => {
 				const totalDepositsMade = sumBy(depositsMade, 'value');
 				const totalDepositsCleared = sumBy(depositsCleared, 'toAmount');
 				const totalDepositsRemoved = sumBy(depositsRemoved, 'value');
+
+				console.log(totalDepositsMade, totalDepositsCleared, totalDepositsRemoved)
 				const depositsMadeFiltered = depositsMade
 					.filter(depositMade => {
 						return !depositsRemoved.find(

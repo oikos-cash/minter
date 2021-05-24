@@ -31,7 +31,8 @@ const useGetGasEstimate = (depositAmount, sUSDBalance, minimumDepositAmount) => 
 				if (!Number(depositAmount)) throw new Error('input.error.invalidAmount');
 				fetchingGasLimit(dispatch);
 				const Depot = snxJSConnector.snxJS.Depot;
-				gasEstimate = await Depot.contract.estimate.depositSynths(
+				console.log(Depot)
+				gasEstimate = await Depot.contract.estimateGas.depositSynths(
 					snxJSConnector.utils.parseEther(depositAmount.toString())
 				);
 			} catch (e) {
@@ -128,7 +129,7 @@ const Deposit = ({ onDestroy, sUSDBalance, minimumDepositAmount }) => {
 		const depotAddress = snxJSConnector.snxJS.Depot.contract.address;
 		const sUSDContract = snxJSConnector.snxJS.oUSD;
 		try {
-			const gasEstimate = await sUSDContract.contract.estimate.approve(
+			const gasEstimate = await sUSDContract.contract.estimateGas.approve(
 				depotAddress,
 				parseEther(ALLOWANCE_LIMIT.toString())
 			);

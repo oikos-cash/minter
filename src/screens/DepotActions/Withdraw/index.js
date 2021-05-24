@@ -23,7 +23,7 @@ const useGetGasEstimate = amountAvailable => {
 			let gasEstimate = 0;
 			try {
 				fetchingGasLimit(dispatch);
-				gasEstimate = await snxJSConnector.snxJS.Depot.contract.estimate.withdrawMyDepositedSynths();
+				gasEstimate = await snxJSConnector.snxJS.Depot.contract.estimateGas.withdrawMyDepositedSynths();
 			} catch (e) {
 				console.log(e);
 				const errorMessage = (e && e.message) || 'Error while getting gas estimate';

@@ -18,7 +18,7 @@ const TabRow = () => {
 		},
 		dispatch,
 	} = useContext(Store);
-	return ['home', /*'depot',*/ 'transactionsHistory', 'escrow', 'lpRewards'].map(tab => {
+	return ['home', 'depot', 'transactionsHistory', 'escrow', 'lpRewards'].map(tab => {
 		return (
 			<TabButton
 				key={tab}
