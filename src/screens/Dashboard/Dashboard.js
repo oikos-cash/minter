@@ -264,7 +264,7 @@ const Dashboard = ({ t }) => {
 						}}
 					/>
 					<Row margin="18px 0 0 0 ">
-						<Link href="https://bsc.oikos.exchange" target="_blank">
+						<Link href="https://oikos.exchange" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.exchange')}</ButtonTertiaryLabel>
 						</Link>
 						{/* <Link
