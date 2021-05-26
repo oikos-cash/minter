@@ -109,6 +109,7 @@ const Mint = ({ onDestroy }) => {
 			gasLimit,
 		};
 		try {
+			console.log(snxJSConnector.utils.parseEther(mintAmount.toString()))
 			handleNext(1);
 			let transaction;
 			if (mintAmount === issuableSynths) {
