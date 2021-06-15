@@ -52,6 +52,8 @@ const Announcement = styled.div`
 
 const Root = () => {
 	const [isOnMaintenance, setIsOnMaintenance] = useState(false);
+	localStorage.setItem('dark', JSON.stringify(true));
+
 	const {
 		state: {
 			ui: { currentPage, themeIsDark },

@@ -9,7 +9,7 @@ import Complete from './Complete';
 import snxJSConnector from '../../../helpers/snxJSConnector';
 import { SliderContext } from '../../../components/ScreenSlider';
 import { Store } from '../../../store';
-import { bytesFormatter, bigNumberFormatter, formatCurrency } from '../../../helpers/formatters';
+import { bytesFormatter, bigNumberFormatter, formatCurrency, toBigNumber, oksToUSD } from '../../../helpers/formatters';
 import { GWEI_UNIT } from '../../../helpers/networkHelper';
 import errorMapper from '../../../helpers/errorMapper';
 import { createTransaction } from '../../../ducks/transactions';
@@ -22,11 +22,12 @@ const useGetDebtData = (walletAddress, sUSDBytes) => {
 	useEffect(() => {
 		const getDebtData = async () => {
 			try {
+				const oksPrice = await oksToUSD();
 				const results = await Promise.all([
 					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.oUSD.balanceOf(walletAddress),
 					snxJSConnector.snxJS.OikosState.issuanceRatio(),
-					snxJSConnector.snxJS.ExchangeRates.rateForCurrency(OKSBytes),
+					toBigNumber(oksPrice),
 					snxJSConnector.snxJS.RewardEscrow.totalEscrowedAccountBalance(walletAddress),
 					snxJSConnector.snxJS.OikosEscrow.balanceOf(walletAddress),
 					snxJSConnector.snxJS.Oikos.collateralisationRatio(walletAddress),

@@ -4,6 +4,8 @@ import unipoolV2 from './unipoolV2';
 import uniswapV2 from './uniswapV2';
 import unipoolDRV from './unipoolDRV';
 import uniswapDRV from './uniswapDRV';
+import uniswapOKS from './uniswapOKS';
+
 import swapFlashLoan from './swapFlashLoan';
 import deriveLPToken from './deriveLPToken';
 import drvPool from './drvpool';
@@ -24,5 +26,6 @@ export {
          swapFlashLoan, //Derive Stablecoin pool
          deriveLPToken, //Derive Stablecoin pool LP token
          synthSummary,
-         drvPool
+         drvPool,
+         uniswapOKS
 };

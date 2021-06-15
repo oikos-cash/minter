@@ -140,7 +140,7 @@ const LPRewards = () => {
 		])
 		
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
+			[/*'OKS', 'oUSD', */'BNB'].map(bytesFormatter)
 		);
 		const [synths] = await Promise.all([synthsP]);
 		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);

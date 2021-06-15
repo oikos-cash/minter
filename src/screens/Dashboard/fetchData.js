@@ -2,10 +2,7 @@
 import { addSeconds } from 'date-fns';
 import snxJSConnector from '../../helpers/snxJSConnector';
 
-import { bytesFormatter, parseBytes32String } from '../../helpers/formatters';
-
-
-const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(value));
+import { bytesFormatter, parseBytes32String, toBigNumber, bigNumberFormatter } from '../../helpers/formatters';
 
 const getBalances = async walletAddress => {
 	try {
@@ -15,7 +12,7 @@ const getBalances = async walletAddress => {
 			snxJSConnector.provider.getBalance(walletAddress),
 		]);
 
-		console.log(result);
+		
 		const [oks, ousd, bnb] = result.map(bigNumberFormatter);
 		return { oks, ousd, bnb };
 	} catch (e) {
@@ -28,10 +25,7 @@ const convertFromSynth = (fromSynthRate, toSynthRate) => {
 };
 
 // exported for tests
-export const getOusdInUsd = async (synthRates, obnbToBnbRate) => {
-	//	const oBnb = convertFromSynth(synthRates.ousd, synthRates.obnb);
-	//	const bnb = oBnb * obnbToBnbRate;
-	//	return bnb * synthRates.obnb;
+export const getOusdInUsd = async () => {
 	const { uniswapV2Contract } = snxJSConnector;
 
 	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
@@ -41,6 +35,25 @@ export const getOusdInUsd = async (synthRates, obnbToBnbRate) => {
 
 	const [ reserves ] = await Promise.all([
 		uniswapV2Contract.getReserves(),
+	]) 
+	let bnb = reserves[1] / 1e18
+	let bnbReserveUSDValue = bnb * oBNBPrice
+	let price = bnbReserveUSDValue / (reserves[0] / 1e18)
+	console.log(`x is ${bnbReserveUSDValue} y ${reserves[0] / 1e18}`)
+
+	return price
+};
+
+export const oksToUSD = async () => {
+	const {  uniswapOKSContract } = snxJSConnector;
+
+	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
+		['oBNB'].map(bytesFormatter)
+	);
+	oBNBPrice = oBNBPrice / 1e18
+
+	const [ reserves ] = await Promise.all([
+		uniswapOKSContract.getReserves(),
 	]) 
 	let bnb = reserves[1] / 1e18
 	let bnbReserveUSDValue = bnb * oBNBPrice
@@ -74,19 +87,33 @@ const getSETHtoETH = async () => {
 const getPrices = async () => {
 	try {
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
+			['OKS', /* 'oUSD',*/ 'oBNB'].map(bytesFormatter)
 		);
-		const sethToEthRateP = getSETHtoETH();
-		const [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
-		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
-
-		const ousdInUsd = await getOusdInUsd(
+		const ousdInUsd = await getOusdInUsd(/*
 			{
 				ousd,
 				obnb,
 			},
-			sethToEthRate
-		);
+			sethToEthRate*/
+		);		
+		const sethToEthRateP = getSETHtoETH();
+		let [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
+		let arrCopy = [...synths]
+
+		console.log(await oksToUSD())
+		console.log( bigNumberFormatter(synths[0]))
+		//arrCopy[0] = toBigNumber(await oksToUSD());
+		
+		arrCopy[0] = synths[0];
+		arrCopy[1] = toBigNumber(ousdInUsd);
+		arrCopy[2] = synths[1];
+
+		console.log( arrCopy)
+		synths = arrCopy;
+
+		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
+
+
 		console.log(`ousdInUsd is ${ousdInUsd}`);
 		return { oks, ousd: ousdInUsd, bnb: obnb };
 	} catch (e) {

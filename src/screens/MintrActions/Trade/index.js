@@ -44,7 +44,10 @@ const useGetWalletSynths = (walletAddress, setBaseSynth) => {
 				});
 
 				const exchangeRatesResults = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-					walletSynths.map(({ name }) => bytesFormatter(name))
+					walletSynths.map(({ name }) => { 
+						console.log(`Checking synth ${name}`)
+						return bytesFormatter(name)
+					})
 				);
 
 				walletSynths = walletSynths.map((synth, i) => {

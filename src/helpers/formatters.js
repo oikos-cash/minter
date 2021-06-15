@@ -16,6 +16,8 @@ function str_pad_left(string, pad, length) {
 	return (new Array(length + 1).join(pad) + string).slice(-length);
 }
 
+export const toBigNumber = input => snxJSConnector.utils.parseEther(`${input}`);
+
 export const bytesFormatter = input => snxJSConnector.ethersUtils.formatBytes32String(input);
 
 export const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(value));
@@ -35,4 +37,43 @@ export const secondsToTime = seconds => {
 		return `${str_pad_left(minutes, '0', 2)} mins`;
 	}
 	return `up to 1 minute`;
+};
+
+// exported for tests
+export const getOusdInUsd = async () => {
+	const { uniswapV2Contract } = snxJSConnector;
+
+	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
+		['oBNB'].map(bytesFormatter)
+	);
+	oBNBPrice = oBNBPrice / 1e18
+
+	const [ reserves ] = await Promise.all([
+		uniswapV2Contract.getReserves(),
+	]) 
+	let bnb = reserves[1] / 1e18
+	let bnbReserveUSDValue = bnb * oBNBPrice
+	let price = bnbReserveUSDValue / (reserves[0] / 1e18)
+	console.log(`x is ${bnbReserveUSDValue} y ${reserves[0] / 1e18}`)
+
+	return price
+};
+
+export const oksToUSD = async () => {
+	const {  uniswapOKSContract } = snxJSConnector;
+
+	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
+		['oBNB'].map(bytesFormatter)
+	);
+	oBNBPrice = oBNBPrice / 1e18
+
+	const [ reserves ] = await Promise.all([
+		uniswapOKSContract.getReserves(),
+	]) 
+	let bnb = reserves[1] / 1e18
+	let bnbReserveUSDValue = bnb * oBNBPrice
+	let price = bnbReserveUSDValue / (reserves[0] / 1e18)
+	console.log(`x is ${bnbReserveUSDValue} y ${reserves[0] / 1e18}`)
+
+	return price
 };

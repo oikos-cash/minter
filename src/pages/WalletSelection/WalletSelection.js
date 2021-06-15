@@ -211,7 +211,7 @@ const WalletConnection = ({ t }) => {
 									<List cellSpacing={0}>
 										<ListHead>
 											<ListHeaderRow>
-												{['Address', 'OKS', 'oUSD', 'BNB', ''].map((headerElement, i) => {
+												{['Address', 'OKS', 'oUSD', 'oBNB', ''].map((headerElement, i) => {
 													return (
 														<ListHeaderCell
 															style={{ textAlign: i > 0 ? 'right' : 'left' }}
