@@ -140,13 +140,20 @@ const LPRewards = () => {
 		])
 		
 		const synthsP = snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
-			[/*'OKS', 'oUSD', */'BNB'].map(bytesFormatter)
+			['OKS', 'oUSD', 'BNB'].map(bytesFormatter)
 		);
 		const [synths] = await Promise.all([synthsP]);
-		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
+		let [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
-		const drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
- 
+		
+		console.log(`${reserves[0]} * ${reserves[1]} * ${oks}`);
+
+		let drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
+		console.log(`Price of DRV in USD is ${drvPriceUsd}`);
+		oks = oks * 1e18;
+		obnb = obnb * 1e18;
+		ousd = ousd * 1e18;
+		drvPriceUsd = drvPriceUsd * 1e18;
 		// (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
 		let oikosAPRNumerator = BigNumber.from((52 * 240000))//.mul(BigNumber.from(10).pow(18)) 
 		.mul(parseUnits(String(oks || 0), 18))
@@ -167,12 +174,16 @@ const LPRewards = () => {
 		   ),
 		 )
 		 .div(1e6)
-  
 
+		 console.log(`${obnb}`)
+		
 		const oikosAPRNumeratorV2 = BigNumber.from((13 * 140000) + 3000000)
 		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
+
+
+		console.log(`${oikosAPRNumeratorV2} -  ${totalV2LpTokenBalance} - ${ousd} - ${obnb}` )
 
 		const oikosAPRDenominatorV2 = totalV2LpTokenBalance
 		 .mul(
@@ -184,7 +195,7 @@ const LPRewards = () => {
 		 .div(1e6)
 		 
 		// console.log( `${oikosAPRNumeratorV2} / ${oikosAPRDenominatorV2}`)
-  
+
 		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) + 3000000)
 		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
