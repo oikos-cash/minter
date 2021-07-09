@@ -143,10 +143,15 @@ const LPRewards = () => {
 			['OKS', 'oUSD', 'oBNB'].map(bytesFormatter)
 		);
 		const [synths] = await Promise.all([synthsP]);
-		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
+		let [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
-		const drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
- 
+		let drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
+
+		oks = oks * 1e18;
+		obnb = obnb * 1e18;
+		ousd = ousd * 1e18;
+		drvPriceUsd = drvPriceUsd * 1e18;
+
 		// (weeksPerYear * OIKOSPerWeek * OIKOSPrice) / (LPTokenPrice * totalLPTokenBalance)
 		let oikosAPRNumerator = BigNumber.from((52 * 240000))//.mul(BigNumber.from(10).pow(18)) 
 		.mul(parseUnits(String(oks || 0), 18))
