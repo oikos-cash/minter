@@ -145,8 +145,8 @@ const LPRewards = () => {
 		const [synths] = await Promise.all([synthsP]);
 		let [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
-		let drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
-
+		let drvPriceUsd = (reserves[0] / reserves[1]) * oks;
+		//console.log(`reserve0 ${reserves[0]} reserve1 ${reserves[1]} ${drvPriceUsd}`)
 		oks = oks * 1e18;
 		obnb = obnb * 1e18;
 		ousd = ousd * 1e18;
@@ -190,7 +190,7 @@ const LPRewards = () => {
 		 
 		// console.log( `${oikosAPRNumeratorV2} / ${oikosAPRDenominatorV2}`)
   
-		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) + 3000000)
+		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) )
 		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
@@ -223,7 +223,7 @@ const LPRewards = () => {
 		setOikosAPRV2((Number(_oikosAprV2) * 100).toFixed(2))
 		setOikosAPRVDRV((Number(_oikosAprDRV) * 100).toFixed(2))
 		
-
+		console.log(`DRV  ${oikosAPRNumeratorDRV} DRV ${drvPriceUsd}`)
 
 		//setLPTokenBalance(userLpTokenBalance)
 		//setTotalLpTokenBalance(totalLpTokenBalance)
