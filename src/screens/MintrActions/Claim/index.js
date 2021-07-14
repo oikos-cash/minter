@@ -47,13 +47,18 @@ const useGetFeeData = walletAddress => {
 					snxJSConnector.snxJS.FeePool.feesByPeriod(walletAddress),
 					snxJSConnector.snxJS.FeePool.feePeriodDuration(),
 					Promise.all(
-						Array.from(Array(2).keys()).map(period =>
-							snxJSConnector.snxJS.FeePool.recentFeePeriods(period)
+						Array.from(Array(2).keys()).map(period => {
+							console.log(snxJSConnector.snxJS.FeePool.recentFeePeriods.length)
+							return snxJSConnector.snxJS.FeePool.recentFeePeriods(period)
+						}
+							
 						)
 					),
 					snxJSConnector.snxJS.FeePool.isFeesClaimable(walletAddress),
 					snxJSConnector.snxJS.FeePool.feesAvailable(walletAddress),
 				]);
+
+				console.log(recentFeePeriods)
 				const formattedFeesByPeriod = feesByPeriod.slice(1).map(([fee, reward], i) => {
 					return {
 						fee: bigNumberFormatter(fee),
