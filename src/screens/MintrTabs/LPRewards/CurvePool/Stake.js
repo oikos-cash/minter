@@ -58,6 +58,7 @@ const Stake = ({ t, goBack }) => {
 		if (!snxJSConnector.initialized) return;
 		try {
 			const { curveLPTokenContract, curvepoolContract, oldCurvepoolContract, drvPoolContract } = snxJSConnector;
+			console.log(curveLPTokenContract)
 			const [univ1Held, univ1Staked, drvPoolLp, rewards] = await Promise.all([
 				curveLPTokenContract.balanceOf(currentWallet),
 				curvepoolContract.balanceOf(currentWallet),

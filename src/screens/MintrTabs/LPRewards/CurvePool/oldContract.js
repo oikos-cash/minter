@@ -46,8 +46,9 @@ export default withTranslation()(({ t }) => {
 
 	useEffect(() => {
 		if (!currentWallet) return;
-
+		
 		(async () => {
+			console.log(oldCurvepoolContract)
 			const res = await oldCurvepoolContract.balanceOf(currentWallet);
 			if (res > 0) {
 				setOldBalance(res);
@@ -59,8 +60,7 @@ export default withTranslation()(({ t }) => {
 	const migrate = async () => {
 		try {
 			console.log({ oldBalance })
-			await oldCurvepoolContract.exit();
-			await curvepoolContract.stake(oldBalance);
+			await oldCurvepoolContract.withdraw(oldBalance);
 			setIsMigrationPending(true)
 		} catch (err) {
 			console.error(err);
