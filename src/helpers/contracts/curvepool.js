@@ -1,6 +1,7 @@
 export default {
-	oldAddress: '0x8517c11e0459eec933391476eae41613e9e52a1d',
-	address: '0x6be8a4C0C4FF684E2e1Fc1F645d6d4f2a81fE00c',
+	//oldAddress: '0x8517c11e0459eec933391476eae41613e9e52a1d',
+	oldAddress: '0x6be8a4C0C4FF684E2e1Fc1F645d6d4f2a81fE00c',
+	address: '0x8559AeF12e2C40E66f0eb600d0Dd8ae5CeA419D7', 
 	abi: [
 		{
 		  "constant": true,
