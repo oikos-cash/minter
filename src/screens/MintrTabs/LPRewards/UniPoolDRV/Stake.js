@@ -15,6 +15,7 @@ import DataBox from '../../../../components/DataBox';
 import { ButtonTertiary, ButtonPrimary } from '../../../../components/Button';
 
 import UnipoolActionsV2 from '../../../UnipoolActionsDRV';
+import UnstakeOldContract from './oldContract';
 
 const TRANSACTION_DETAILS = {
 	stake: {
@@ -109,6 +110,8 @@ const Stake = ({ t, goBack }) => {
 
 	return (
 		<Container>
+			<UnstakeOldContract />
+
 			<UnipoolActionsV2 {...currentScenario} onDestroy={() => setCurrentScenario({})} />
 			<Navigation>
 				<ButtonTertiary onClick={goBack}>{t('button.navigation.back')}</ButtonTertiary>
