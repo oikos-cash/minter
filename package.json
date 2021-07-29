@@ -6,7 +6,6 @@
 	"author": "Synthetix",
 	"dependencies": {
 		"@ethersproject/bignumber": "^5.1.1",
-		"@ethersproject/json-wallets": "^5.0.11",
 		"@ethersproject/units": "^5.1.0",
 		"@oikos/oikos-js-bsc": "^0.2.40",
 		"@rehooks/component-size": "^1.0.3",
