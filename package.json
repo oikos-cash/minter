@@ -7,7 +7,7 @@
 	"dependencies": {
 		"@ethersproject/bignumber": "^5.1.1",
 		"@ethersproject/units": "^5.1.0",
-		"@oikos/oikos-js-bsc": "^0.2.43",
+		"@oikos/oikos-js-bsc": "^0.2.46",
 		"@rehooks/component-size": "^1.0.3",
 		"browserslist": "^4.8.2",
 		"date-fns": "^2.0.1",
