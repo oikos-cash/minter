@@ -289,7 +289,7 @@ const LPRewards = () => {
 							} 							
 							return (
 								<Button key={idx} onClick={() => setCurrentPool(name)} 
-								disabled={name == "pancakeDRV"? true: false}
+								disabled={name == "pancakeDRV" || name == "pancake" ? true: false}
 									style={opacity}
 								>
 									<ButtonContainer>
