@@ -148,7 +148,7 @@ const LPRewards = () => {
 		
 		console.log(`${reserves[0]} * ${reserves[1]} * ${oks}`);
 
-		let drvPriceUsd = Number((reserves[0] / reserves[1]) * oks).toFixed(3);
+		let drvPriceUsd = (reserves[0] / reserves[1]) * oks;
 		console.log(`Price of DRV in USD is ${drvPriceUsd}`);
 		oks = oks * 1e18;
 		obnb = obnb * 1e18;
@@ -162,7 +162,7 @@ const LPRewards = () => {
 		.mul(parseUnits(String(drvPriceUsd || 0), 18))
 
 		
-		console.log(`Summing ${oikosAPRNumerator} + ${drvRewards} factors ${oks} ${drvPriceUsd}`)
+		//console.log(`Summing ${oikosAPRNumerator} + ${drvRewards} factors ${oks} ${drvPriceUsd}`)
 		oikosAPRNumerator = oikosAPRNumerator.add(drvRewards) 
 		 
 
@@ -183,7 +183,7 @@ const LPRewards = () => {
 
 
 
-		console.log(`${oikosAPRNumeratorV2} -  ${totalV2LpTokenBalance} - ${ousd} - ${obnb}` )
+		//console.log(`${oikosAPRNumeratorV2} -  ${totalV2LpTokenBalance} - ${ousd} - ${obnb}` )
 
 		const oikosAPRDenominatorV2 = totalV2LpTokenBalance
 		 .mul(
@@ -196,7 +196,7 @@ const LPRewards = () => {
 		 
 		// console.log( `${oikosAPRNumeratorV2} / ${oikosAPRDenominatorV2}`)
 
-		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) + 3000000)
+		const oikosAPRNumeratorDRV = BigNumber.from((13 * 100000) )
 		 //.mul(BigNumber.from(10).pow(18))
 		 .mul(parseUnits(String(oks || 0), 18))
 
