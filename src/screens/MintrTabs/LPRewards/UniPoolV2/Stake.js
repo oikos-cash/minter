@@ -13,7 +13,7 @@ import { updateGasLimit } from '../../../../ducks/network';
 import { PageTitle, PLarge, ButtonTertiaryLabel } from '../../../../components/Typography';
 import DataBox from '../../../../components/DataBox';
 import { ButtonTertiary, ButtonPrimary } from '../../../../components/Button';
-import UnipoolActionsV2 from '../../../UnipoolActionsDRV';
+import UnipoolActionsV2 from '../../../UnipoolActionsV2';
 
 import UnstakeOldContract from './oldContract';
 
