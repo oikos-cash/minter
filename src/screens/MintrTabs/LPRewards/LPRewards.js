@@ -288,7 +288,7 @@ const LPRewards = () => {
 								opacity = {opacity:"1"}
 							} else if (name == "pancakeDRV") {
 								apr = oikosAPRDRV
-								subtitle = ""
+								subtitle = "(Paused)"
 								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
 								opacity = {opacity:"0.5"}
 							} 				
