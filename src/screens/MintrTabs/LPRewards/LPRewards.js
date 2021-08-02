@@ -249,19 +249,24 @@ const LPRewards = () => {
 					<PageTitle>{t('lpRewards.intro.title')}</PageTitle>
 					<ButtonRow>
 						{POOLS.map(({ title, name }, idx) => {
-							let apr, subtitle, link
+							let apr, subtitle, link, opacity
 							if (name == "derive") {
 								apr = oikosAPR
 								subtitle = "derive.fi"
 								link = subtitle 
+								opacity = {opacity:"1"}
 							} else if (name == "pancake") {
 								apr = 0
 								subtitle = "(Discountinued)"
 								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
+								opacity = {opacity:"0.5"}
 							} 
 							
 							return (
-								<Button key={idx} onClick={() => setCurrentPool(name)}>
+								<Button key={idx} onClick={() => setCurrentPool(name)}
+								disabled={ name == "pancake" ? true: false}
+								style={opacity}
+								>
 									<ButtonContainer>
 										<ActionImage src={`/images/${name}.png`} big />
 										<H1>{t(title)}</H1>
@@ -286,10 +291,11 @@ const LPRewards = () => {
 								subtitle = ""
 								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
 								opacity = {opacity:"0.5"}
-							} 							
+							} 				
+							console.log(`Pool name is ${name}`)			
 							return (
 								<Button key={idx} onClick={() => setCurrentPool(name)} 
-								disabled={name == "pancakeDRV" || name == "pancake" ? true: false}
+								disabled={name == "pancakeDRV" ? true: false}
 									style={opacity}
 								>
 									<ButtonContainer>
