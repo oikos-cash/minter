@@ -275,18 +275,23 @@ const LPRewards = () => {
 					<br />
 					<ButtonRow>
 						{POOLS2.map(({ title, name }, idx) => {
-							let apr, subtitle, link
+							let apr, subtitle, link, opacity
 							if (name == "pancakeV2") {
 								apr = oikosAPRV2
 								subtitle = ""
 								link = subtitle 
+								opacity = {opacity:"1"}
 							} else if (name == "pancakeDRV") {
 								apr = oikosAPRDRV
 								subtitle = ""
 								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
+								opacity = {opacity:"0.5"}
 							} 							
 							return (
-								<Button key={idx} onClick={() => setCurrentPool(name)}>
+								<Button key={idx} onClick={() => setCurrentPool(name)} 
+								disabled={name == "pancakeDRV"? true: false}
+									style={opacity}
+								>
 									<ButtonContainer>
 										<ActionImage src={`/images/${name}.png`} big />
 										<H1>{t(title)}</H1>
