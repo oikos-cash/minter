@@ -14,7 +14,7 @@ import { PageTitle, PLarge, ButtonTertiaryLabel } from '../../../../components/T
 import DataBox from '../../../../components/DataBox';
 import { ButtonTertiary, ButtonPrimary } from '../../../../components/Button';
 
-import UnipoolActionsV2 from '../../../UnipoolActionsV2';
+import UnstakeOldContract from './oldContract';
 
 const TRANSACTION_DETAILS = {
 	stake: {
