@@ -119,7 +119,7 @@ const CollRatios = ({ state }) => {
 			) : (
 				<Figure>{Number(netCratio * 100).toFixed(0)}%</Figure>
 			)}
-			<DataLarge>{'Active collateralization ratio'}</DataLarge>
+			<DataLarge>{'Network collateralization ratio'}</DataLarge>
 		</Box>	
 		<Box>
 			{isEmpty(debtData) ? (
