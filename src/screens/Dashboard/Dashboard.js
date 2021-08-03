@@ -8,23 +8,90 @@ import { Store } from '../../store';
 
 import { formatCurrency } from '../../helpers/formatters';
 import { fetchData } from './fetchData';
+import snxJSConnector from '../../helpers/snxJSConnector';
+import oksData from '@oikos/oikos-data-bsc';
 
 import Header from '../../components/Header';
 import BarChart from '../../components/BarChart';
 import Table from '../../components/Table';
 import { ButtonTertiary } from '../../components/Button';
-import { DataLarge, H5, H6, Figure, ButtonTertiaryLabel } from '../../components/Typography';
+import { DataLarge, DataSmall, H5, H6, Figure, ButtonTertiaryLabel } from '../../components/Typography';
 import Tooltip from '../../components/Tooltip';
 import Skeleton from '../../components/Skeleton';
 import { MicroSpinner } from '../../components/Spinner';
 
 const INTERVAL_TIMER = 5 * 60 * 1000;
 
+const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(value));
+
 const CollRatios = ({ state }) => {
 	const { t } = useTranslation();
+	const [ netCratio, setNetCratio] = useState(0);
+	const [ activeCRatio, setActiveCRatio] = useState(0);
+
 	const { debtData } = state;
+	
+	useEffect(() => {
+		const fetchData = async () => {
+			let totalSupply = await snxJSConnector.snxJS.Oikos.totalSupply()
+			totalSupply = bigNumberFormatter(totalSupply);
+			let totalIssuedSynths = await snxJSConnector.snxJS.Oikos.totalIssuedSynths(
+				snxJSConnector.snxJS.ethers.utils.formatBytes32String('oUSD')
+			)
+			totalIssuedSynths = bigNumberFormatter(totalIssuedSynths);
+			let oksPrice = await snxJSConnector.snxJS.ExchangeRates.rateForCurrency(
+				snxJSConnector.snxJS.ethers.utils.formatBytes32String('OKS'))
+			oksPrice = bigNumberFormatter(oksPrice);
+			console.log(`Total supply ${totalSupply} total Issued Synths ${totalIssuedSynths} OKS ${oksPrice}`)
+			console.log(`System debt is ${ (totalSupply * oksPrice) / totalIssuedSynths }`)
+
+			const holders = await oksData.snx.holders({ max: 100 });
+
+			const unformattedLastDebtLedgerEntry = await  snxJSConnector.snxJS.OikosState.lastDebtLedgerEntry();
+			const issuanceRatio = await snxJSConnector.snxJS.OikosState.issuanceRatio();
+			const lastDebtLedgerEntry = Number(snxJSConnector.snxJS.ethers.utils.formatUnits(unformattedLastDebtLedgerEntry, 27) );
+			let oksTotal, oksLocked, stakersTotalDebt, stakersTotalCollateral
+			for (const { collateral, debtEntryAtIndex, initialDebtOwnership } of holders) {
+
+				let debtBalance =
+					((totalIssuedSynths * lastDebtLedgerEntry) / debtEntryAtIndex) * initialDebtOwnership;
+
+				let collateralRatio = debtBalance / collateral / oksPrice;
+
+				if (isNaN(debtBalance) || isNaN(collateralRatio) ) {
+					debtBalance = 0;
+					collateralRatio = 0;
+				}
+
+				const lockedOks = collateral * Math.min(1, collateralRatio / issuanceRatio);
+
+				if (Number(debtBalance) > 0) {
+
+					stakersTotalDebt += Number(stakersTotalDebt) + Number(debtBalance);
+					stakersTotalCollateral =  Number(stakersTotalCollateral) + Number(collateral) * Number(oksPrice);
+					
+					console.log(Number(collateral) * Number(oksPrice))
+					console.log(`Locked OKS ${debtBalance} ${Number(collateral) * Number(oksPrice)}`)
+
+				}
+				oksTotal += Number(collateral);
+				oksLocked += Number(lockedOks);
+
+				//console.log(collateral, debtEntryAtIndex, initialDebtOwnership, totalIssuedSynths, usdToSnxPrice, debtBalance, collateralRatio, lockedSnx, snxTotal, snxLocked)
+			}
+			console.log(`1 / (${stakersTotalDebt} / ${stakersTotalCollateral}`);
+
+			setActiveCRatio(1 / (stakersTotalDebt / stakersTotalCollateral));
+
+			setNetCratio((totalSupply * oksPrice) / totalIssuedSynths)
+		}
+
+		fetchData()
+	}, [])
+	
 
 	return (
+		<>
 		<Row margin="0 0 22px 0">
 			<Box>
 				{isEmpty(debtData) ? (
@@ -42,7 +109,30 @@ const CollRatios = ({ state }) => {
 				)}
 				<DataLarge>{t('dashboard.ratio.target')}</DataLarge>
 			</Box>
+		
 		</Row>
+		<Row margin="0 0 22px 0">
+
+		<Box>
+			{isEmpty(debtData) ? (
+				<Skeleton style={{ marginBottom: '8px' }} height="25px" />
+			) : (
+				<Figure>{Number(netCratio * 100).toFixed(0)}%</Figure>
+			)}
+			<DataLarge>{'Active collateralization ratio'}</DataLarge>
+		</Box>	
+		<Box>
+			{isEmpty(debtData) ? (
+				<Skeleton style={{ marginBottom: '8px' }} height="25px" />
+			) : (
+				<Figure>{'200%'}</Figure>
+			)}
+			<DataLarge>{'Liquidation target'}</DataLarge>
+		</Box>
+
+	</Row>		
+		</>
+		
 	);
 };
 

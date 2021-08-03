@@ -13,6 +13,8 @@ import MaintenanceMessage from '../MaintenanceMessage';
 import MobileLanding from '../MobileLanding';
 
 import NotificationCenter from '../../components/NotificationCenter';
+import BannerLiquidation from '../../components/BannerLiquidation';
+
 import snxJSConnector from '../../helpers/snxJSConnector';
 import { getEthereumNetwork } from '../../helpers/networkHelper';
 import { getDefaultProvider } from 'ethers';
@@ -67,6 +69,31 @@ const Root = () => {
 			setIsOnMaintenance(false);
 		}*/
 	}, []);
+	/*const useGetDebtData = (walletAddress) => {
+		const [data, setData] = useState({});
+		useEffect(() => {
+			const getDebtData = async () => {
+				try {
+					const results = await Promise.all([
+						snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes)
+					]);
+					const [
+						debt
+					] = results.map(bigNumberFormatter);
+
+	
+					//setData({
+					//});
+				} catch (e) {
+					console.log(e);
+				}
+			};
+			getDebtData();
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [walletAddress]);
+		return data;
+	};*/
+
 	useEffect(() => {
 		if (process.env.REACT_APP_CONTEXT !== 'production') return;
 		let intervalId;
@@ -89,6 +116,7 @@ const Root = () => {
 
 	const bgColor = themeIsDark ? '#0E0D14' : 'white';
 	const border = `2px solid ${ themeIsDark ? '#0E0D14' : 'white'}`;
+	//const data = useGetDebtData(provider.address)
 	return (
 		<Suspense fallback={<div></div>}>
 			<RootWrapper>
@@ -96,7 +124,8 @@ const Root = () => {
 					<a href="https://minter-tron.oikos.cash">
 						For minter on Tron click here. You can now vest all of your tokens obtained from rewards and the token sale.
 					</a>
-				</Announcement>				
+				</Announcement>	
+				<BannerLiquidation  /*state={{ data }}*/ />			
 				{isOnMaintenance ? <MaintenanceMessage /> : renderCurrentPage(currentPage)}
 				<NotificationCenter></NotificationCenter>
 			</RootWrapper>
