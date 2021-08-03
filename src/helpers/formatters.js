@@ -1,5 +1,6 @@
 import numbro from 'numbro';
 import snxJSConnector from '../helpers/snxJSConnector';
+import { ethers } from "ethers";
 
 export const formatCurrency = (value, decimals = 4) => {
 	if (!value) return 0;
@@ -18,7 +19,7 @@ function str_pad_left(string, pad, length) {
 
 export const toBigNumber = input => snxJSConnector.utils.parseEther(`${input}`);
 
-export const bytesFormatter = input => snxJSConnector.ethersUtils.formatBytes32String(input);
+export const bytesFormatter = input => ethers.utils.formatBytes32String(input);
 
 export const bigNumberFormatter = value => Number(snxJSConnector.utils.formatEther(value));
 
