@@ -14,12 +14,16 @@ const mapStateToProps = (state) => ({
 //const connector = connect(mapStateToProps, null);
 //type PropsFromRedux = ConnectedProps < typeof connector > ;
 
-const Banner = ({ debtStatus }) => {
-    //if (!debtStatus) return null;
+const Banner = ({ debtData }) => {
+    let exec = typeof debtData.debtData.instantCratio != "undefined"
+	if (!exec) return null;
+	if (exec) {
+		const liquidable = debtData.debtData.instantCratio > 0 && debtData.debtData.instantCratio < 200
+		if (!liquidable) return null;
+	}
     //const { liquidationDeadline, liquidationDelay } = debtStatus;
+    //if (!liquidationDeadline) return null;
 
-   // if (!liquidationDeadline) return null;
-	console.log(debtStatus)
     return (
 			<ContainerBanner>
 				<StyledPMedium>

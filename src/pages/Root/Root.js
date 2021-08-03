@@ -4,6 +4,8 @@ import React, { Suspense, useEffect, useContext, useCallback, useState } from 'r
 import styled from 'styled-components';
 
 import { isMobileOrTablet } from '../../helpers/browserHelper';
+import { bytesFormatter, bigNumberFormatter } from '../../helpers/formatters';
+
 import { Store } from '../../store';
 
 import Landing from '../Landing';
@@ -59,8 +61,10 @@ const Root = () => {
 	const {
 		state: {
 			ui: { currentPage, themeIsDark },
+			wallet: { currentWallet },
 		},
 	} = useContext(Store);
+ 
 	const getAppState = useCallback(async () => {
 		/*try {
 			setIsOnMaintenance(await snxJSConnector.snxJS.DappMaintenance.isPausedMintr());
@@ -69,21 +73,32 @@ const Root = () => {
 			setIsOnMaintenance(false);
 		}*/
 	}, []);
-	/*const useGetDebtData = (walletAddress) => {
+	const useGetDebtData = (walletAddress) => {
 		const [data, setData] = useState({});
+		const sUSDBytes = bytesFormatter('oUSD') 
+		
 		useEffect(() => {
 			const getDebtData = async () => {
 				try {
-					const results = await Promise.all([
-						snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes)
-					]);
-					const [
-						debt
-					] = results.map(bigNumberFormatter);
+					if (typeof snxJSConnector.snxJS != "undefined") {
+						
+						const results = await Promise.all([
+							snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
+							snxJSConnector.snxJS.ExchangeRates.rateForCurrency(
+								bytesFormatter('OKS')),
+							snxJSConnector.snxJS.Oikos.collateral(walletAddress),	
+						]);
 
-	
-					//setData({
-					//});
+						const [
+							debt,
+							oksPrice, 
+							collateral
+						] = results.map(bigNumberFormatter);
+						
+						const instantCratio =  (1 / (debt / collateral / oksPrice)) * 100;
+
+						setData({debt, oksPrice, collateral, instantCratio});
+					}
 				} catch (e) {
 					console.log(e);
 				}
@@ -92,7 +107,7 @@ const Root = () => {
 			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [walletAddress]);
 		return data;
-	};*/
+	};
 
 	useEffect(() => {
 		if (process.env.REACT_APP_CONTEXT !== 'production') return;
@@ -116,7 +131,8 @@ const Root = () => {
 
 	const bgColor = themeIsDark ? '#0E0D14' : 'white';
 	const border = `2px solid ${ themeIsDark ? '#0E0D14' : 'white'}`;
-	//const data = useGetDebtData(provider.address)
+	const debtData = useGetDebtData(currentWallet)
+ 
 	return (
 		<Suspense fallback={<div></div>}>
 			<RootWrapper>
@@ -125,7 +141,7 @@ const Root = () => {
 						For minter on Tron click here. You can now vest all of your tokens obtained from rewards and the token sale.
 					</a>
 				</Announcement>	
-				<BannerLiquidation  /*state={{ data }}*/ />			
+				<BannerLiquidation  debtData={{debtData}} />			
 				{isOnMaintenance ? <MaintenanceMessage /> : renderCurrentPage(currentPage)}
 				<NotificationCenter></NotificationCenter>
 			</RootWrapper>
