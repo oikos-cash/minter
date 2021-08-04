@@ -27,7 +27,7 @@ export const INFURA_JSON_RPC_URLS = {
 	42: `https://kovan.infura.io/v3/${INFURA_PROJECT_ID}`,
 };
 
-export const SUPPORTED_WALLETS = ['Metamask', 'BSCWallet'/*, 'Trezor', 'Ledger', 'Coinbase', 'WalletConnect'*/];
+export const SUPPORTED_WALLETS = ['Metamask', 'BSCWallet', 'MathWallet' /*, 'Trezor', 'Ledger', 'Coinbase', 'WalletConnect'*/];
 
 export const hasWeb3 = () => {
 	return window.web3;
@@ -89,4 +89,10 @@ export function onBSCWalletNetworkChange(cb) {
 	if (!window.BinanceChain) return;
 	const listener = throttle(cb, 1000);
 	window.BinanceChain.on('networkChanged', listener);
+}
+
+export function onMathWalletAccountChange(cb) {
+	if (!window.ethereum.isMathWallet) return;
+	const listener = throttle(cb, 1000);
+	window.ethereum.on('accountsChanged', listener);
 }

@@ -112,7 +112,45 @@ const connectToBSCWallet = async (networkId, networkName) => {
 		};
 	}
 };
+const connectToMathWallet = async (networkId, networkName) => {
 
+	try {
+		// Otherwise we enable ethereum if needed (modern browsers)
+		//@ts-ignore
+		if (window.ethereum.isMathWallet) {
+			//@ts-ignore
+			window.ethereum.autoRefreshOnNetworkChange = true;
+			//@ts-ignore
+			await window.ethereum.enable();
+		}
+		//@ts-ignore
+		const account = await window.ethereum.address;
+		if (account) {
+			return {
+				currentWallet: account,
+				walletType: 'MathWallet',
+				unlocked: true,
+				networkId,
+				networkName: networkName.toLowerCase(),
+			};
+		} else {
+			return {
+				walletType: 'MathWallet',
+				unlocked: false,
+				unlockReason: 'MathWalletNoAccounts',
+			};
+		}
+		// We updateWalletStatus with all the infos
+	} catch (e) {
+		console.log(e);
+		return {
+			walletType: 'MathWallet',
+			unlocked: false,
+			unlockReason: 'ErrorWhileConnectingToMathWallet',
+			unlockMessage: e,
+		};
+	}
+};
 const connectToCoinbase = async (networkId, networkName) => {
 	try {
 		const accounts = await snxJSConnector.signer.getNextAddresses();
@@ -233,6 +271,8 @@ export const connectToWallet = async ({ wallet, derivationPath }) => {
 			return connectToMetamask(networkId, name);
 		case 'BSCWallet':
 			return connectToBSCWallet(networkId, name);
+		case 'MathWallet':
+				return connectToMathWallet(networkId, name);			
 		case 'Coinbase':
 			return connectToCoinbase(networkId, name);
 		case 'Trezor':
