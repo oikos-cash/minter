@@ -128,18 +128,30 @@ const WalletButtons = () => {
 		dispatch,
 	} = useContext(Store);
 	const { t } = useTranslation();
+	const {
+		state: {
+			ui: { themeIsDark },
+		},
+	} = useContext(Store);	
 	return (
 		<Wallets>
 			<PMega m={'10px 0 20px 0'}>{t('onboarding.walletConnection.title')}</PMega>
 			{SUPPORTED_WALLETS.map(wallet => {
 				const noMetamask = wallet === 'Metamask' && !hasWeb3();
+				const suffix = themeIsDark ? "-white" : "-dark";
+				let logoPath
+				if (wallet == "MathWallet") {
+					logoPath = `images/wallets/${wallet}${suffix}.svg`
+				} else {
+					logoPath = `images/wallets/${wallet}.svg`
+				}
 				return (
 					<Button
 						disabled={noMetamask}
 						key={wallet}
 						onClick={onWalletClick({ wallet, derivationPath }, dispatch)}
 					>
-						<Icon src={`images/wallets/${wallet}.svg`} />
+						<Icon src={logoPath} />
 						<WalletConnectionH2>{wallet}</WalletConnectionH2>
 					</Button>
 				);

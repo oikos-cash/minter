@@ -9,7 +9,7 @@ import { Store } from '../../store';
 import { formatCurrency } from '../../helpers/formatters';
 import { fetchData } from './fetchData';
 import snxJSConnector from '../../helpers/snxJSConnector';
-import oksData from '@oikos/oikos-data-bsc';
+import snxData from '@oikos/oikos-data-bsc';
 
 import Header from '../../components/Header';
 import BarChart from '../../components/BarChart';
@@ -33,24 +33,33 @@ const CollRatios = ({ state }) => {
 	
 	useEffect(() => {
 		const fetchData = async () => {
+
 			let totalSupply = await snxJSConnector.snxJS.Oikos.totalSupply()
 			totalSupply = bigNumberFormatter(totalSupply);
+
 			let totalIssuedSynths = await snxJSConnector.snxJS.Oikos.totalIssuedSynths(
 				snxJSConnector.snxJS.ethers.utils.formatBytes32String('oUSD')
 			)
+
 			totalIssuedSynths = bigNumberFormatter(totalIssuedSynths);
+
 			let oksPrice = await snxJSConnector.snxJS.ExchangeRates.rateForCurrency(
 				snxJSConnector.snxJS.ethers.utils.formatBytes32String('OKS'))
 			oksPrice = bigNumberFormatter(oksPrice);
+
 			console.log(`Total supply ${totalSupply} total Issued Synths ${totalIssuedSynths} OKS ${oksPrice}`)
 			console.log(`System debt is ${ (totalSupply * oksPrice) / totalIssuedSynths }`)
 
-			const holders = await oksData.snx.holders({ max: 100 });
+			const holders = new Array(); //await snxData.snx.holders({ max: 1000 });
 
 			const unformattedLastDebtLedgerEntry = await  snxJSConnector.snxJS.OikosState.lastDebtLedgerEntry();
 			const issuanceRatio = await snxJSConnector.snxJS.OikosState.issuanceRatio();
 			const lastDebtLedgerEntry = Number(snxJSConnector.snxJS.ethers.utils.formatUnits(unformattedLastDebtLedgerEntry, 27) );
+			
 			let oksTotal, oksLocked, stakersTotalDebt, stakersTotalCollateral
+
+			const holder = {collateral:0, debtEntryAtIndex:0, initialDebtOwnership:0}
+			holders.push(holder)
 			for (const { collateral, debtEntryAtIndex, initialDebtOwnership } of holders) {
 
 				let debtBalance =

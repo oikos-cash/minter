@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { withTranslation, Trans } from 'react-i18next';
 
@@ -8,8 +8,21 @@ import { ButtonTertiary } from '../../../components/Button';
 import { PLarge, PageTitle, DataHeaderLarge, Subtext } from '../../../components/Typography';
 import Spinner from '../../../components/Spinner';
 import TransactionPriceIndicator from '../../../components/TransactionPriceIndicator';
+import { Store } from '../../../store';
 
 const Confirmation = ({ t, onDestroy, walletType, vestAmount }) => {
+	const {
+		state: {
+			ui: { themeIsDark },
+		},
+	} = useContext(Store);	
+	const suffix = themeIsDark ? "-white" : "-dark";
+	let logoPath
+	if (walletType == "MathWallet") {
+		logoPath = `images/wallets/${walletType}${suffix}.svg`
+	} else {
+		logoPath = `/images/wallets/${walletType}.svg`
+	}
 	return (
 		<SlidePage>
 			<Container>
@@ -18,7 +31,7 @@ const Confirmation = ({ t, onDestroy, walletType, vestAmount }) => {
 				</Navigation>
 				<Top>
 					<Intro>
-						<ActionImage src={`/images/wallets/${walletType.toLowerCase()}.svg`} />
+						<ActionImage src={logoPath} />
 						<PageTitle>{t('transactionProcessing.confirmation.title')}</PageTitle>
 						<PLarge>
 							<Trans i18nKey="transactionProcessing.confirmation.subtitle">

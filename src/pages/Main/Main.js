@@ -34,7 +34,7 @@ const Main = () => {
 	return (
 		<MainWrapper>
 			<Dashboard />
-			{window.location.pathname === '/multisig' ? <SETHPoolRewardDistribution /> : <MintrPanel />}
+			{/*window.location.pathname === '/multisig' ? <SETHPoolRewardDistribution /> :*/ <MintrPanel />}
 		</MainWrapper>
 	);
 };

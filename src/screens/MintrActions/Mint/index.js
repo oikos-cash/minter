@@ -105,12 +105,14 @@ const Mint = ({ onDestroy }) => {
 	const gasEstimateError = useGetGasEstimate(mintAmount, issuableSynths);
 
 	const onMint = async () => {
+	
+
 		const transactionSettings = {
 			gasPrice: gasPrice * GWEI_UNIT,
 			gasLimit,
 		};
 		try {
-			console.log(snxJSConnector.utils.parseEther(mintAmount.toString()))
+			//console.log(snxJSConnector.utils.parseEther(mintAmount.toString()))
 			handleNext(1);
 			let transaction;
 			if (mintAmount === issuableSynths) {
@@ -120,6 +122,7 @@ const Mint = ({ onDestroy }) => {
 					snxJSConnector.utils.parseEther(mintAmount.toString()),
 					transactionSettings
 				);
+				console.log(transaction)
 			}
 			if (transaction) {
 				setTransactionInfo({ transactionHash: transaction.hash });
@@ -136,13 +139,27 @@ const Mint = ({ onDestroy }) => {
 			}
 		} catch (e) {
 			console.log(e);
-			const errorMessage = errorMapper(e, walletType);
-			console.log(errorMessage);
-			setTransactionInfo({
-				...transactionInfo,
-				transactionError: errorMessage,
-			});
-			handleNext(2);
+			if (!window.ethereum.isMathWallet) {
+				const errorMessage = errorMapper(e, walletType);
+				console.log(errorMessage);
+				setTransactionInfo({
+					...transactionInfo,
+					transactionError: errorMessage,
+				});
+				handleNext(2);				
+			} else {
+				if (String(e).indexOf(`invalid hash`) != -1) {
+					//const errorMessage = (e && e.message) || 'input.error.transaction';
+					const errorMessage = errorMapper(e, walletType);
+					console.log(errorMessage);
+					setTransactionInfo({
+						...transactionInfo,
+						transactionError: errorMessage,
+					});
+					handleNext(2);	
+				}				
+
+			}
 		}
 	};
 
