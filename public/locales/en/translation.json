@@ -77,7 +77,8 @@
 		"buttons": {
 			"exchange": "Go to Oikos.Exchange",
 			"synthetixDashboard": "View prices on Dashboard",
-			"refresh": "Refresh"
+			"refresh": "Refresh",
+			"delegate": "Delegate"
 		}
 	},
 	"mainNavigation": {
@@ -89,6 +90,29 @@
 			"lpRewards": "LP rewards"
 		}
 	},
+	"delegation": {
+		"popup": {
+			"title": "Delegate wallet addresses",
+			"link": "See blog post",
+			"description": "Delegation enables a wallet to execute functions on behalf of another wallet: mint, burn, claim, and exchange, but not transfer.",
+			"input": {
+				"label": "Enter new wallet address to delegate:"
+			},
+			"table": {
+				"title": "Manage wallet addresses",
+				"columns": {
+					"walletAddress": "Wallet address",
+					"actions": "actions"
+				},
+				"cells": {
+					"removeAllPowers": "Remove all powers"
+				}
+			},
+			"buttons": {
+				"add": "Add"
+			}
+		}
+	},	
 	"home": {
 		"intro": {
 			"title": "What would you like to do?"
@@ -487,7 +511,10 @@
 	},
 	"input": {
 		"list": {
-			"placeholder": "Search for a synth..."
+			"placeholder": "Search for a synth...",
+			"address": {
+				"placeholder": "e.g. 0x3b18a4..."
+			}
 		},
 		"error": {
 			"notEnoughToMint": "You cannot currently mint that much oUSD",
