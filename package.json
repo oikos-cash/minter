@@ -8,7 +8,7 @@
 		"@ethersproject/bignumber": "^5.1.1",
 		"@ethersproject/units": "^5.1.0",
 		"@oikos/oikos-data-bsc": "^0.1.12",
-		"@oikos/oikos-js-bsc": "^0.2.51",
+		"@oikos/oikos-js-bsc": "^0.2.53",
 		"@rehooks/component-size": "^1.0.3",
 		"browserslist": "^4.8.2",
 		"date-fns": "^2.0.1",
