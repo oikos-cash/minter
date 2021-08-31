@@ -71,6 +71,7 @@
 			"balance": "餘額"
 		},
 		"buttons": {
+			"buyOKS":"用 BNB 購買 OKS",
 			"exchange": "前往 Oikos.Exchange",
 			"synthetixDashboard": "查看 Oikos Dashboard",
 			"refresh": "重新整理"

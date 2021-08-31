@@ -74,6 +74,7 @@
 		},
 		"buttons": {
 			"exchange": "Ir a Oikos.Exchange",
+			"buyOKS": "Compra OKS con BNB",
 			"synthetixDashboard": "Ver precios en el Tablero",
 			"refresh": "Actualizar"
 		}
