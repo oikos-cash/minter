@@ -5,7 +5,7 @@ import { withTranslation, useTranslation } from 'react-i18next';
 import { isEmpty } from 'lodash';
 
 import { Store } from '../../store';
-import { toggleDelegationPopup } from '../../ducks/ui';
+//import { toggleDelegationPopup } from '../../ducks/ui';
 import { formatCurrency } from '../../helpers/formatters';
 import { fetchData } from './fetchData';
 import snxJSConnector from '../../helpers/snxJSConnector';
@@ -331,9 +331,9 @@ const Dashboard = ({ t }) => {
 						</ButtonTertiary>*/}
 						<ButtonContainer>
 							
-							<ButtonTertiary onClick={() => toggleDelegationPopup(true, dispatch)}>
+							{/*<ButtonTertiary onClick={() => toggleDelegationPopup(true, dispatch)}>
 								{t('dashboard.buttons.delegate')}
-							</ButtonTertiary>
+					</ButtonTertiary>*/}
 							<ButtonTertiary
 								disabled={dashboardIsLoading}
 								style={{ minWidth: '102px' }}
