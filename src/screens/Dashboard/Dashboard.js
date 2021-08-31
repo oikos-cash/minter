@@ -5,7 +5,7 @@ import { withTranslation, useTranslation } from 'react-i18next';
 import { isEmpty } from 'lodash';
 
 import { Store } from '../../store';
-
+import { toggleDelegationPopup } from '../../ducks/ui';
 import { formatCurrency } from '../../helpers/formatters';
 import { fetchData } from './fetchData';
 import snxJSConnector from '../../helpers/snxJSConnector';
@@ -291,6 +291,7 @@ const Dashboard = ({ t }) => {
 			transactions: { successQueue },
 		},
 	} = useContext(Store);
+	const { state, dispatch } = useContext(Store);
 
 	const [dashboardIsLoading, setDashboardIsLoading] = useState(true);
 	const [data, setData] = useState({});
@@ -321,13 +322,30 @@ const Dashboard = ({ t }) => {
 			<Content>
 				<Container>
 					<ContainerHeader>
+
 						<H5 mb={0}>{t('dashboard.sections.wallet')}</H5>
-						<ButtonSpinnerContainer>
+						{/*<ButtonSpinnerContainer>
 							{dashboardIsLoading && <MicroSpinner />}
 							<ButtonTertiary onClick={() => loadData()}>
 								{t('dashboard.buttons.refresh')}
+						</ButtonTertiary>*/}
+						<ButtonContainer>
+							
+							<ButtonTertiary onClick={() => toggleDelegationPopup(true, dispatch)}>
+								{t('dashboard.buttons.delegate')}
 							</ButtonTertiary>
-						</ButtonSpinnerContainer>
+							<ButtonTertiary
+								disabled={dashboardIsLoading}
+								style={{ minWidth: '102px' }}
+								onClick={() => loadData()}
+							>
+								
+								{dashboardIsLoading ? <MicroSpinner /> : t('dashboard.buttons.refresh')}			
+								</ButtonTertiary>	
+								<Link  style={{backgroundColor:"green", color:"white"}} href="https://pancakeswap.finance/swap#/swap?inputCurrency=BNB&outputCurrency=0x6BF2Be9468314281cD28A94c35f967caFd388325" target="_blank">
+							<ButtonTertiaryLabel>{t('dashboard.buttons.buyOKS')}</ButtonTertiaryLabel>
+						</Link>			
+						</ButtonContainer>
 					</ContainerHeader>
 					<CollRatios state={{ debtData }} />
 					<PricesContainer>
@@ -366,6 +384,7 @@ const Dashboard = ({ t }) => {
 						<Link href="https://oikos.exchange" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.exchange')}</ButtonTertiaryLabel>
 						</Link>
+					
 						{/* <Link
 							href="https://dashboard-bsc.oikos.cash"
 							target="_blank"
@@ -379,6 +398,14 @@ const Dashboard = ({ t }) => {
 		</DashboardWrapper>
 	);
 };
+
+const ButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+	& > button + button {
+		margin-left: 10px;
+	}
+`;
 
 const DashboardWrapper = styled('div')`
 	background: ${props => props.theme.colorStyles.panels};

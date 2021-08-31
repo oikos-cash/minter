@@ -76,6 +76,7 @@
 		},
 		"buttons": {
 			"exchange": "Go to Oikos.Exchange",
+			"buyOKS": "Buy OKS with BNB",
 			"synthetixDashboard": "View prices on Dashboard",
 			"refresh": "Refresh",
 			"delegate": "Delegate"
