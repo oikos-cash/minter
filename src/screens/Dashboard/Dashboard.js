@@ -342,9 +342,7 @@ const Dashboard = ({ t }) => {
 								
 								{dashboardIsLoading ? <MicroSpinner /> : t('dashboard.buttons.refresh')}			
 								</ButtonTertiary>	
-								<Link  style={{backgroundColor:"green", color:"white"}} href="https://pancakeswap.finance/swap#/swap?inputCurrency=BNB&outputCurrency=0x6BF2Be9468314281cD28A94c35f967caFd388325" target="_blank">
-							<ButtonTertiaryLabel>{t('dashboard.buttons.buyOKS')}</ButtonTertiaryLabel>
-						</Link>			
+		
 						</ButtonContainer>
 					</ContainerHeader>
 					<CollRatios state={{ debtData }} />
@@ -384,7 +382,9 @@ const Dashboard = ({ t }) => {
 						<Link href="https://oikos.exchange" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.exchange')}</ButtonTertiaryLabel>
 						</Link>
-					
+						<Link  style={{backgroundColor:"green", color:"white"}} href="https://pancakeswap.finance/swap#/swap?inputCurrency=BNB&outputCurrency=0x6BF2Be9468314281cD28A94c35f967caFd388325" target="_blank">
+							<ButtonTertiaryLabel>{t('dashboard.buttons.buyOKS')}</ButtonTertiaryLabel>
+						</Link>	
 						{/* <Link
 							href="https://dashboard-bsc.oikos.cash"
 							target="_blank"
