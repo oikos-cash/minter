@@ -74,7 +74,7 @@
 		},
 		"buttons": {
 			"exchange": "Перейти на Oikos.Exchange",
-			"buyOKS": "",
+			"buyOKS": "купить OKS за BNB",
 			"synthetixDashboard": "Смотреть цены на панели Oikos",
 			"refresh": "Обновить"
 		}
@@ -82,7 +82,7 @@
 	"mainNavigation": {
 		"tabs": {
 			"home": "Главная",
-			"depot": "купить OKS за BNB",
+			"depot": "Депо",
 			"transactionsHistory": "Транзакции",
 			"escrow": "Условное депонирование"
 		}
