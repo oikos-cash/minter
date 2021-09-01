@@ -382,7 +382,7 @@ const Dashboard = ({ t }) => {
 						<Link href="https://oikos.exchange" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.exchange')}</ButtonTertiaryLabel>
 						</Link>
-						<Link  style={{backgroundColor:"green", color:"white"}} href="https://pancakeswap.finance/swap/swap?inputCurrency=BNB&outputCurrency=0x18aCf236eB40c0d4824Fb8f2582EBbEcD325Ef6a" target="_blank">
+						<Link  style={{backgroundColor:"green", color:"white"}} href="https://pancakeswap.finance/swap/0x18aCf236eB40c0d4824Fb8f2582EBbEcD325Ef6a?inputCurrency=BNB" target="_blank">
 							<ButtonTertiaryLabel>{t('dashboard.buttons.buyOKS')}</ButtonTertiaryLabel>
 						</Link>	
 						{/* <Link
