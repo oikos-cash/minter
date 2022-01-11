@@ -123,7 +123,7 @@ const Stake = ({ t, goBack }) => {
 			<PageTitle>{t('unipool.title')}</PageTitle>
 			<PLarge>{t('unipool.unlocked.subtitle')}</PLarge>
 			<PLarge>
-				<Link href="https://v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325" target="_blank">
+				<Link href="https://pancakeswap.finance/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325" target="_blank">
 					{<ButtonTertiaryLabel>{"Go to Pancake Swap"}</ButtonTertiaryLabel>}
 				</Link>
 			</PLarge>	

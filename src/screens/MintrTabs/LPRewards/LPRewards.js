@@ -258,7 +258,7 @@ const LPRewards = () => {
 							} else if (name == "pancake") {
 								apr = 0
 								subtitle = "(Ended)"
-								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
+								link = "pancakeswap.finance/add/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
 								opacity = {opacity:"0.5"}
 							} 
 							
