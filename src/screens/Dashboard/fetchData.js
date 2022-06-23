@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { addSeconds } from 'date-fns';
 import snxJSConnector from '../../helpers/snxJSConnector';
-
+import {fromWei, toWei} from 'web3-utils'
 import { bytesFormatter, parseBytes32String, toBigNumber, bigNumberFormatter } from '../../helpers/formatters';
 
 const getBalances = async walletAddress => {
@@ -31,15 +31,15 @@ export const getOusdInUsd = async () => {
 	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
 		['oBNB'].map(bytesFormatter)
 	);
-	oBNBPrice = oBNBPrice / 1e18
+	oBNBPrice = fromWei(`${oBNBPrice}`)
 
 	const [ reserves ] = await Promise.all([
 		uniswapV2Contract.getReserves(),
 	]) 
-	let bnb = reserves[1] / 1e18
+	let bnb =  fromWei(`${reserves[1]}`)
 	let bnbReserveUSDValue = bnb * oBNBPrice
-	let price = bnbReserveUSDValue / (reserves[0] / 1e18)
-	console.log(`x is ${bnbReserveUSDValue} y ${reserves[0] / 1e18}`)
+	let price = bnbReserveUSDValue / fromWei(`${reserves[0]}`)
+	//console.log(`x is ${bnbReserveUSDValue} y ${fromWei(`${reserves[0]}`)}`)
 
 	return price
 };
@@ -50,15 +50,14 @@ export const oksToUSD = async () => {
 	let oBNBPrice = await snxJSConnector.snxJS.ExchangeRates.ratesForCurrencies(
 		['oBNB'].map(bytesFormatter)
 	);
-	oBNBPrice = oBNBPrice / 1e18
+	oBNBPrice =  fromWei(`${oBNBPrice}`)
 
 	const [ reserves ] = await Promise.all([
 		uniswapOKSContract.getReserves(),
 	]) 
-	let bnb = reserves[1] / 1e18
+	let bnb = fromWei(`${reserves[1]}`)
 	let bnbReserveUSDValue = bnb * oBNBPrice
-	let price = bnbReserveUSDValue / (reserves[0] / 1e18)
-	console.log(`x is ${bnbReserveUSDValue} y ${reserves[0] / 1e18}`)
+	let price = bnbReserveUSDValue / fromWei(`${reserves[0]}`)
 
 	return price
 };
@@ -100,21 +99,15 @@ const getPrices = async () => {
 		let [synths, sethToEthRate] = await Promise.all([synthsP, sethToEthRateP]);
 		let arrCopy = [...synths]
 
-		console.log(await oksToUSD())
-		console.log( bigNumberFormatter(synths[0]))
-		//arrCopy[0] = toBigNumber(await oksToUSD());
+		await oksToUSD()
 		
 		arrCopy[0] = synths[0];
 		arrCopy[1] = toBigNumber(ousdInUsd);
 		arrCopy[2] = synths[1];
-
-		console.log( arrCopy)
 		synths = arrCopy;
 
 		const [oks, ousd, obnb] = synths.map(bigNumberFormatter);
 
-
-		console.log(`ousdInUsd is ${ousdInUsd}`);
 		return { oks, ousd: ousdInUsd, bnb: obnb };
 	} catch (e) {
 		console.log(e);
@@ -206,7 +199,7 @@ const getSynths = async walletAddress => {
 				);
 			})
 		);
-		console.log({ balances });
+		//console.log({ balances });
 		let totalBalance = 0;
 		const formattedBalances = balances.map((balance, i) => {
 			const formattedBalance = bigNumberFormatter(balance);
@@ -234,7 +227,7 @@ export const fetchData = async walletAddress => {
 		getEscrow(walletAddress),
 		getSynths(walletAddress),
 	]).catch(e => console.log(e));
-	console.log(synthData);
+	//console.log(synthData);
 	return {
 		balances,
 		prices,

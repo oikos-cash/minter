@@ -97,6 +97,7 @@ const LPRewards = () => {
 	
 				let z = x.add(ONE).div(TWO);
 				let y = x;
+
 				while (z.sub(y).isNegative()) {
 					y = z;
 					z = x.div(z).add(z).div(TWO);
@@ -119,10 +120,8 @@ const LPRewards = () => {
 			console.log(new ethers.Contract(token0, curveLPToken.abi, signer))
 
 			let px0 = await fairTokenPricing(new ethers.Contract(token0, curveLPToken.abi, signer))
-			
 			let px1 = await fairTokenPricing(new ethers.Contract(token1, curveLPToken.abi, signer))
 
-			console.log(px0)
 
 			let divisorBN = (2**56)
 			return sqrtK.mul(2).mul(sqrt(px0)).div(divisorBN).mul(sqrt(px1)).div(divisorBN)
@@ -229,8 +228,6 @@ const LPRewards = () => {
 		setOikosAPRV2((Number(_oikosAprV2) * 100).toFixed(2))
 		setOikosAPRVDRV((Number(_oikosAprDRV) * 100).toFixed(2))
 		
-
-
 		//setLPTokenBalance(userLpTokenBalance)
 		//setTotalLpTokenBalance(totalLpTokenBalance)
 		}
@@ -267,12 +264,12 @@ const LPRewards = () => {
 								disabled={ name == "pancake" ? true: false}
 								style={opacity}
 								>
-									<ButtonContainer>
+								<ButtonContainer>
 										<ActionImage src={`/images/${name}.png`} big />
 										<H1>{t(title)}</H1>
 										<H2><a href={`https://${link}`} target="_blank" rel="noreferrer">{subtitle}</a></H2>
 										<H2>APR: <label style={{color:"green"}}> {apr} </label> %</H2>
-									</ButtonContainer>
+									</ButtonContainer>	
 								</Button>
 							);
 						})}
@@ -289,7 +286,7 @@ const LPRewards = () => {
 							} else if (name == "pancakeDRV") {
 								apr = oikosAPRDRV
 								subtitle = "(Paused)"
-								link = "v1exchange.pancakeswap.finance/#/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
+								link = "pancakeswap.finance/remove/BNB/0x6BF2Be9468314281cD28A94c35f967caFd388325"
 								opacity = {opacity:"0.5"}
 							} 				
 							console.log(`Pool name is ${name}`)			
@@ -312,6 +309,7 @@ const LPRewards = () => {
 			)}
 		</PageContainer>
 	);
+	 
 };
 
 const Button = styled.button`
