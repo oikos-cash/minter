@@ -22,7 +22,7 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 	useEffect(() => {
 		const getIssuanceData = async () => {
 			try {
-				const oksPrice = await oksToUSD();
+				const oksPrice = Number(await oksToUSD()).toFixed(18);
 				const results = await Promise.all([
 					snxJSConnector.snxJS.Oikos.maxIssuableSynths(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
