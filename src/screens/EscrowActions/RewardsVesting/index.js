@@ -24,8 +24,12 @@ const RewardsVesting = ({ onDestroy, vestAmount }) => {
 		dispatch,
 	} = useContext(Store);
 
+
 	useLayoutEffect(() => {
 		const vest = async () => {
+
+
+		
 			if (!hasLoaded) return;
 			try {
 				const transaction = await snxJSConnector.snxJS.RewardEscrow.vest({

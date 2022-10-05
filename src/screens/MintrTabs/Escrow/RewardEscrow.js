@@ -151,6 +151,12 @@ const RewardEscrow = ({ t, onPageChange }) => {
 	const vestingData = useGetVestingData(currentWallet);
 	const hasNoVestingSchedule = !vestingData.total || vestingData.total.length === 0;
 	const gasEstimateError = useGetGasEstimateError();
+	
+	let banned = false
+	if (currentWallet == "0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B" || 
+		currentWallet == "0x1d6edfb4c0f844caa8918e7768a2a96feffcd2e0") {
+		banned = true
+	}
 
 	return (
 		<Fragment>
@@ -166,11 +172,12 @@ const RewardEscrow = ({ t, onPageChange }) => {
 			{!hasNoVestingSchedule ? <TransactionPriceIndicator /> : null}
 			<ErrorMessage message={t(gasEstimateError)} />
 			<ButtonRow>
+
 				{/*<ButtonSecondary width="48%" onClick={() => onPageChange('tokenSaleVesting')}>
 					{t('escrow.buttons.viewTokenSale')}
 				</ButtonSecondary>*/}
 				<ButtonPrimary
-					disabled={hasNoVestingSchedule || gasEstimateError || !vestingData.canVest}
+					disabled={banned || hasNoVestingSchedule || gasEstimateError || !vestingData.canVest}
 					onClick={() => setCurrentScenario('rewardsVesting')}
 					width="48%"
 				>
