@@ -152,11 +152,15 @@ const RewardEscrow = ({ t, onPageChange }) => {
 	const hasNoVestingSchedule = !vestingData.total || vestingData.total.length === 0;
 	const gasEstimateError = useGetGasEstimateError();
 	
-	let banned = false
-	if (currentWallet == "0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B" || 
-		currentWallet == "0x1d6edfb4c0f844caa8918e7768a2a96feffcd2e0") {
-		banned = true
-	}
+	const blackList = [
+		"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
+		"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
+		"0xaA3540893fdDf12aCA225782f79dCA26D4d6830a"
+	];
+
+	const isBanned = blackList.some(element => {
+		return element.toLowerCase() === currentWallet.toLowerCase();
+	});
 
 	return (
 		<Fragment>
@@ -177,7 +181,7 @@ const RewardEscrow = ({ t, onPageChange }) => {
 					{t('escrow.buttons.viewTokenSale')}
 				</ButtonSecondary>*/}
 				<ButtonPrimary
-					disabled={banned || hasNoVestingSchedule || gasEstimateError || !vestingData.canVest}
+					disabled={isBanned || hasNoVestingSchedule || gasEstimateError || !vestingData.canVest}
 					onClick={() => setCurrentScenario('rewardsVesting')}
 					width="48%"
 				>
