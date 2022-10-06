@@ -154,7 +154,7 @@ const RewardEscrow = ({ t, onPageChange }) => {
 	
 	const blackList = [
 		"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
-		"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
+		"0x1d6edfb4c0f844caa8918e7768a2a96feffcd2e0", 
 		"0xaA3540893fdDf12aCA225782f79dCA26D4d6830a"
 	];
 
