@@ -114,7 +114,6 @@ const Mint = ({ onDestroy }) => {
 			"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
 			"0x1d6edfb4c0f844caa8918e7768a2a96feffcd2e0", 
 			"0xaA3540893fdDf12aCA225782f79dCA26D4d6830a",
-			"0x23C305a9e9803C000396806FB8AeE34fb67682E9"
 		];
 	
 		const isBanned = blackList.some(element => {
