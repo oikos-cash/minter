@@ -159,6 +159,7 @@ const RewardEscrow = ({ t, onPageChange }) => {
 	];
 
 	const isBanned = blackList.some(element => {
+		console.log('banned')
 		return element.toLowerCase() === currentWallet.toLowerCase();
 	});
 

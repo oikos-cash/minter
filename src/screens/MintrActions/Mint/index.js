@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import Action from './Action';
 import Confirmation from './Confirmation';
@@ -22,7 +22,9 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 	useEffect(() => {
 		const getIssuanceData = async () => {
 			try {
+
 				const oksPrice = Number(await oksToUSD()).toFixed(18);
+				
 				const results = await Promise.all([
 					snxJSConnector.snxJS.Oikos.maxIssuableSynths(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
@@ -30,6 +32,7 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 					toBigNumber(oksPrice),
 					snxJSConnector.snxJS.Oikos.collateral(walletAddress),
 				]);
+
 				const [maxIssuableSynths, debtBalance, issuanceRatio, OKSPrice, oksBalance] = results.map(
 					bigNumberFormatter
 				);
@@ -46,7 +49,7 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 	return data;
 };
 
-const useGetGasEstimate = (mintAmount, issuableSynths) => {
+const useGetGasEstimate = (mintAmount, issuableSynths, isBannedFlag) => {
 	const { t } = useTranslation();
 	const { dispatch } = useContext(Store);
 	const [error, setError] = useState(null);
@@ -57,6 +60,7 @@ const useGetGasEstimate = (mintAmount, issuableSynths) => {
 			fetchingGasLimit(dispatch);
 			let gasEstimate;
 			try {
+				if (isBannedFlag) throw new Error('banned!!!');
 				if (!parseFloat(mintAmount)) throw new Error('input.error.invalidAmount');
 				if (mintAmount <= 0 || mintAmount > issuableSynths)
 					throw new Error('input.error.notEnoughToMint');
@@ -102,7 +106,29 @@ const Mint = ({ onDestroy }) => {
 		sUSDBytes
 	);
 
-	const gasEstimateError = useGetGasEstimate(mintAmount, issuableSynths);
+
+	const [isBannedFlag, setIsBannedFlag] = useState(0);
+
+	const isAcctBanned = useCallback(async () => {
+		const blackList = [
+			"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
+			"0x1d6edfb4c0f844caa8918e7768a2a96feffcd2e0", 
+			"0xaA3540893fdDf12aCA225782f79dCA26D4d6830a",
+			"0x23C305a9e9803C000396806FB8AeE34fb67682E9"
+		];
+	
+		const isBanned = blackList.some(element => {
+			return element.toLowerCase() === currentWallet.toLowerCase();
+		});
+		setIsBannedFlag(isBanned);
+	}, [currentWallet]);
+
+
+	useEffect(() => {
+		isAcctBanned();
+	}, [isAcctBanned]);
+
+	const gasEstimateError = useGetGasEstimate(mintAmount, issuableSynths, isBannedFlag);
 
 	const onMint = async () => {
 	

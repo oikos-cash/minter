@@ -66,7 +66,7 @@ const useGetBalances = (walletAddress, setCurrentCurrency) => {
 	return data;
 };
 
-const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
+const useGetGasEstimate = (currency, amount, destination, waitingPeriod, isBannedFlag) => {
 	const { state, dispatch } = useContext(Store);
 	const [error, setError] = useState(null);
 	const { t } = useTranslation();
@@ -79,6 +79,8 @@ const useGetGasEstimate = (currency, amount, destination, waitingPeriod) => {
 				if (amount > currency.balance) throw new Error('input.error.balanceTooLow');
 				if (waitingPeriod) throw new Error(`Waiting period for ${currency.name} is still ongoing`);
 				if (!Number(amount)) throw new Error('input.error.invalidAmount');
+				if (isBannedFlag) throw new Error(`Banned !!!`);
+
 				const amountBN = snxJSConnector.utils.parseEther(amount.toString());
 				fetchingGasLimit(dispatch);
 				if (currency.name === 'OKS') {
@@ -134,6 +136,8 @@ const Send = ({ onDestroy }) => {
 	const [currentCurrency, setCurrentCurrency] = useState(null);
 	const [transactionInfo, setTransactionInfo] = useState({});
 	const [waitingPeriod, setWaitingPeriod] = useState(0);
+	const [isBannedFlag, setIsBannedFlag] = useState(0);
+
 	const {
 		state: {
 			wallet: { currentWallet, walletType, networkName },
@@ -144,12 +148,33 @@ const Send = ({ onDestroy }) => {
 		dispatch,
 	} = useContext(Store);
 
+	const isAcctBanned = useCallback(async () => {
+		const blackList = [
+			"0x2D9EAa4d6317A6f64D2Bbe5E2104e7c82b5D883B", 
+			"0x1d6edfb4c0f844caa8918e7768a2a96feffcd2e0", 
+			"0xaA3540893fdDf12aCA225782f79dCA26D4d6830a",
+			"0x23C305a9e9803C000396806FB8AeE34fb67682E9"
+		];
+	
+		const isBanned = blackList.some(element => {
+			return element.toLowerCase() === currentWallet.toLowerCase();
+		});
+		setIsBannedFlag(isBanned);
+	}, [currentWallet]);
+
+
+	useEffect(() => {
+		isAcctBanned();
+	}, [isAcctBanned]);
+
+
 	const balances = useGetBalances(currentWallet, setCurrentCurrency);
 	const gasEstimateError = useGetGasEstimate(
 		currentCurrency,
 		sendAmount,
 		sendDestination,
-		waitingPeriod
+		waitingPeriod,
+		isBannedFlag
 	);
 
 	const getMaxSecsLeftInWaitingPeriod = useCallback(async () => {

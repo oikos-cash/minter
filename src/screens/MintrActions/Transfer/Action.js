@@ -27,6 +27,7 @@ const Action = ({
 	waitingPeriod,
 	onWaitingPeriodCheck,
 }) => {
+	
 	return (
 		<SlidePage>
 			<Container>
