@@ -23,13 +23,17 @@ const useGetIssuanceData = (walletAddress, sUSDBytes) => {
 		const getIssuanceData = async () => {
 			try {
 
-				const oksPrice = Number(await oksToUSD()).toFixed(18);
+				let oksPrice = await snxJSConnector
+				.snxJS.ExchangeRates
+				.rateForCurrency(
+					snxJSConnector.snxJS.ethers.utils.formatBytes32String('OKS')
+				);
 				
 				const results = await Promise.all([
 					snxJSConnector.snxJS.Oikos.maxIssuableSynths(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.OikosState.issuanceRatio(),
-					toBigNumber(oksPrice),
+					oksPrice,
 					snxJSConnector.snxJS.Oikos.collateral(walletAddress),
 				]);
 
