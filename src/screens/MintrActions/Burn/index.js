@@ -22,14 +22,17 @@ const useGetDebtData = (walletAddress, sUSDBytes) => {
 	useEffect(() => {
 		const getDebtData = async () => {
 			try {
-					let oksPrice = await snxJSConnector.snxJS.ExchangeRates.rateForCurrency(
-					snxJSConnector.snxJS.ethers.utils.formatBytes32String('OKS'))
-					oksPrice = bigNumberFormatter(oksPrice);
+					let oksPrice = await snxJSConnector
+					.snxJS.ExchangeRates
+					.rateForCurrency(
+						snxJSConnector.snxJS.ethers.utils.formatBytes32String('OKS')
+					);
+					
 					const results = await Promise.all([
 					snxJSConnector.snxJS.Oikos.debtBalanceOf(walletAddress, sUSDBytes),
 					snxJSConnector.snxJS.oUSD.balanceOf(walletAddress),
 					snxJSConnector.snxJS.OikosState.issuanceRatio(),
-					toBigNumber(oksPrice),
+					oksPrice,
 					snxJSConnector.snxJS.RewardEscrow.totalEscrowedAccountBalance(walletAddress),
 					snxJSConnector.snxJS.OikosEscrow.balanceOf(walletAddress),
 					snxJSConnector.snxJS.Oikos.collateralisationRatio(walletAddress),
