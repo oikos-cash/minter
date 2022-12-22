@@ -41,7 +41,7 @@ export const getOusdInUsd = async () => {
 	let price = bnbReserveUSDValue / fromWei(`${reserves[0]}`)
 	//console.log(`x is ${bnbReserveUSDValue} y ${fromWei(`${reserves[0]}`)}`)
 
-	return price
+	return price.toFixed(5)
 };
 
 export const oksToUSD = async () => {

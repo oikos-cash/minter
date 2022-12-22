@@ -82,7 +82,11 @@ const CollRatios = ({ state }) => {
 					console.log(Number(collateral) * Number(oksPrice))
 					console.log(`Locked OKS ${debtBalance} ${Number(collateral) * Number(oksPrice)}`)
 
+				} else {
+					stakersTotalDebt += Number(0);
+					stakersTotalCollateral =  Number(collateral) * Number(oksPrice);
 				}
+
 				oksTotal += Number(collateral);
 				oksLocked += Number(lockedOks);
 
